@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>SeeUNotes｜叶老师直播连麦案例学习库</title><style>
+:root{
+  --bg:#f2f3f5; --panel:#f8f9fb; --card:#ffffff; --ink:#172033; --muted:#6f7785;
+  --klein:#002FA7; --klein2:#1147d4; --blue-soft:#eaf0ff; --line:rgba(23,32,51,.11);
+  --asker:#f7f8fb; --teacher:#eef3ff; --universal:#f1f4f8; --red:#d73838;
+  --shadow:0 26px 70px rgba(0,47,167,.10);
+}
+*{box-sizing:border-box} html,body{height:100%;overflow:hidden} body{margin:0;background:linear-gradient(180deg,#f7f8fa,#eceff3);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;line-height:1.72;user-select:text}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 75% 12%,rgba(0,47,167,.10),transparent 26%),linear-gradient(90deg,rgba(255,255,255,.52) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.45) 1px,transparent 1px);background-size:auto,36px 36px,36px 36px;opacity:.7;z-index:-1}
+.layout{display:grid;grid-template-columns:294px minmax(620px,1fr) 330px;gap:18px;height:100vh;padding:16px;overflow:hidden}.sidebar,.main-shell,.rightbar{height:calc(100vh - 32px);background:rgba(248,249,251,.86);border:1px solid rgba(255,255,255,.82);border-radius:28px;box-shadow:var(--shadow);backdrop-filter:blur(16px);overflow:hidden}.sidebar{padding:18px;overflow:auto}.brand{padding:18px;border-radius:22px;background:linear-gradient(135deg,#fff,#eef2f8);border:1px solid var(--line)}.brand h2{margin:0;font-size:28px;letter-spacing:.15em;color:var(--klein);font-weight:850}.brand p{margin:8px 0 0;color:var(--muted);font-size:13px}.nav{margin-top:14px;display:flex;flex-direction:column;gap:10px}.nav-card{width:100%;text-align:left;cursor:pointer;border:1px solid var(--line);background:rgba(255,255,255,.76);color:var(--ink);border-radius:18px;padding:13px 14px;font:inherit;transition:.18s}.nav-card:hover{transform:translateY(-1px);border-color:rgba(0,47,167,.34);box-shadow:0 14px 32px rgba(0,47,167,.10)}.nav-card.active{background:#fff;border-color:rgba(0,47,167,.58);box-shadow:0 16px 36px rgba(0,47,167,.14)}.nav-card strong{display:block;font-size:14px;line-height:1.25;font-weight:800}.nav-card span{display:block;margin-top:5px;font-size:12px;color:var(--muted);line-height:1.35}.nav-feature{background:linear-gradient(135deg,#eef3ff,#fff)!important;border-color:rgba(0,47,167,.18)!important}.main-shell{display:flex;flex-direction:column}.view{display:none;height:100%;overflow:auto;padding:28px;scrollbar-width:none;-ms-overflow-style:none}.view::-webkit-scrollbar,.sidebar::-webkit-scrollbar,.rightbar::-webkit-scrollbar{display:none}.view.active{display:block}.hero{position:relative;min-height:calc(100vh - 88px);display:flex;flex-direction:column;justify-content:center;border-radius:28px;padding:58px 62px;overflow:hidden;background:linear-gradient(135deg,#ffffff 0%,#f4f6fa 72%,#eef1f6 100%);border:1px solid rgba(255,255,255,.92)}.orb{position:absolute;right:8%;top:18%;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#7da2ff 0 8%,#1b57ff 18%,#002FA7 56%,#061a5f 100%);filter:blur(.2px);box-shadow:0 0 55px rgba(0,47,167,.48),0 0 125px rgba(0,47,167,.26);animation:breathe 4.8s ease-in-out infinite, drift 8s ease-in-out infinite;opacity:.86}.orb:after{content:"";position:absolute;inset:26px;border-radius:50%;background:radial-gradient(circle at 30% 22%,rgba(255,255,255,.65),transparent 22%);opacity:.65}@keyframes breathe{0%,100%{transform:scale(.96);opacity:.72;box-shadow:0 0 42px rgba(0,47,167,.38),0 0 100px rgba(0,47,167,.22)}50%{transform:scale(1.06);opacity:.95;box-shadow:0 0 72px rgba(0,47,167,.55),0 0 160px rgba(0,47,167,.34)}}@keyframes drift{0%,100%{translate:0 0}50%{translate:-12px 18px}}.hero-meta{position:absolute;right:28px;top:26px;display:flex;gap:10px;z-index:2}.hero-meta span,.hero-meta a{height:34px;display:inline-flex;align-items:center;padding:0 13px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--klein);font-size:13px;text-decoration:none;font-weight:750}.hero h1{position:relative;z-index:2;margin:0 0 30px;max-width:760px;font-size:clamp(46px,5vw,66px);line-height:1.06;letter-spacing:-.04em;font-weight:850;color:var(--ink)}.overview-lines{position:relative;z-index:2;display:flex;flex-direction:column;gap:14px;max-width:860px;margin:0;color:#344054;font-size:22px;line-height:1.8}.overview-lines span{display:flex;gap:14px;align-items:flex-start}.overview-lines i{flex:0 0 auto;width:42px;height:42px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:var(--klein);color:#fff;font-style:normal;font-size:15px;font-weight:900}.metrics{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:830px;margin-top:40px}.metric{padding:16px 17px;border-radius:18px;background:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.92)}.metric b{display:block;font-size:32px;line-height:1;color:var(--klein);font-weight:900}.metric span{font-size:12px;color:var(--muted)}.chapter{border-radius:28px;background:#fff;border:1px solid var(--line);padding:28px}.chapter h2{margin:0 0 18px;font-size:28px;color:var(--klein)}.method-list{display:grid;gap:12px}.method-item{display:grid;grid-template-columns:112px 1fr;gap:16px;align-items:start;background:#f7f8fb;border:1px solid var(--line);border-radius:18px;padding:16px}.method-item b{height:44px;border-radius:999px;background:var(--klein);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px}.method-item p{margin:0;color:#3b4556}.case-page{padding-top:32px;min-height:calc(100vh - 92px)}.case-head{display:grid;grid-template-columns:116px minmax(0,1fr);gap:26px;align-items:start;margin:0 0 30px;padding:20px 4px 24px;border-bottom:1px solid var(--line)}.case-index{font-family:Georgia,"Times New Roman",serif;font-size:88px;line-height:.9;letter-spacing:-.08em;color:var(--klein);font-weight:800}.case-kicker{display:inline-block;margin:2px 0 10px;color:var(--klein);font-size:18px;letter-spacing:.12em;font-weight:900}.case-title h2{margin:0 0 8px;font-size:34px;line-height:1.2;letter-spacing:-.02em}.case-title p{margin:0;color:var(--muted);font-size:18px;line-height:1.55}.note-block{position:relative;margin:0 0 18px;padding:28px 26px 24px;border-radius:22px;border:1px solid var(--line);background:#fff}.asker{background:var(--asker);border-left:5px solid #aab2c0}.teacher{background:var(--teacher);border-left:5px solid var(--klein)}.universal{background:var(--universal);border-left:5px solid #7e8797}.role{position:absolute;right:22px;top:20px;min-width:106px;height:40px;border-radius:999px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--klein);font-size:14px;font-weight:850}.note-block h3{margin:0 132px 14px 0;font-size:25px;line-height:1.25}.note-block ul{margin:0;padding-left:20px}.note-block li,.note-block p{font-size:18px;line-height:1.75;margin:7px 0}.advice-stack{display:grid;gap:12px}.advice-row{display:grid;grid-template-columns:156px minmax(0,1fr);gap:20px;align-items:center;padding:16px 18px;border-radius:18px;background:rgba(255,255,255,.72);border:1px solid var(--line);min-height:92px}.tagpill{width:156px;height:58px;border-radius:999px;background:linear-gradient(135deg,var(--klein),#2b68ff);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;white-space:nowrap;box-shadow:0 10px 26px rgba(0,47,167,.16)}.universal .tagpill{background:linear-gradient(135deg,#5a6475,#87909d)}.advice-row p{margin:0!important;color:#344054}.quote-list{display:grid;gap:10px}.quote-list p{margin:0;padding:13px 15px;border-radius:14px;background:#fff;border:1px solid rgba(0,47,167,.13);border-left:4px solid var(--klein);font-weight:650}.rightbar{padding:18px;overflow:auto}.current-case{font-size:12px;color:#fff;background:var(--klein);padding:8px 12px;border-radius:999px;margin-bottom:12px;font-weight:800}.note-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:14px 15px;margin-bottom:14px}.note-card h3{margin:0 0 8px;font-size:16px;color:var(--klein);font-weight:850}.note-card p{margin:0 0 9px;color:var(--muted);font-size:12px;line-height:1.5}.editable{min-height:96px;outline:none;background:#f8f9fb;border:1px solid var(--line);border-radius:14px;padding:11px;color:#2d3442;font-size:13px;line-height:1.65}.editable:empty:before{content:attr(data-placeholder);color:#9aa3b1}.ann-list{display:grid;gap:9px}.ann{padding:10px 11px;border-radius:14px;background:#f8f9fb;border:1px solid var(--line);font-size:13px}.ann q{display:block;color:var(--klein);font-weight:800}.ann div{margin-top:7px;min-height:42px;outline:none;border-top:1px solid var(--line);padding-top:7px;color:#3b4556}.small-btn{border:none;background:var(--blue-soft);color:var(--klein);border-radius:999px;padding:6px 10px;cursor:pointer;font-size:12px;font-weight:850}.toolbar{position:fixed;z-index:100;display:none;gap:6px;padding:6px;border-radius:999px;background:rgba(23,32,51,.95);box-shadow:0 12px 32px rgba(0,0,0,.18)}.toolbar button{border:0;border-radius:999px;padding:7px 10px;color:#fff;background:rgba(255,255,255,.14);cursor:pointer;font-weight:850}.redline{background:linear-gradient(transparent 63%,rgba(215,56,56,.26) 63%);color:#b92121;text-decoration:underline;text-decoration-color:var(--red);text-decoration-thickness:2px;text-underline-offset:3px;font-weight:800}@media(max-width:1120px){html,body{overflow:auto}.layout{display:block;height:auto;overflow:auto}.sidebar,.main-shell,.rightbar{height:auto;margin-bottom:14px}.view{height:auto}.hero{min-height:auto}.metrics{grid-template-columns:repeat(2,1fr)}.orb{opacity:.22}.advice-row{grid-template-columns:1fr}.tagpill{width:156px}.role{position:static;margin-bottom:10px}.note-block h3{margin-right:0}.case-head{grid-template-columns:1fr}.case-index{font-size:60px}}
+
+/* 修复：首页概览行内划线后中文被 flex 挤成竖排 */
+.overview-lines span{
+  display:block!important;
+  position:relative!important;
+  padding-left:56px!important;
+  gap:0!important;
+  align-items:initial!important;
+  min-width:0!important;
+}
+.overview-lines i{
+  position:absolute!important;
+  left:0!important;
+  top:0!important;
+}
+.overview-lines mark.redline,.overview-lines .redline{
+  display:inline!important;
+  white-space:normal!important;
+  word-break:keep-all!important;
+  overflow-wrap:normal!important;
+  line-height:inherit!important;
+}
+.note-block mark.redline,.note-block .redline,.case-page mark.redline,.case-page .redline{
+  display:inline!important;
+  word-break:normal!important;
+  overflow-wrap:anywhere;
+}
+
+
+
+/* 202606 标签尺寸收敛：避免案例建议/通用建议胶囊过大 */
+.advice-stack{
+  gap:8px!important;
+}
+.advice-row{
+  grid-template-columns:112px minmax(0,1fr)!important;
+  gap:14px!important;
+  min-height:58px!important;
+  padding:10px 14px!important;
+  border-radius:15px!important;
+  align-items:center!important;
+}
+.tagpill{
+  width:112px!important;
+  min-width:112px!important;
+  height:36px!important;
+  border-radius:999px!important;
+  font-size:15px!important;
+  line-height:1!important;
+  letter-spacing:.01em!important;
+  box-shadow:0 6px 14px rgba(0,47,167,.10)!important;
+}
+.advice-row p{
+  font-size:15.5px!important;
+  line-height:1.52!important;
+  margin:0!important;
+  color:#344054!important;
+}
+.note-block{padding:22px 22px 20px!important;}
+.note-block h3{font-size:23px!important;margin-bottom:12px!important;}
+.quote-list p{font-size:16px!important;line-height:1.6!important;}
+@media(max-width:1120px){
+  .advice-row{grid-template-columns:112px minmax(0,1fr)!important;min-height:58px!important;}
+  .tagpill{width:112px!important;min-width:112px!important;height:36px!important;font-size:15px!important;}
+  .advice-row p{font-size:15.5px!important;}
+}
+@media(max-width:560px){
+  .advice-row{grid-template-columns:100px minmax(0,1fr)!important;gap:10px!important;padding:9px 10px!important;}
+  .tagpill{width:100px!important;min-width:100px!important;height:34px!important;font-size:14px!important;}
+}
+
+
+
+/* hero title + floating orbs refinement */
+.hero{isolation:isolate;}
+.hero h1{
+  max-width:720px!important;
+  font-size:clamp(34px,3.85vw,52px)!important;
+  line-height:1.14!important;
+  letter-spacing:-.03em!important;
+  margin:0 0 28px!important;
+}
+.overview-lines,.metrics,.hero-meta,.hero h1{position:relative;z-index:3!important;}
+.orb{
+  z-index:1!important;
+  right:4%!important;
+  top:auto!important;
+  bottom:8%!important;
+  width:178px!important;
+  height:178px!important;
+  opacity:.30!important;
+  filter:blur(.15px)!important;
+  box-shadow:0 0 40px rgba(0,47,167,.24),0 0 98px rgba(0,47,167,.16)!important;
+}
+.hero::before,.hero::after{
+  content:"";
+  position:absolute;
+  z-index:1;
+  pointer-events:none;
+  border-radius:50%;
+  background:radial-gradient(circle at 34% 28%,rgba(255,255,255,.68) 0 11%,#6f94ff 13%,#1d59ff 44%,#002FA7 78%,#061a5f 100%);
+  box-shadow:0 0 36px rgba(0,47,167,.20),0 0 90px rgba(0,47,167,.12);
+  animation:breatheSmall 5.8s ease-in-out infinite, driftSmall 9s ease-in-out infinite;
+}
+.hero::before{width:92px;height:92px;right:18%;top:23%;opacity:.22;animation-delay:-1.2s;}
+.hero::after{width:126px;height:126px;right:12%;bottom:30%;opacity:.18;animation-delay:-2.4s;}
+@keyframes breatheSmall{0%,100%{transform:scale(.94);opacity:.16}50%{transform:scale(1.08);opacity:.28}}
+@keyframes driftSmall{0%,100%{translate:0 0}50%{translate:10px -14px}}
+@media(max-width:1120px){.hero h1{font-size:clamp(30px,8vw,44px)!important}.orb{width:130px!important;height:130px!important;opacity:.16!important}.hero::before,.hero::after{opacity:.10!important}}
+
+
+.hero-meta{position:absolute!important;left:54px!important;top:26px!important;right:auto!important;z-index:6;display:flex!important;gap:10px!important;}
+.hero h1{padding-top:56px!important;max-width:1100px!important;}
+.toolbar{z-index:1000!important}
+mark.annotation-yellow, .annotation-yellow{background:#fff59d!important;color:inherit!important;padding:0 .08em;border-radius:.12em;box-decoration-break:clone;-webkit-box-decoration-break:clone;}
+
+
+/* case top badge align right like object badge */
+.case-head{position:relative!important;grid-template-columns:140px minmax(0,1fr)!important;}
+.case-head > div:last-child{position:relative;padding-right:170px!important;}
+.case-kicker{position:absolute!important;right:22px!important;top:8px!important;display:inline-flex!important;align-items:center;justify-content:center;min-width:150px!important;height:48px!important;padding:0 18px!important;border-radius:999px!important;border:1px solid rgba(18,67,220,.14)!important;background:rgba(255,255,255,.9)!important;color:#1842c8!important;font-size:16px!important;font-weight:800!important;letter-spacing:.04em!important;box-shadow:0 2px 8px rgba(0,0,0,.03)!important;}
+.case-head h2{margin-top:8px!important;}
+
+
+/* middle content editable patch */
+.view [contenteditable="true"]{outline:none;}
+.view [contenteditable="true"]:focus{box-shadow:0 0 0 3px rgba(18,67,220,.10);border-radius:12px;}
+.view .hero[contenteditable="true"]:focus{box-shadow:none;}
+.view.is-editable{user-select:text;-webkit-user-select:text;}
+
+
+/* remove extra left gap before ordered list numbers in case review */
+.rightbar ol, .rightbar .case-review ol, .summary-card ol, .note-card ol{
+  margin:0 !important;
+  padding-left:1.35em !important;
+}
+.rightbar li, .rightbar .case-review li, .summary-card li, .note-card li{
+  margin-left:0 !important;
+  padding-left:0 !important;
+}
+.rightbar ol li::marker, .rightbar .case-review ol li::marker, .summary-card ol li::marker, .note-card ol li::marker{
+  font-weight:700;
+}
+
+
+.annotation-yellow{position:relative;cursor:pointer;}
+.annotation-yellow:hover{box-shadow: inset 0 -2px 0 rgba(0,0,0,.18);}
+.annotation-yellow[title], .redline[title]{cursor:pointer;}
+.redline:hover{opacity:.85;}
+
+
+/* enriched middle content */
+.note-block li{margin:8px 0!important;}
+.quote-list p{font-weight:620!important;}
+.quotes .quote-list p:nth-child(1), .quotes .quote-list p:nth-child(2){font-weight:780!important;}
+.advice-row{min-height:78px!important;}
+.tagpill{font-size:18px!important;height:52px!important;}
+
+/* 首页顶部信息与标题间距缩小 */
+.hero-meta{
+  top: 28px !important;
+  margin-bottom: 0 !important;
+}
+.hero h1{
+  margin-top: 88px !important;
+  padding-top: 0 !important;
+}
+.editorial-hero,
+.hero{
+  justify-content: flex-start !important;
+  padding-top: 28px !important;
+}
+
+
+/* 缩小案例编号与标题之间的横向间隙 */
+.case-head{
+  grid-template-columns:118px minmax(0,1fr)!important;
+  gap:10px!important;
+}
+.case-head > div:last-child{
+  padding-left:0!important;
+}
+.case-index{
+  transform:translateX(-2px)!important;
+}
+
+
+/* ===== Apple-like product polish: interaction, save feedback, progress, review mode, mobile ===== */
+:root{--klein:#002FA7;--klein2:#1d5bff;--surface:#f7f8fb;--text-main:#172033;--text-soft:#5f6b7a;--border-soft:rgba(23,32,51,.10)}
+body{font-weight:430;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}.product-line{position:relative;z-index:3;display:inline-flex;align-items:center;width:max-content;max-width:860px;margin:8px 0 16px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.68);border:1px solid rgba(0,47,167,.10);color:#334155;font-size:13px;font-weight:700;letter-spacing:.01em;backdrop-filter:blur(10px)}
+.hero h1{font-weight:860!important;letter-spacing:-.055em!important}.overview-lines{font-size:20px!important;line-height:1.78!important;font-weight:440!important}.overview-lines span{color:#344054}.metrics{margin-top:30px!important}.orb{opacity:.24!important;right:5%!important;top:28%!important;width:210px!important;height:210px!important;filter:blur(.5px)!important;box-shadow:0 0 45px rgba(0,47,167,.20),0 0 100px rgba(0,47,167,.12)!important;animation:breatheCalm 8s ease-in-out infinite, driftCalm 12s ease-in-out infinite!important;pointer-events:none!important}.hero::before,.hero::after{opacity:.10!important;pointer-events:none!important}@keyframes breatheCalm{0%,100%{transform:scale(.98);opacity:.18}50%{transform:scale(1.03);opacity:.28}}@keyframes driftCalm{0%,100%{translate:0 0}50%{translate:-6px 8px}}
+.nav-card,.small-btn,.toolbar button,.review-toggle,.hero-meta a{transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease, opacity .18s ease}.nav-card:hover,.review-toggle:hover,.small-btn:hover{transform:translateY(-1px)!important}.nav-card:active,.review-toggle:active,.small-btn:active,.toolbar button:active{transform:scale(.985)!important}.nav-card.active{border-color:rgba(0,47,167,.78)!important;box-shadow:0 0 0 4px rgba(0,47,167,.08),0 14px 36px rgba(0,47,167,.13)!important}.editable,.view [contenteditable="true"]{transition:box-shadow .18s ease,border-color .18s ease,background .18s ease}.editable:hover,.view [contenteditable="true"]:hover{box-shadow:0 0 0 3px rgba(0,47,167,.05);border-color:rgba(0,47,167,.18)}.editable:focus,.view [contenteditable="true"]:focus{box-shadow:0 0 0 4px rgba(0,47,167,.10)!important;border-color:rgba(0,47,167,.32)!important;outline:none}.rightbar .note-card h3{font-size:15px!important}.rightbar .note-card p{font-size:11.5px!important}.rightbar .editable,.ann{font-size:12.5px!important;line-height:1.6!important}.role{font-size:13px!important;height:38px!important;min-width:102px!important}.tagpill{height:50px!important;width:142px!important;font-size:17px!important}.advice-row{grid-template-columns:142px minmax(0,1fr)!important;min-height:78px!important;padding:13px 15px!important}.note-block li,.note-block p,.advice-row p{font-size:17px!important;line-height:1.72!important}.note-block h3{font-size:23px!important}.case-title h2{font-size:32px!important}.case-title p{font-size:17px!important}.case-kicker{min-width:132px!important;height:42px!important;font-size:15px!important}.case-head{gap:18px!important;grid-template-columns:104px minmax(0,1fr)!important}.case-index{font-size:82px!important}.progress-wrap{position:sticky;top:0;left:0;right:0;height:3px;background:transparent;z-index:8}.progress-wrap span{display:block;width:0%;height:100%;background:linear-gradient(90deg,var(--klein),var(--klein2));border-radius:999px;box-shadow:0 0 12px rgba(0,47,167,.32);transition:width .08s linear}.status-row{display:flex;align-items:center;gap:8px;margin-bottom:12px}.status-row .current-case{flex:1;margin-bottom:0}.save-status{white-space:nowrap;font-size:11px;font-weight:800;color:#8b95a5;background:#eef1f6;border:1px solid rgba(23,32,51,.08);border-radius:999px;padding:7px 10px;transition:all .2s ease}.save-status.saved{color:#0b7a45;background:#e9f8ef;border-color:rgba(16,185,129,.20)}.review-toggle{width:100%;height:40px;border:0;border-radius:999px;background:linear-gradient(135deg,var(--klein),#275dff);color:#fff;font-weight:850;cursor:pointer;margin:0 0 14px;box-shadow:0 10px 24px rgba(0,47,167,.18)}.review-panel{display:none;position:absolute;inset:28px;z-index:9;overflow:auto;border-radius:26px;background:rgba(248,249,251,.96);border:1px solid rgba(255,255,255,.85);box-shadow:0 26px 80px rgba(0,47,167,.16);padding:34px;backdrop-filter:blur(18px)}body.review-mode .review-panel{display:block}body.review-mode .view.active{filter:blur(8px);opacity:.15;pointer-events:none}.review-panel h2{margin:0 0 8px;font-size:34px;color:var(--klein);letter-spacing:-.03em}.review-panel p{margin:0 0 22px;color:#5f6b7a}.review-exit{position:absolute;right:24px;top:24px;height:36px;border:0;border-radius:999px;padding:0 14px;background:#fff;color:var(--klein);font-weight:850;cursor:pointer;box-shadow:0 8px 20px rgba(0,47,167,.08)}.qa-list{display:grid;gap:12px}.qa-item{border:1px solid rgba(0,47,167,.12);background:#fff;border-radius:18px;overflow:hidden}.qa-item summary{cursor:pointer;padding:15px 16px;font-weight:850;color:#172033;list-style:none}.qa-item summary::-webkit-details-marker{display:none}.qa-item summary:before{content:'Q';display:inline-flex;width:28px;height:28px;margin-right:10px;align-items:center;justify-content:center;border-radius:50%;background:var(--klein);color:white;font-size:13px;font-weight:900}.qa-answer{padding:0 16px 16px 54px;color:#5f6b7a;font-size:13px;line-height:1.7}.qa-item[open]{box-shadow:0 12px 30px rgba(0,47,167,.08)}#caseReview .qa-item{margin-bottom:10px}.annotation-yellow{background:#fff59d!important}.redline{cursor:pointer}@media(max-width:1120px){.layout{display:flex!important;flex-direction:column!important;height:auto!important;min-height:100vh!important;overflow:auto!important;padding:12px!important}.sidebar{height:auto!important;max-height:42vh!important;position:sticky;top:0;z-index:20}.nav{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}.main-shell,.rightbar{height:auto!important;min-height:auto!important}.view{height:auto!important;padding:18px!important}.hero{min-height:72vh!important;padding:90px 24px 34px!important}.hero h1{font-size:42px!important}.product-line{font-size:12px!important}.overview-lines{font-size:17px!important}.metrics{grid-template-columns:repeat(2,1fr)!important}.orb{opacity:.12!important;width:150px!important;height:150px!important}.rightbar{display:flex;flex-direction:column}.review-panel{position:fixed;inset:16px;z-index:80}.case-head{grid-template-columns:86px minmax(0,1fr)!important}.case-index{font-size:64px!important}.case-title h2{font-size:26px!important}.case-head > div:last-child{padding-right:0!important}.case-kicker{position:static!important;margin-bottom:8px!important}.advice-row{grid-template-columns:1fr!important}.tagpill{width:140px!important}.role{position:static!important;margin-bottom:10px}.note-block h3{margin-right:0!important}.note-block li,.note-block p,.advice-row p{font-size:16px!important}}
+
+
+/* 右侧精简：仅保留复习入口与我的批注，案例复习内容移入复习模式 */
+.rightbar{display:flex;flex-direction:column;}
+.rightbar .review-toggle{margin-bottom:14px!important;}
+.rightbar .note-card{margin-bottom:0!important;}
+#caseReview{display:none!important;}
+
+</style></head><body>
+<div class="toolbar" id="toolbar"><button onclick="markRed()">标红划线</button><button onclick="addAnnotation()">批注</button></div>
+<div class="layout">
+<aside class="sidebar"><div class="brand"><h2>目录</h2><p>SeeUNotes可视化笔记工具</p></div><nav class="nav" id="nav"><button class="nav-card nav-feature active" data-target="overview"><strong>直播总览</strong><span>可视化数据及阅读方式</span></button><button class="nav-card nav-feature" data-target="methods"><strong>底层方法论</strong><span>六条核心规律</span></button><button class="nav-card" data-target="case01"><strong>01 医学八年制大四</strong><span>AI时代的职业规划焦虑</span></button><button class="nav-card" data-target="case02"><strong>02 小学四年级学生</strong><span>咬笔、咬眼镜腿与无意识焦虑</span></button><button class="nav-card" data-target="case03"><strong>03 初二男生家长</strong><span>升学压力、起床困难与成长慢</span></button><button class="nav-card" data-target="case04"><strong>04 高中生</strong><span>脑雾、痛苦感与成绩卡住</span></button><button class="nav-card" data-target="case05"><strong>05 五年级学生家长</strong><span>孩子抵抗纠正与妈妈躺平</span></button><button class="nav-card" data-target="case06"><strong>06 洁癖孩子家长</strong><span>强迫洗手、不愿坐座位与自我排斥</span></button><button class="nav-card" data-target="case07"><strong>07 初三学生家长</strong><span>英语短文填空与上下文意识</span></button><button class="nav-card" data-target="case08"><strong>08 初二学生</strong><span>竞争焦虑与争而胜之</span></button><button class="nav-card" data-target="case09"><strong>09 高三学生</strong><span>父亲压制、火气与高考前策略</span></button><button class="nav-card" data-target="case10"><strong>10 初二孩子家长</strong><span>偷看手机、学习没动力与情感缺口</span></button><button class="nav-card" data-target="case11"><strong>11 单亲妈妈分享</strong><span>允许请假后，孩子反而更愿意上学</span></button><button class="nav-card" data-target="case12"><strong>12 初三学生</strong><span>考试不焦虑，但学习不主动</span></button><button class="nav-card" data-target="case13"><strong>13 初一学生</strong><span>站桩走神、烦心事与生命力锚点</span></button></nav></aside>
+<section class="main-shell"><div class="progress-wrap" id="readingProgress"><span></span></div><div class="review-panel" id="reviewPanel"><button class="review-exit" type="button" onclick="toggleReviewMode(false)">退出复习模式</button><h2>提取式复习</h2><p>先自己回忆，再展开提示，最后回到案例原文验证。</p><div id="reviewPanelContent"></div></div>
+<div class="view active" data-case="overview" id="view-overview"><section class="hero"><div class="orb"></div><div class="hero-meta"><span>答疑日期：20260526</span><a href="https://weixin.qq.com/sph/AStq1bEL8G" rel="noopener noreferrer" target="_blank">回放链接</a></div><div class="product-line">SeeUNotes｜把直播回放转化为可复习、可批注、可提取的案例学习库</div><h1>叶老师视频号直播连麦</h1><p class="overview-lines"><span><i>01</i>本页结合 AI 网页制作与结构化笔记策略，将直播答疑整理为可复习、可批注的案例学习库。</span><span><i>02</i>左侧为固定目录，中间为单案例聚焦阅读区，右侧为“我的批注”与“案例复习”。</span><span><i>03</i>复习时先看右侧案例复习区提取核心判断，再回到中间案例验证原话与推理链。</span></p><div class="metrics"><div class="metric"><b>13</b><span>个连麦案例</span></div><div class="metric"><b>3</b><span>种固定色块</span></div><div class="metric"><b>6</b><span>条底层方法论</span></div><div class="metric"><b>1</b><span>套提取复习路径</span></div></div></section></div>
+<div class="view" data-case="methods" id="view-methods"><section class="chapter"><h2>底层方法论</h2><div class="method-list"><div class="method-item"><b>状态优先</b><p>遇到职业、学习和家庭问题时，先看生命力、精力、心态，再看技术方法。</p></div><div class="method-item"><b>家是源头</b><p>孩子的异常状态常是家庭系统、父母心结和三代能量逻辑的表层显现。</p></div><div class="method-item"><b>先通后学</b><p>底层能量通畅后，学习策略才会快；底层堵住时，方法会失效。</p></div><div class="method-item"><b>休息分层</b><p>刷视频躺平不等于真正休息，真正休息是心理上允许自己停下来。</p></div><div class="method-item"><b>运动代谢</b><p>很多情绪负荷需要通过出汗、大幅度动作和体育活动代谢。</p></div><div class="method-item"><b>千人千方</b><p>有人要退竞争，有人要争而胜之；关键是找到自己的生命力锚点。</p></div></div></section></div>
+<div class="view" data-case="case01" id="view-case01">
+<article class="case-page">
+<header class="case-head">
+<div class="case-index">01</div>
+<div class="case-title"><div class="case-kicker">休养生息</div><h2>医学八年制大四</h2><p>从“规划一条确定道路”，切换到“屯田囤粮，等待变局”。</p></div>
+</header>
+<section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>临床医学八年制大四，对未来迷茫、焦虑、恐慌；不想当西医，中医是兴趣方向之一。</li><li>水课、复习考试、作业仍占用大量时间；AI、写作、中医、思维训练等方向同时拉扯。</li><li>不敢安排爬山等娱乐，担心“没用”；也感到探索欲、好奇心不足。</li><li>叶老师把这个问题扩大到“所有专业都进入职业不可预判时代”，不是医学生个案。</li><li>提问者的“规划意识”被判断为医学专业路径带来的思维定式：希望提前知道一条固定轨道。</li></ul></section>
+<section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>未来发展方向和时间如何安排？</li><li>思维策略到底应该在哪个领域练？</li><li>没有探索欲、好奇心时，是否还能安排娱乐时间？</li><li>在全行业被AI重塑时，真正可建立的相对优势是什么？</li></ul></section>
+<section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">休养生息</span><p>把睡眠、锻炼、心智练习放在第一优先级，先恢复精力、体力和生命力。</p></div><div class="advice-row"><span class="tagpill">持续观察</span><p>每天接触新信息，尤其观察AI、AI医疗、产业变动。</p></div><div class="advice-row"><span class="tagpill">训练趋势</span><p>训练趋势思维，看新闻、时事和产业分析，不急着找固定答案。</p></div><div class="advice-row"><span class="tagpill">练AI技能</span><p>练医学智能体，本质是在训练可迁移到其他行业的AI能力。</p></div><div class="advice-row"><span class="tagpill">允许娱乐</span><p>爬山、放松、心情好不是浪费，而是修复生命力。</p></div><div class="advice-row"><span class="tagpill">修身备战</span><p>不要急着找“另一条路”，而是把自己修成精力、体力、心态都能承接突变的人。</p></div><div class="advice-row"><span class="tagpill">每天看新</span><p>把AI医疗、智能体、产业趋势作为日常观察对象，用变化训练趋势感。</p></div></div></section>
+<section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">别迷信规划</span><p>未来职业不是规划出来的，真正优势是随时准备好变动。</p></div><div class="advice-row"><span class="tagpill">少逼自己</span><p>探索欲衰弱往往来自长期高压和生命力损耗。</p></div><div class="advice-row"><span class="tagpill">主动放松</span><p>把出去玩、心情好、恢复状态当成比专业课更重要的规划。</p></div><div class="advice-row"><span class="tagpill">生命力优先</span><p>缺乏探索欲不是小问题，它往往比少做几道题、少考几分更重要，也更难补。</p></div></div></section>
+<section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>未来的职业它不是规划出来的。</p><p>你的相对优势应该是精力、体力、心态无比顽强且旺盛。</p><p>你们现在能做的主要就是休养生息，积极屯田囤粮、练兵，随时准备好未来要开大战。</p><p>少逼迫自己，尤其到大学这个年龄，核心是顺着自己，慢慢恢复生命力。</p><p>你们要改的不是哪个技能，你们要先把这个思维定式改过来。</p><p>没有另外一个职业可以给你规划。</p><p>缺乏好奇心和探索欲，本质是生命力的损耗。</p></div></section>
+</article>
+</div>
+<div class="view" data-case="case02" id="view-case02">
+<article class="case-page">
+<header class="case-head">
+<div class="case-index">02</div>
+<div class="case-title"><div class="case-kicker">情绪外溢</div><h2>小学四年级学生</h2><p>看似小动作，背后是孩子内在情绪“满而溢”。</p></div>
+</header>
+<section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>四年级孩子最近开始咬笔、咬眼镜腿，自己也感觉难控制。</li><li>妈妈担心防控眼镜佩戴时间不足，近视度数增长。</li><li>孩子喜欢看书、画画，早期运动能力弱，后来运动课后信心提升。</li><li>叶老师从吃手、咬奶嘴、断奶阶段回溯，判断这是无意识缓解焦虑的出口。</li><li>孩子不是主动玩，而是内在情绪“满而溢”之后从小动作里漏出来。</li></ul></section>
+<section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>孩子咬东西是否代表压力大？要不要干预？</li><li>近视、防控眼镜和户外运动如何处理？</li></ul></section>
+<section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">别当大事</span><p>不要把咬东西上升成严重问题，越盯越容易强化。</p></div><div class="advice-row"><span class="tagpill">运动宣泄</span><p>持续做体育活动，让情绪通过身体流动出去。</p></div><div class="advice-row"><span class="tagpill">近视优先</span><p>真正有帮助的是大量户外和体育活动。</p></div><div class="advice-row"><span class="tagpill">保留表达</span><p>看书、画画可以保留，但要增加身体宣泄通道。</p></div><div class="advice-row"><span class="tagpill">别盯眼镜</span><p>咬眼镜腿不是核心，越把它当问题越容易强化；视力问题优先靠户外和运动。</p></div></div></section>
+<section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">看见表象</span><p>孩子的小动作往往不是坏习惯，而是情绪出口。</p></div><div class="advice-row"><span class="tagpill">先通能量</span><p>心思细腻、表达被动的孩子尤其需要运动。</p></div><div class="advice-row"><span class="tagpill">父母降噪</span><p>家长越焦虑、越盯细节，孩子越容易卡住。</p></div><div class="advice-row"><span class="tagpill">家庭能量</span><p>孩子的细腻、压抑、堆积状态，可能来自家庭能量网，不一定是孩子自己的问题。</p></div></div></section>
+<section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>这个事儿本身确实也是一个毫不重要的事儿，你不管他就完了。</p><p>咬笔、咬眼镜腿代表某种情绪在发泄，在往外发。</p><p>你的内在某些情绪已经憋不住了，相当于杯子里面水满了，开始往外溢。</p><p>体育运动对他来说非常重要，要让情绪保持流通状态。</p><p>画画是一种满而溢的精神表达属性，内在有很多细腻的心思、情绪。</p><p>这个孩子积压了某些情绪，需要持续性地做宣泄。</p><p>先做好最基础的运动宣泄工作，让情绪保持流通状态。</p></div></section>
+</article>
+</div>
+<div class="view" data-case="case03" id="view-case03">
+<article class="case-page">
+<header class="case-head">
+<div class="case-index">03</div>
+<div class="case-title"><div class="case-kicker">补足不足</div><h2>初二男生家长</h2><p>孩子不是单点学习问题，而是卡在“被当作小宝”的潜意识位置。</p></div>
+</header>
+<section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>孩子初二，明年1月校内分流，前75%可直升高中。</li><li>作业增多后起床被动、周末不愿起、睡眠质量不好。</li><li>过去有攻击性、能表达不满；现在精力被学习消耗，向外探索减少。</li><li>妈妈微信名“小宝乖乖”成为判断切口：孩子的潜意识被按在更小的状态。</li><li>孩子表层是青春期，深层却像卡在幼儿园阶段，反抗也带着幼儿式的别扭。</li></ul></section>
+<section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>怎样通过学习策略减轻压力？</li><li>家长应该宽松还是推动？尺度在哪里？</li><li>孩子为什么节奏慢、抵抗、落地弱？</li></ul></section>
+<section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">先补自己</span><p>优先处理家长早年关爱不足，而不是直接推孩子。</p></div><div class="advice-row"><span class="tagpill">停止按小</span><p>把孩子从“小宝”位置释放出来，承认他正在长大。</p></div><div class="advice-row"><span class="tagpill">策略后置</span><p>学习策略可以做，但底层能量不通时不是根本。</p></div><div class="advice-row"><span class="tagpill">等待变化</span><p>孩子在等待家长变化，家长先变，孩子才容易恢复成长。</p></div><div class="advice-row"><span class="tagpill">先补不足</span><p>这个方向不是简单分离，而是补足早年关爱不足；补完后自然更容易放手。</p></div></div></section>
+<section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">换个中心</span><p>不要只问孩子为什么这样，要问我的人生发生了什么。</p></div><div class="advice-row"><span class="tagpill">边界要准</span><p>边界不清太糊，要分清是过界、缺位还是不足后的补偿。</p></div><div class="advice-row"><span class="tagpill">能量先通</span><p>底层能量通了，学习策略才会更快起效。</p></div></div></section>
+<section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>家庭是一张能量网，初中生的心智状态八成以上受家长影响。</p><p>我们研究的不是孩子为什么这样，而是你出于什么原因有了这样状态的孩子。</p><p>你的婴幼儿阶段关爱是不足的，所以你一定有一个补偿心理，而且是过度补偿。</p><p>你把孩子按在一个三岁的状态，他当然会很烦。</p><p>当一个人觉得自己没什么问题的时候，基本上主要问题就在这个人身上。</p><p>孩子在等待你的变化，你等他的变化是等不来的。</p><p>不足就给他补足，补完以后你自己舒服了，就会很轻松地放手。</p></div></section>
+</article>
+</div>
+<div class="view" data-case="case04" id="view-case04">
+<article class="case-page">
+<header class="case-head">
+<div class="case-index">04</div>
+<div class="case-title"><div class="case-kicker">代谢痛苦</div><h2>高中生</h2><p>不是单纯学业焦虑，而是情绪负荷过重，需要身体层面排水。</p></div>
+</header>
+<section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>上龙门后脑雾和身体虚弱有所改善，思维清晰一些。</li><li>成绩长期在400分左右徘徊，一调整又回到原档位。</li><li>看到学习会出现“前方痛苦无穷尽”的感觉。</li><li>痛苦感在高一下明显，但叶老师判断初中甚至小学高年级已可能有苗头。</li><li>学生练习更多停留在道理分析，阴性写作少，站桩时间也偏基础。</li></ul></section>
+<section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>为什么成绩卡在固定档位？</li><li>为什么学习会带来莫名痛苦和身体不适？</li><li>除了看道理、站桩，还应如何练？</li></ul></section>
+<section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">大幅运动</span><p>恢复打拳、跑步、球类等大幅度、出汗型运动。</p></div><div class="advice-row"><span class="tagpill">先排污水</span><p>高中阶段先用运动代谢情绪，让痛苦变浅。</p></div><div class="advice-row"><span class="tagpill">暂缓深挖</span><p>底层心理痛苦来源等高考后再处理。</p></div><div class="advice-row"><span class="tagpill">注意隐私</span><p>阴性写作有效，但高中环境隐私不足，要谨慎保存。</p></div></div></section>
+<section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">分清虚实</span><p>虚的人不能猛练；憋得厉害的人适合宣泄性运动。</p></div><div class="advice-row"><span class="tagpill">身体代谢</span><p>情绪负荷会有身体表现，出汗和代谢可以缓解。</p></div><div class="advice-row"><span class="tagpill">先保可用</span><p>学生阶段先让状态可用，不必立刻根治所有源头。</p></div><div class="advice-row"><span class="tagpill">排水模型</span><p>源头暂时处理不了时，先把排水管搞大，让痛苦不要淹没日常学习。</p></div></div></section>
+<section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>你这个状态背负的心理负荷太多，有很多未发泄的情绪。</p><p>光看道理，光看课里面讲的道理没什么用。</p><p>源头的污水暂时管不了，但你把排水管搞大点，来多少污水我就排出去。</p><p>让自己大量出汗，让肢体幅度更大一些。</p><p>你要说从高一开始，不可能，初中肯定已经有了，只是程度没那么严重。</p><p>情绪负荷会以某种激素的形式在身体里面有物质表现。</p></div></section>
+</article>
+</div>
+<div class="view" data-case="case05" id="view-case05">
+<article class="case-page">
+<header class="case-head">
+<div class="case-index">05</div>
+<div class="case-title"><div class="case-kicker">深度休息</div><h2>五年级学生家长</h2><p>孩子的正面对抗，反而说明他对妈妈还有期待。</p></div>
+</header>
+<section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>孩子做事不专心，站桩姿势不标准仍犟嘴，英语读音和数学讲思路都抵触。</li><li>在学校对老师闷不吭声、消极抵抗；在妈妈面前正面抵抗。</li><li>妈妈自己二十多天躺平、刷视频、看网文、熬夜，想努力但大脑阻止。</li><li>妈妈想去练句子、看直播课时，大脑会立刻制止，最后继续刷视频、看网文。</li><li>孩子在学校是消极抵抗，在妈妈面前是正面对抗，说明两种关系期待不同。</li></ul></section>
+<section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>孩子为什么不听纠正、不愿表达、不专心？</li><li>妈妈为什么突然躺平，无法练习和自律？</li><li>如何恢复母子两人的动力？</li></ul></section>
+<section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">别再自律</span><p>当前重点不是逼自己练习，而是允许真正深度休息。</p></div><div class="advice-row"><span class="tagpill">找源头事</span><p>顺着“为了父母认同而不敢休息”的方向做写作。</p></div><div class="advice-row"><span class="tagpill">先别管孩</span><p>妈妈先处理自己的心理负荷，孩子会跟着变化。</p></div><div class="advice-row"><span class="tagpill">两边都写</span><p>父亲、母亲两边心结都要处理，父亲方向可能更绵长。</p></div><div class="advice-row"><span class="tagpill">写童年事</span><p>围绕“被父母关爱不足、为求认同而逼自己”的事件大量写作。</p></div></div></section>
+<section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">休息分层</span><p>刷视频熬夜不等于真正休息；真正休息是心理上也停下来。</p></div><div class="advice-row"><span class="tagpill">抵抗有义</span><p>孩子正面对抗可能代表关系里还有期待。</p></div><div class="advice-row"><span class="tagpill">家是世界</span><p>家庭模式会放大到一生，修身齐家治国平天下是同构结构。</p></div><div class="advice-row"><span class="tagpill">浅休深休</span><p>身体躺平但心理还在挣扎，会形成浅休息：一边休息一边内耗。</p></div></div></section>
+<section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>你跟你孩子状态其实差不多。</p><p>没有动力基本上都是类似原因：要么自己逼自己太狠，要么别人逼你太狠。</p><p>你们现在最需要的不是自律，而是深度的休息。</p><p>能正面对抗，说明他还对你有期望；对老师消极抵抗，是因为对外人没期望。</p><p>如果一边休息一边内耗，那个休息就非常浅，没休息到位。</p><p>你处于向父母要认同没要到，孩子处于向你要关爱没要到。</p><p>家庭就是世界，修身、齐家、治国、平天下是高度同构的结构。</p></div></section>
+</article>
+</div>
+<div class="view" data-case="case06" id="view-case06">
+<article class="case-page">
+<header class="case-head">
+<div class="case-index">06</div>
+<div class="case-title"><div class="case-kicker">道德洁癖</div><h2>洁癖孩子家长</h2><p>洁癖背后常指向“肮脏、愧疚、道德批评”的心结方向。</p></div>
+</header>
+<section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>孩子本学期开始觉得座位、课桌、教室不卫生，上课站着听或待在教室外。</li><li>最近不愿让家人碰，动不动洗手。</li><li>家长回忆自己在孩子月子里曾高度在意陌生人未洗手抱孩子。</li><li>家长临场能想到月子里“陌生人未洗手抱孩子”的事件，但叶老师判断这只是有代表性，不一定是源头。</li><li>家长后来浮现“嫌弃自己懦弱”的心结，说明当下显现的层次可能先于洁癖源头。</li></ul></section>
+<section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>孩子为什么突然出现洁癖和强迫洗手？</li><li>这与家长自身心结是否有关？</li><li>家长应从哪个心结开始处理？</li></ul></section>
+<section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">不急定位</span><p>不必临场逼自己想出源头，先确定方向。</p></div><div class="advice-row"><span class="tagpill">先写懦弱</span><p>当前冒出来的是“嫌弃自己懦弱”，可优先写。</p></div><div class="advice-row"><span class="tagpill">层层剥开</span><p>处理前层心结后，洁癖相关心结可能自动显现。</p></div><div class="advice-row"><span class="tagpill">持续练习</span><p>继续做阴性写作和相关练习。</p></div><div class="advice-row"><span class="tagpill">写显现层</span><p>先处理已经浮出来的“懦弱/自我排斥”，不强求一下子找到洁癖源头。</p></div></div></section>
+<section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">异常换形</span><p>孩子问题会换形式出现，洁癖只是当前表现。</p></div><div class="advice-row"><span class="tagpill">源头更早</span><p>月子卫生事件有代表性，但不一定是源头。</p></div><div class="advice-row"><span class="tagpill">先处理显现</span><p>潜意识先浮出什么，就先处理什么。</p></div></div></section>
+<section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>洁癖加强迫症，这是非常经典的组合。</p><p>这种强迫症洁癖，总体上跟道德有关，跟肮脏、愧疚有关。</p><p>每一个人身上都有好多个心结，不是一个问题。</p><p>剥洋葱一样，第一层第二层剥完，第三层第四层会自动显现。</p><p>跟这个事实际上道不道德、脏不脏关系不大，跟当时参与方怎么批评、怎么看有关。</p><p>你这种懦弱这个事，对你来说可能更重要，你可能优先去解决那个。</p><p>等你把第一层、第二层剥完了，第三层、第四层会自动显现出来。</p></div></section>
+</article>
+</div>
+<div class="view" data-case="case07" id="view-case07">
+<article class="case-page">
+<header class="case-head">
+<div class="case-index">07</div>
+<div class="case-title"><div class="case-kicker">联系上下文</div><h2>初三学生家长</h2><p>这是一个轻量技术问题：孩子不是不会语法，而是钻进单句。</p></div>
+</header>
+<section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>初三学生英语基础薄弱，中英会议练习后作文和阅读提升明显。</li><li>当前主要丢分在短文填空和单项选择。</li><li>无提示词的介词、连词、从句容易懵。</li><li>作文和阅读理解提升，说明整段英语意识已经被中英会议带起来，但短文填空还残留同一弱点。</li></ul></section>
+<section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>短文填空总丢分怎么补？</li><li>中英会议难度大，会不会影响中考备考？</li></ul></section>
+<section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">只练一招</span><p>中考前一个月专练“联系上下文”。</p></div><div class="advice-row"><span class="tagpill">降点难度</span><p>不用做生词很多的篇章，难度可稍微降。</p></div><div class="advice-row"><span class="tagpill">抓混合题</span><p>重点训练既考语法又考上下文的题。</p></div><div class="advice-row"><span class="tagpill">预期增分</span><p>若练熟，英语可能还能涨五六分。</p></div><div class="advice-row"><span class="tagpill">考前减难</span><p>中考前不追求更难篇章，尤其避免生词很多的材料，专练上下文意识。</p></div></div></section>
+<section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">技术精准</span><p>有时不是心智大问题，而是一个小技术漏洞。</p></div><div class="advice-row"><span class="tagpill">整段意识</span><p>语言学习不能只盯句子，要训练段落整体感。</p></div><div class="advice-row"><span class="tagpill">考前减法</span><p>临近考试不要铺开大体系，抓最可能增分的点。</p></div></div></section>
+<section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>他有一个小的技术性缺漏：只看单句，不看上下文。</p><p>短文填空有些题在考单句语法，有些题隐含着在考上下文。</p><p>凡是联系上下文，联系上下文，就这一个心法搞定了。</p><p>他同样一个弱点还有一点尾巴没解决。</p><p>他一旦进入这种场景，意识就淡了，就钻到单句里面去了。</p><p>一个月之内就把这一点练熟，英语可能还能涨五六分、六七分。</p></div></section>
+</article>
+</div>
+<div class="view" data-case="case08" id="view-case08">
+<article class="case-page">
+<header class="case-head">
+<div class="case-index">08</div>
+<div class="case-title"><div class="case-kicker">争而胜之</div><h2>初二学生</h2><p>不是所有人都要退竞争；有些阶段要顺势打一场漂亮仗。</p></div>
+</header>
+<section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>初二学生所在学校强调竞争，每周考试、排名。</li><li>看到多数人会做而自己没做好的题，会觉得自己不如别人。</li><li>呼吸法和卧姿冥想已经压不住竞争焦虑。</li><li>学生班级前十、年级前50，目标年级前20，已经处在“争而能赢”的位置。</li><li>焦虑主要在低级题、简单题错了时更强，语文弱势学科更容易触发。</li></ul></section>
+<section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>如何弱化或转化竞争焦虑？</li><li>是否应该继续强压想竞争的念头？</li><li>强竞争环境里如何减少内耗？</li></ul></section>
+<section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">允许焦虑</span><p>竞争焦虑来就来，不必硬压。</p></div><div class="advice-row"><span class="tagpill">顺势而争</span><p>处在能赢的位置，就用科学策略争而胜之。</p></div><div class="advice-row"><span class="tagpill">补语文弱</span><p>继续做语文脉冲、思维能力和弱势学科训练。</p></div><div class="advice-row"><span class="tagpill">加强力量</span><p>继续踢足球，焦虑高时做运动、呼吸法、四匹马步桩。</p></div><div class="advice-row"><span class="tagpill">策略争胜</span><p>把竞争焦虑转成对语文、弱科、思维方法的具体策略投入。</p></div></div></section>
+<section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">千人千方</span><p>不同阶段建议不同，不是所有人都适合退竞争。</p></div><div class="advice-row"><span class="tagpill">位置决定法</span><p>成绩差且必败者要跳出；接近大胜者可先体验竞争。</p></div><div class="advice-row"><span class="tagpill">先红尘后无为</span><p>有些人要先在红尘里历练，之后再谈不争。</p></div><div class="advice-row"><span class="tagpill">阶段适配</span><p>有些人先在红尘里争一波，充分体验争而胜之，再谈更高层次的不争。</p></div></div></section>
+<section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>竞争这个东西，不是你的错，外部环境确实是这个状态。</p><p>你不要想着去压它，它来就来，我们允许它来。</p><p>你本身处于相对优势的竞争位置，是争而胜之的那一波人。</p><p>减少内耗，顺势而为。</p><p>我知道争这个东西没什么大用，但是能争赢也还行。</p><p>你现在这个身位是争而能赢的身位，就顺势而为。</p><p>不同的人生阶段是要去经历不同东西的。</p></div></section>
+</article>
+</div>
+<div class="view" data-case="case09" id="view-case09">
+<article class="case-page">
+<header class="case-head">
+<div class="case-index">09</div>
+<div class="case-title"><div class="case-kicker">考前求稳</div><h2>高三学生</h2><p>距离高考太近，先稳住，不做大的心理工程。</p></div>
+</header>
+<section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>高三学生十几天后高考，曾做过个案，问题与父亲管得严、长期压制有关。</li><li>练习发泄后有所缓解，但新生导引时仍有火气和损耗。</li><li>晚自习精力不足，考试时高强度用脑不够，睡眠精神待机。</li><li>学生源头事件与父亲顾面子、强压自己有关；玩具被强迫给别人玩是其中一个典型记忆。</li><li>当下距离高考太近，叶老师判断不适合做心理结构的大改动。</li></ul></section>
+<section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>练习后仍有火气和损耗，如何处理？</li><li>高考前能否用“强忍、发狠”的方式？</li><li>暑假应先玩还是继续处理源头？</li></ul></section>
+<section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">视频零散</span><p>课间做视频桩，每次1分钟，比零碎混元桩更适合。</p></div><div class="advice-row"><span class="tagpill">不改睡眠</span><p>考前不要大改睡眠模式，原来能睡就先保持。</p></div><div class="advice-row"><span class="tagpill">高考后治</span><p>父亲压制带来的火，高考后再系统处理。</p></div><div class="advice-row"><span class="tagpill">临门轻压</span><p>高考前短暂压一下可以，但不能持续发狠。</p></div><div class="advice-row"><span class="tagpill">大学放大</span><p>大学用扩大世界来释放压抑火气。</p></div><div class="advice-row"><span class="tagpill">储备精力</span><p>最后十多天先松一点，临考前一天再短暂进入专注压一下的状态。</p></div></div></section>
+<section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">考前求稳</span><p>重大考试前不做心理结构大手术。</p></div><div class="advice-row"><span class="tagpill">发泄分层</span><p>普通发泄只能缓解，根治要找源头事件。</p></div><div class="advice-row"><span class="tagpill">世界放大</span><p>把人生空间变大，压力会相对变小。</p></div></div></section>
+<section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>距离高考太近了，就不要做大的改动。</p><p>你所谓的发泄完，其实就是没发泄完；发泄是在做一定程度的缓解。</p><p>真正彻底根治，是找到让你心态上火着急的源头事件、源头情绪。</p><p>压是很耗费精力、体力、意志力的。</p><p>视频桩每次一分钟，适合你这种时间不够、零零散散的人。</p><p>你这个火的问题，被小时候打压的问题，留到高考以后再说。</p><p>把小锅炉房变成大操场，压力的程度会自动降低。</p></div></section>
+</article>
+</div>
+<div class="view" data-case="case10" id="view-case10">
+<article class="case-page">
+<header class="case-head">
+<div class="case-index">10</div>
+<div class="case-title"><div class="case-kicker">先给关爱</div><h2>初二孩子家长</h2><p>学习不是第一优先级，情感补偿才是当下关键。</p></div>
+</header>
+<section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>孩子学习一直不在状态，手机管理上老想偷看，学习没有动力。</li><li>从小父亲、爷爷奶奶一侧关爱严重缺失，母亲对未来焦虑。</li><li>孩子喜欢唱歌、爱美，成绩在700多人中约200名。</li><li>孩子从满月后基本处于父亲、爷爷奶奶一侧严重缺席的状态，母亲虽在身边，但更多是工具性照料。</li><li>孩子唱歌、爱美、关注外貌，被判断为青春期向外寻求关注的表现。</li><li>成绩在700多人中约200名，叶老师反而认为孩子内在力量很强、根底很好。</li></ul></section>
+<section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>孩子不想学习、不主动怎么办？</li><li>家长明明关心，为什么一说话就成批评？</li><li>龙门课报了但孩子不学，是否浪费？</li></ul></section>
+<section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">先接纳他</span><p>第一步是理解并接纳孩子现在状态。</p></div><div class="advice-row"><span class="tagpill">补情感账</span><p>从情感和心理上补偿，而不是只花钱。</p></div><div class="advice-row"><span class="tagpill">学会表扬</span><p>先真正理解孩子不容易，表扬会自然出来。</p></div><div class="advice-row"><span class="tagpill">家长修复</span><p>家长处理童年匮乏和低价值感，孩子会跟着好。</p></div><div class="advice-row"><span class="tagpill">先停要求</span><p>减少对学习和未来出路的焦虑性要求，先把当下能补的情感账补上。</p></div><div class="advice-row"><span class="tagpill">自己上课</span><p>如果孩子暂时不学课程，可以转成家长自己学习疗愈。</p></div></div></section>
+<section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">规律第一</span><p>所有孩子都认为情感比学习重要，这是人类共同规律。</p></div><div class="advice-row"><span class="tagpill">叛逆是火</span><p>叛逆不一定糟，说明生命力还在。</p></div><div class="advice-row"><span class="tagpill">孩子引路</span><p>孩子的问题会逼家长回头修自己的心结。</p></div><div class="advice-row"><span class="tagpill">花心思</span><p>对缺爱的孩子，真正的补偿不是花钱，而是理解、交流、情绪承接。</p></div></div></section>
+<section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>一个孩子从小非常缺乏关爱，你要求他学习动机很强，这事本身不成立。</p><p>你要在他身上花心思，不是花钱的问题。</p><p>他一直在等你。</p><p>语言不重要，心思最重要。</p><p>他都已经这样了，居然还能考前200名，这多好的孩子。</p><p>先把当下过好，没用的事少想。</p><p>他潜意识里觉得学习远远没有情感重要，这是人类共同规律。</p><p>孩子是家长修行成长的缘起，或者说引路人。</p></div></section>
+</article>
+</div>
+<div class="view" data-case="case11" id="view-case11">
+<article class="case-page">
+<header class="case-head">
+<div class="case-index">11</div>
+<div class="case-title"><div class="case-kicker">放下焦虑</div><h2>单亲妈妈分享</h2><p>家长松绑，孩子的内在压力反而下降。</p></div>
+</header>
+<section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>单亲妈妈分享自家经历，与上一位妈妈处境相似。</li><li>从去年8月开始学习，最初也很焦虑，孩子不想上学。</li><li>后来成为家委、维护学校关系，为孩子请假创造弹性空间。</li><li>分享者从去年8月开始学习，最初也因孩子不上学而焦虑，后来自己变化明显。</li><li>她成为家委、积极维护学校关系，是为了孩子需要请假时有弹性空间。</li></ul></section>
+<section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>家长自己学习、变化，对孩子有什么影响？</li><li>孩子说不想上学、不想考试时，家长如何处理？</li></ul></section>
+<section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">允许不上</span><p>孩子说不想上学时，先允许，而不是立刻拉扯。</p></div><div class="advice-row"><span class="tagpill">铺好环境</span><p>维护学校沟通，为孩子弹性空间创造条件。</p></div><div class="advice-row"><span class="tagpill">不给精神债</span><p>不把“不考试就是亏欠”压在孩子身上。</p></div><div class="advice-row"><span class="tagpill">互相鼓励</span><p>同类处境的妈妈彼此作伴，减少孤军奋战感。</p></div><div class="advice-row"><span class="tagpill">允许弹性</span><p>孩子说不想上学、不想考试时，先允许选择，降低精神亏欠感。</p></div></div></section>
+<section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">松则能动</span><p>允许和放松不是放弃，反而会恢复孩子动力。</p></div><div class="advice-row"><span class="tagpill">焦虑坏事</span><p>越焦虑越来坏事，焦虑会把问题推得更紧。</p></div><div class="advice-row"><span class="tagpill">家长先变</span><p>孩子学得少也没关系，家长变化本身就能影响孩子。</p></div><div class="advice-row"><span class="tagpill">焦虑松绑</span><p>家长越能给自己和孩子松绑，孩子越容易恢复主动。</p></div></div></section>
+<section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>你越焦虑孩子越有问题；你越不焦虑、越放得松，孩子的压力反而小了。</p><p>把焦虑放下来以后，发现反而好了，这就是世界运作的规律。</p><p>他反而会去上学，反而更认真，反而成绩更好。</p><p>我允许大家不上学，我允许大家不认真，孩子的压力反而小了。</p><p>你越焦虑，这个事就越出问题；你把焦虑放下来，事会自动变好。</p></div></section>
+</article>
+</div>
+<div class="view" data-case="case12" id="view-case12">
+<article class="case-page">
+<header class="case-head">
+<div class="case-index">12</div>
+<div class="case-title"><div class="case-kicker">随兴趣提分</div><h2>初三学生</h2><p>从“逼自己主动”改成“顺兴趣、顺手感提分”。</p></div>
+</header>
+<section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>初三学生快中考，自觉对考试没有压力，能坦然面对。</li><li>想成绩更好，但学习不太主动；周末没有妈妈安排就不主动复习。</li><li>妈妈组织了七个小朋友在家自习，替代学校晚修氛围。</li><li>学生不太主动学习，但对考试已不焦虑，状态比较松。</li><li>妈妈征求孩子意见后组织家庭晚修学习小组，共七个孩子一起学习。</li></ul></section>
+<section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>想成绩好但不主动学习，是不是问题？</li><li>不喜欢学校晚修，家庭学习小组是否可行？</li><li>临近中考，如何给孩子们祝福？</li></ul></section>
+<section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">随兴趣学</span><p>优先学兴趣更大的科目，把喜欢的部分提上来。</p></div><div class="advice-row"><span class="tagpill">顺眼就用</span><p>学习策略不用按顺序，喜欢哪个就用哪个。</p></div><div class="advice-row"><span class="tagpill">轻松提分</span><p>以轻松自然状态面对中考复习。</p></div><div class="advice-row"><span class="tagpill">学习小组</span><p>可组织宽松的同伴自习场域。</p></div><div class="advice-row"><span class="tagpill">策略随缘</span><p>学习策略很多，不必按顺序；喜欢哪个、顺手哪个，就先用哪个。</p></div></div></section>
+<section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">低耗有效</span><p>对低压力孩子，顺兴趣比强行加压有效。</p></div><div class="advice-row"><span class="tagpill">环境可造</span><p>家长不必逼学习，但可以创造更好的学习场域。</p></div><div class="advice-row"><span class="tagpill">祝福方向</span><p>轻松愉快地学习、提高成绩、成长，比必须赢更有生命力。</p></div><div class="advice-row"><span class="tagpill">场域支持</span><p>家长不一定要强推学习，可以创造宽松但有效的同伴学习场域。</p></div></div></section>
+<section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>你不用给自己压力。</p><p>哪一个学科兴趣度更大一点，你就多学点这个。</p><p>随缘提分，随兴趣爱好提分就行。</p><p>你越放松、随缘随性这么去选，反而成绩能够提上来。</p><p>策略那么多，你看哪个顺眼就选哪个。</p><p>你喜欢哪个就搞哪个，这个原则对各个方面通用。</p><p>你们轻松愉快地学习，轻松愉快地提高成绩，未来一生轻松愉快地成长。</p></div></section>
+</article>
+</div>
+<div class="view" data-case="case13" id="view-case13">
+<article class="case-page">
+<header class="case-head">
+<div class="case-index">13</div>
+<div class="case-title"><div class="case-kicker">锚点发动</div><h2>初一学生</h2><p>站桩不是万能清除器；烦心事先用动态运动代谢。</p></div>
+</header>
+<section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>初一学生自己提问，站桩时会想别的事，觉得效果不好。</li><li>希望站桩忘掉学校烦恼、静下来学习。</li><li>晚上站混元桩15-20分钟，已经形成习惯。</li><li>学生想用站桩忘掉学校烦心事、静下来学习，叶老师判断这是工具用错场景。</li><li>他已经把晚上站桩15-20分钟变成习惯，因此站桩可作为个人锚点继续深化。</li></ul></section>
+<section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>站桩时静不下心怎么办？</li><li>站桩后适合立刻做什么？</li><li>学校烦心事如何处理？</li></ul></section>
+<section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">先动后站</span><p>烦心事先做大幅运动、出汗，再站桩。</p></div><div class="advice-row"><span class="tagpill">慢慢加长</span><p>从15-20分钟逐步加到25、30分钟，周末可到40分钟。</p></div><div class="advice-row"><span class="tagpill">不接任务</span><p>站桩后不需要立刻干嘛，可以继续放松。</p></div><div class="advice-row"><span class="tagpill">当作锚点</span><p>把站桩作为个人生命力发动锚点，重点练。</p></div><div class="advice-row"><span class="tagpill">两段处理</span><p>先用大幅度运动处理烦心事，再用站桩做更细的状态调整。</p></div></div></section>
+<section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">工具分工</span><p>站桩、冥想、运动各有适用场景，不要万能化。</p></div><div class="advice-row"><span class="tagpill">找到锚点</span><p>每个人发动生命力的锚点不同。</p></div><div class="advice-row"><span class="tagpill">千人千方</span><p>成长不是统一方案，而是找到自己的启动入口。</p></div></div></section>
+<section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>站桩主要不是这么用的。</p><p>学校遇到烦心问题，用体育运动来缓和，动态运动可能更好。</p><p>站桩不同程度功效不一样，临界点差不多在30分钟附近。</p><p>对你来说，站桩是发动生命力的锚点。</p><p>如果是外部有一个事搞得你很烦，站桩不去治这种情况。</p><p>先做大动作的肢体运动，流汗、加速代谢，再练站桩。</p><p>每个人发动自己生命力的锚点不一样。</p></div></section>
+</article>
+</div>
+</section>
+<aside class="rightbar"><div class="status-row"><div class="current-case" id="currentCase">当前：直播总览</div><div class="save-status" id="saveStatus">已自动保存</div></div><button class="review-toggle" type="button" onclick="toggleReviewMode()">进入复习模式</button><div class="note-card"><h3>我的批注</h3><p>选中中间正文后，可添加批注或标红划线。批注按案例单独保存。</p><div class="ann-list" id="annotations"></div><button class="small-btn" onclick="clearAnnotations()">清空当前案例批注</button></div><div id="caseReview" class="editable" contenteditable="true" style="display:none" aria-hidden="true"></div></aside>
+</div>
+<script>
+const STORE='seeunotes_klein_review_v2_enriched';
+const labels={'overview': '直播总览', 'methods': '底层方法论', 'case01': '案例 01 医学八年制大四', 'case02': '案例 02 小学四年级学生', 'case03': '案例 03 初二男生家长', 'case04': '案例 04 高中生', 'case05': '案例 05 五年级学生家长', 'case06': '案例 06 洁癖孩子家长', 'case07': '案例 07 初三学生家长', 'case08': '案例 08 初二学生', 'case09': '案例 09 高三学生', 'case10': '案例 10 初二孩子家长', 'case11': '案例 11 单亲妈妈分享', 'case12': '案例 12 初三学生', 'case13': '案例 13 初一学生'};
+const reviewDefaults={'case01': '<ol><li>叶老师如何重新定义“职业规划”的核心问题？</li><li>为什么“休养生息”比立刻找一条确定道路更重要？</li><li>这个案例能迁移到哪些专业/行业的不确定性焦虑？</li></ol>', 'case02': '<ol><li>咬笔咬眼镜腿背后对应的是哪类情绪机制？</li><li>为什么叶老师建议“不当回事”反而有效？</li><li>这个案例给家长处理小动作、小毛病的启发是什么？</li></ol>', 'case03': '<ol><li>“小宝乖乖”这个细节为什么成为判断切口？</li><li>家长的补偿心理如何影响孩子成长？</li><li>为什么学习策略在这里不是第一解决方案？</li></ol>', 'case04': '<ol><li>叶老师为什么把这个问题解释为“排水管”问题？</li><li>什么类型的学生适合宣泄性运动？</li><li>这个案例如何区分“学习压力”和“情绪负荷”？</li></ol>', 'case05': '<ol><li>为什么妈妈的躺平和孩子的抵抗属于同一条能量逻辑？</li><li>“深度休息”和“刷视频躺平”的区别是什么？</li><li>孩子正面对抗为什么不一定是坏事？</li></ol>', 'case06': '<ol><li>洁癖强迫在叶老师这里对应哪类心结方向？</li><li>为什么不急着精准定位源头？</li><li>“剥洋葱”方法如何用于自我修复？</li></ol>', 'case07': '<ol><li>这个案例的核心技术漏洞是什么？</li><li>为什么作文提升和短文填空问题其实同源？</li><li>考前一个月应该如何做减法？</li></ol>', 'case08': '<ol><li>为什么叶老师没有建议这个学生退竞争？</li><li>“位置决定方法”在这个案例里如何体现？</li><li>什么情况下竞争反而能发动生命力？</li></ol>', 'case09': '<ol><li>为什么高考前不适合大改状态？</li><li>“发泄”和“根治”的区别是什么？</li><li>大学为什么被视作释放火气的新起点？</li></ol>', 'case10': '<ol><li>为什么这个案例里学习不是最核心的问题？</li><li>“花钱”和“花心思”的区别是什么？</li><li>孩子为什么被视为家长成长的引路人？</li></ol>', 'case11': '<ol><li>为什么允许不上学反而可能让孩子更愿意上学？</li><li>这个分享案例如何补充前一个单亲妈妈案例？</li><li>家长的“松”与“放弃”有什么区别？</li></ol>', 'case12': '<ol><li>这个案例为什么适合“顺兴趣”而不是“加压”？</li><li>学习小组为什么是一个有效场域？</li><li>这个案例怎样体现低耗学习？</li></ol>', 'case13': '<ol><li>站桩和动态运动分别适合什么场景？</li><li>为什么30分钟附近是一个重要临界点？</li><li>什么是个人生命力的锚点？</li></ol>', 'overview': '<ol><li>这场直播最核心的学习策略是什么？</li><li>哪些案例最能解释“生命力优先”？</li><li>复习时应先提取哪些底层规律，再回看具体案例？</li></ol>', 'methods': '<ol><li>六条方法论中，哪一条最能解释多数案例？</li><li>“先通后学”与“状态优先”有什么区别？</li><li>每条方法论能各自迁移到什么学习场景？</li></ol>'};
+let current='overview'; let savedRange=null;
+function getStore(){try{return JSON.parse(localStorage.getItem(STORE)||'{}')}catch(e){return {}}}
+function setStore(d){localStorage.setItem(STORE,JSON.stringify(d));}
+function saveNotes(){const d=getStore();d[current]=d[current]||{};d[current].annotations=document.getElementById('annotations').innerHTML;d[current].review=document.getElementById('caseReview').innerHTML;setStore(d);}
+function loadNotes(k){const d=getStore();const item=d[k]||{};document.getElementById('annotations').innerHTML=item.annotations||'';document.getElementById('caseReview').innerHTML=item.review||reviewDefaults[k]||'';document.getElementById('currentCase').textContent='当前：'+(labels[k]||k);}
+function showView(k){saveNotes();current=k;document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+k));document.querySelectorAll('.nav-card').forEach(b=>b.classList.toggle('active',b.dataset.target===k));loadNotes(k);const v=document.querySelector('#view-'+k);if(v)v.scrollTop=0;}
+
+
+/* middle content editable + persistence */
+function enableMiddleEditing(root=document){
+  root.querySelectorAll('.view').forEach(v=>{
+    v.classList.add('is-editable');
+    const target = v.querySelector('.hero, .chapter, .case-page') || v;
+    target.setAttribute('contenteditable','true');
+    target.setAttribute('spellcheck','false');
+  });
+}
+function saveMiddleContent(){
+  const d=getStore();
+  const v=document.querySelector('.view.active');
+  if(!v || !current) return;
+  d[current]=d[current]||{};
+  d[current].viewHTML=v.innerHTML;
+  setStore(d);
+}
+function loadMiddleContent(k){
+  const d=getStore();
+  const item=d[k]||{};
+  const v=document.getElementById('view-'+k);
+  if(v && item.viewHTML){
+    v.innerHTML=item.viewHTML;
+    enableMiddleEditing(v);
+  }
+}
+const __oldSaveNotes = saveNotes;
+saveNotes = function(){ __oldSaveNotes(); saveMiddleContent(); };
+const __oldLoadNotes = loadNotes;
+loadNotes = function(k){ loadMiddleContent(k); __oldLoadNotes(k); };
+enableMiddleEditing(document);
+
+document.getElementById('nav').addEventListener('click',e=>{const b=e.target.closest('.nav-card');if(b)showView(b.dataset.target);});
+document.addEventListener('input',e=>{if(e.target.isContentEditable)saveNotes();});loadNotes(current);
+document.addEventListener('mouseup',e=>{const sel=window.getSelection();const tb=document.getElementById('toolbar');const active=document.querySelector('.view.active');if(sel&&sel.toString().trim().length>0&&active&&active.contains(sel.anchorNode)){savedRange=sel.getRangeAt(0).cloneRange();const rect=savedRange.getBoundingClientRect();tb.style.left=(rect.left+window.scrollX)+'px';tb.style.top=(rect.top+window.scrollY-46)+'px';tb.style.display='flex';}else if(!e.target.closest('#toolbar')){tb.style.display='none';}});
+function restoreSelection(){if(!savedRange)return false;const sel=window.getSelection();sel.removeAllRanges();sel.addRange(savedRange);return true;}
+function markRed(){if(!restoreSelection())return;const sel=window.getSelection();if(sel.rangeCount===0)return;const range=sel.getRangeAt(0);const span=document.createElement('mark');span.className='redline';try{range.surroundContents(span);}catch(e){span.appendChild(range.extractContents());range.insertNode(span);}sel.removeAllRanges();document.getElementById('toolbar').style.display='none';saveNotes();}
+function addAnnotation(){if(!restoreSelection())return; const sel=window.getSelection(); const text=sel.toString().trim(); if(!text)return; const range=sel.getRangeAt(0); const span=document.createElement('mark'); span.className='annotation-yellow'; try{range.surroundContents(span);}catch(e){ span.appendChild(range.extractContents()); range.insertNode(span);} const box=document.createElement('div'); box.className='ann'; box.innerHTML='<q>'+text.replace(/[<>]/g,'')+'</q><div contenteditable="true">我的批注：</div>'; document.getElementById('annotations').prepend(box); sel.removeAllRanges(); document.getElementById('toolbar').style.display='none'; saveNotes();}
+function clearAnnotations(){if(confirm('确认清空当前案例批注？')){document.getElementById('annotations').innerHTML='';saveNotes();}}
+
+function clearMarksInActiveView(){
+  const active=document.querySelector('.view.active');
+  if(!active) return;
+  active.querySelectorAll('mark.annotation-yellow').forEach(el=>{
+    const parent=el.parentNode;
+    while(el.firstChild) parent.insertBefore(el.firstChild, el);
+    parent.removeChild(el);
+  });
+}
+function unwrap(el){
+  const p=el.parentNode;
+  while(el.firstChild) p.insertBefore(el.firstChild, el);
+  p.removeChild(el);
+}
+
+document.addEventListener('click', function(e){
+  const t=e.target;
+  if(t.classList && t.classList.contains('redline')){
+    if(confirm('去掉这句红色画线？')){ unwrap(t); saveNotes(); }
+  }
+  if(t.classList && t.classList.contains('annotation-yellow')){
+    if(confirm('去掉这句荧光黄高亮？')){ unwrap(t); saveNotes(); }
+  }
+});
+
+// decorate marks with tooltip
+(function(){
+  const oldMarkRed = typeof markRed==='function' ? markRed : null;
+  if(oldMarkRed){
+    markRed = function(){
+      if(!restoreSelection())return; const sel=window.getSelection(); if(sel.rangeCount===0)return; const range=sel.getRangeAt(0); const span=document.createElement('mark'); span.className='redline'; span.title='点击可去掉画线'; try{range.surroundContents(span);}catch(e){span.appendChild(range.extractContents()); range.insertNode(span);} sel.removeAllRanges(); document.getElementById('toolbar').style.display='none'; saveNotes();
+    }
+  }
+  const oldAdd = typeof addAnnotation==='function' ? addAnnotation : null;
+  if(oldAdd){
+    addAnnotation = function(){if(!restoreSelection())return; const sel=window.getSelection(); const text=sel.toString().trim(); if(!text)return; const range=sel.getRangeAt(0); const span=document.createElement('mark'); span.className='annotation-yellow'; span.title='点击可去掉高亮'; try{range.surroundContents(span);}catch(e){ span.appendChild(range.extractContents()); range.insertNode(span);} const box=document.createElement('div'); box.className='ann'; box.innerHTML='<q>'+text.replace(/[<>]/g,'')+'</q><div contenteditable="true">我的批注：</div>'; document.getElementById('annotations').prepend(box); sel.removeAllRanges(); document.getElementById('toolbar').style.display='none'; saveNotes();}
+  }
+  const btn = Array.from(document.querySelectorAll('button.small-btn')).find(b=>b.textContent.includes('清空当前案例批注'));
+  if(btn){
+    btn.onclick=function(){ if(confirm('确认清空当前案例批注？这也会清除当前案例中的荧光黄高亮。')){ document.getElementById('annotations').innerHTML=''; clearMarksInActiveView(); saveNotes(); } }
+  }
+})();
+
+
+
+/* ===== Product polish JS: save feedback, progress, QA review, review mode ===== */
+function flashSaved(){
+  const el=document.getElementById('saveStatus');
+  if(!el) return;
+  el.textContent='已保存'; el.classList.add('saved');
+  clearTimeout(window.__saveTimer);
+  window.__saveTimer=setTimeout(()=>{el.textContent='已自动保存';el.classList.remove('saved');},1100);
+}
+function normalizeReviewQA(){
+  const box=document.getElementById('caseReview'); if(!box) return;
+  if(box.querySelector('.qa-item')) return;
+  const lis=[...box.querySelectorAll('li')]; if(!lis.length) return;
+  const wrap=document.createElement('div'); wrap.className='qa-list';
+  lis.forEach((li,idx)=>{
+    const text=li.textContent.trim();
+    const d=document.createElement('details'); d.className='qa-item';
+    d.innerHTML=`<summary>${text}</summary><div class="qa-answer" contenteditable="true">参考答案：先自己回忆，再回到中间案例的「案例建议 / 通用建议 / 叶师金句」核对。</div>`;
+    wrap.appendChild(d);
+  });
+  box.innerHTML=''; box.appendChild(wrap);
+}
+function updateReviewPanel(){
+  normalizeReviewQA();
+  const panel=document.getElementById('reviewPanelContent');
+  const box=document.getElementById('caseReview');
+  if(panel && box) panel.innerHTML=box.innerHTML;
+}
+function toggleReviewMode(force){
+  const on = typeof force==='boolean' ? force : !document.body.classList.contains('review-mode');
+  document.body.classList.toggle('review-mode', on);
+  updateReviewPanel();
+}
+function updateProgress(){
+  const v=document.querySelector('.view.active');
+  const bar=document.querySelector('#readingProgress span');
+  if(!v || !bar){return;}
+  const max=v.scrollHeight-v.clientHeight;
+  const pct=max>0 ? Math.max(0,Math.min(100,(v.scrollTop/max)*100)) : 100;
+  bar.style.width=pct+'%';
+}
+const __polishSave = saveNotes;
+saveNotes=function(){__polishSave(); flashSaved(); updateReviewPanel();};
+const __polishLoad = loadNotes;
+loadNotes=function(k){__polishLoad(k); normalizeReviewQA(); updateReviewPanel(); setTimeout(updateProgress,50);};
+const __polishShow = showView;
+showView=function(k){document.body.classList.remove('review-mode'); __polishShow(k); setTimeout(updateProgress,80);};
+document.querySelectorAll('.view').forEach(v=>v.addEventListener('scroll', updateProgress));
+document.addEventListener('toggle', e=>{ if(e.target.classList && e.target.classList.contains('qa-item')) saveNotes(); }, true);
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') document.body.classList.remove('review-mode'); });
+normalizeReviewQA(); updateReviewPanel(); updateProgress();
+
+</script></body></html>
