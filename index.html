@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="zh-CN"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>SeeUNotes｜叶老师直播连麦案例学习库</title><style>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>SeeUNotes｜叶老师直播连麦案例学习库</title><style>
 :root{
   --bg:#f2f3f5; --panel:#f8f9fb; --card:#ffffff; --ink:#172033; --muted:#6f7785;
   --klein:#002FA7; --klein2:#1147d4; --blue-soft:#eaf0ff; --line:rgba(23,32,51,.11);
@@ -209,189 +208,261 @@ body{font-weight:430;-webkit-font-smoothing:antialiased;text-rendering:optimizeL
 .rightbar .note-card{margin-bottom:0!important;}
 #caseReview{display:none!important;}
 
-</style></head><body>
-<div class="toolbar" id="toolbar"><button onclick="markRed()">标红划线</button><button onclick="addAnnotation()">批注</button></div>
-<div class="layout">
-<aside class="sidebar"><div class="brand"><h2>目录</h2><p>SeeUNotes可视化笔记工具</p></div><nav class="nav" id="nav"><button class="nav-card nav-feature active" data-target="overview"><strong>直播总览</strong><span>可视化数据及阅读方式</span></button><button class="nav-card nav-feature" data-target="methods"><strong>底层方法论</strong><span>六条核心规律</span></button><button class="nav-card" data-target="case01"><strong>01 医学八年制大四</strong><span>AI时代的职业规划焦虑</span></button><button class="nav-card" data-target="case02"><strong>02 小学四年级学生</strong><span>咬笔、咬眼镜腿与无意识焦虑</span></button><button class="nav-card" data-target="case03"><strong>03 初二男生家长</strong><span>升学压力、起床困难与成长慢</span></button><button class="nav-card" data-target="case04"><strong>04 高中生</strong><span>脑雾、痛苦感与成绩卡住</span></button><button class="nav-card" data-target="case05"><strong>05 五年级学生家长</strong><span>孩子抵抗纠正与妈妈躺平</span></button><button class="nav-card" data-target="case06"><strong>06 洁癖孩子家长</strong><span>强迫洗手、不愿坐座位与自我排斥</span></button><button class="nav-card" data-target="case07"><strong>07 初三学生家长</strong><span>英语短文填空与上下文意识</span></button><button class="nav-card" data-target="case08"><strong>08 初二学生</strong><span>竞争焦虑与争而胜之</span></button><button class="nav-card" data-target="case09"><strong>09 高三学生</strong><span>父亲压制、火气与高考前策略</span></button><button class="nav-card" data-target="case10"><strong>10 初二孩子家长</strong><span>偷看手机、学习没动力与情感缺口</span></button><button class="nav-card" data-target="case11"><strong>11 单亲妈妈分享</strong><span>允许请假后，孩子反而更愿意上学</span></button><button class="nav-card" data-target="case12"><strong>12 初三学生</strong><span>考试不焦虑，但学习不主动</span></button><button class="nav-card" data-target="case13"><strong>13 初一学生</strong><span>站桩走神、烦心事与生命力锚点</span></button></nav></aside>
-<section class="main-shell"><div class="progress-wrap" id="readingProgress"><span></span></div><div class="review-panel" id="reviewPanel"><button class="review-exit" type="button" onclick="toggleReviewMode(false)">退出复习模式</button><h2>提取式复习</h2><p>先自己回忆，再展开提示，最后回到案例原文验证。</p><div id="reviewPanelContent"></div></div>
-<div class="view active" data-case="overview" id="view-overview"><section class="hero"><div class="orb"></div><div class="hero-meta"><span>答疑日期：20260526</span><a href="https://weixin.qq.com/sph/AStq1bEL8G" rel="noopener noreferrer" target="_blank">回放链接</a></div><div class="product-line">SeeUNotes｜把直播回放转化为可复习、可批注、可提取的案例学习库</div><h1>叶老师视频号直播连麦</h1><p class="overview-lines"><span><i>01</i>本页结合 AI 网页制作与结构化笔记策略，将直播答疑整理为可复习、可批注的案例学习库。</span><span><i>02</i>左侧为固定目录，中间为单案例聚焦阅读区，右侧为“我的批注”与“案例复习”。</span><span><i>03</i>复习时先看右侧案例复习区提取核心判断，再回到中间案例验证原话与推理链。</span></p><div class="metrics"><div class="metric"><b>13</b><span>个连麦案例</span></div><div class="metric"><b>3</b><span>种固定色块</span></div><div class="metric"><b>6</b><span>条底层方法论</span></div><div class="metric"><b>1</b><span>套提取复习路径</span></div></div></section></div>
-<div class="view" data-case="methods" id="view-methods"><section class="chapter"><h2>底层方法论</h2><div class="method-list"><div class="method-item"><b>状态优先</b><p>遇到职业、学习和家庭问题时，先看生命力、精力、心态，再看技术方法。</p></div><div class="method-item"><b>家是源头</b><p>孩子的异常状态常是家庭系统、父母心结和三代能量逻辑的表层显现。</p></div><div class="method-item"><b>先通后学</b><p>底层能量通畅后，学习策略才会快；底层堵住时，方法会失效。</p></div><div class="method-item"><b>休息分层</b><p>刷视频躺平不等于真正休息，真正休息是心理上允许自己停下来。</p></div><div class="method-item"><b>运动代谢</b><p>很多情绪负荷需要通过出汗、大幅度动作和体育活动代谢。</p></div><div class="method-item"><b>千人千方</b><p>有人要退竞争，有人要争而胜之；关键是找到自己的生命力锚点。</p></div></div></section></div>
-<div class="view" data-case="case01" id="view-case01">
-<article class="case-page">
-<header class="case-head">
-<div class="case-index">01</div>
-<div class="case-title"><div class="case-kicker">休养生息</div><h2>医学八年制大四</h2><p>从“规划一条确定道路”，切换到“屯田囤粮，等待变局”。</p></div>
-</header>
-<section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>临床医学八年制大四，对未来迷茫、焦虑、恐慌；不想当西医，中医是兴趣方向之一。</li><li>水课、复习考试、作业仍占用大量时间；AI、写作、中医、思维训练等方向同时拉扯。</li><li>不敢安排爬山等娱乐，担心“没用”；也感到探索欲、好奇心不足。</li><li>叶老师把这个问题扩大到“所有专业都进入职业不可预判时代”，不是医学生个案。</li><li>提问者的“规划意识”被判断为医学专业路径带来的思维定式：希望提前知道一条固定轨道。</li></ul></section>
-<section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>未来发展方向和时间如何安排？</li><li>思维策略到底应该在哪个领域练？</li><li>没有探索欲、好奇心时，是否还能安排娱乐时间？</li><li>在全行业被AI重塑时，真正可建立的相对优势是什么？</li></ul></section>
-<section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">休养生息</span><p>把睡眠、锻炼、心智练习放在第一优先级，先恢复精力、体力和生命力。</p></div><div class="advice-row"><span class="tagpill">持续观察</span><p>每天接触新信息，尤其观察AI、AI医疗、产业变动。</p></div><div class="advice-row"><span class="tagpill">训练趋势</span><p>训练趋势思维，看新闻、时事和产业分析，不急着找固定答案。</p></div><div class="advice-row"><span class="tagpill">练AI技能</span><p>练医学智能体，本质是在训练可迁移到其他行业的AI能力。</p></div><div class="advice-row"><span class="tagpill">允许娱乐</span><p>爬山、放松、心情好不是浪费，而是修复生命力。</p></div><div class="advice-row"><span class="tagpill">修身备战</span><p>不要急着找“另一条路”，而是把自己修成精力、体力、心态都能承接突变的人。</p></div><div class="advice-row"><span class="tagpill">每天看新</span><p>把AI医疗、智能体、产业趋势作为日常观察对象，用变化训练趋势感。</p></div></div></section>
-<section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">别迷信规划</span><p>未来职业不是规划出来的，真正优势是随时准备好变动。</p></div><div class="advice-row"><span class="tagpill">少逼自己</span><p>探索欲衰弱往往来自长期高压和生命力损耗。</p></div><div class="advice-row"><span class="tagpill">主动放松</span><p>把出去玩、心情好、恢复状态当成比专业课更重要的规划。</p></div><div class="advice-row"><span class="tagpill">生命力优先</span><p>缺乏探索欲不是小问题，它往往比少做几道题、少考几分更重要，也更难补。</p></div></div></section>
-<section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>未来的职业它不是规划出来的。</p><p>你的相对优势应该是精力、体力、心态无比顽强且旺盛。</p><p>你们现在能做的主要就是休养生息，积极屯田囤粮、练兵，随时准备好未来要开大战。</p><p>少逼迫自己，尤其到大学这个年龄，核心是顺着自己，慢慢恢复生命力。</p><p>你们要改的不是哪个技能，你们要先把这个思维定式改过来。</p><p>没有另外一个职业可以给你规划。</p><p>缺乏好奇心和探索欲，本质是生命力的损耗。</p></div></section>
-</article>
-</div>
-<div class="view" data-case="case02" id="view-case02">
-<article class="case-page">
-<header class="case-head">
-<div class="case-index">02</div>
-<div class="case-title"><div class="case-kicker">情绪外溢</div><h2>小学四年级学生</h2><p>看似小动作，背后是孩子内在情绪“满而溢”。</p></div>
-</header>
-<section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>四年级孩子最近开始咬笔、咬眼镜腿，自己也感觉难控制。</li><li>妈妈担心防控眼镜佩戴时间不足，近视度数增长。</li><li>孩子喜欢看书、画画，早期运动能力弱，后来运动课后信心提升。</li><li>叶老师从吃手、咬奶嘴、断奶阶段回溯，判断这是无意识缓解焦虑的出口。</li><li>孩子不是主动玩，而是内在情绪“满而溢”之后从小动作里漏出来。</li></ul></section>
-<section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>孩子咬东西是否代表压力大？要不要干预？</li><li>近视、防控眼镜和户外运动如何处理？</li></ul></section>
-<section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">别当大事</span><p>不要把咬东西上升成严重问题，越盯越容易强化。</p></div><div class="advice-row"><span class="tagpill">运动宣泄</span><p>持续做体育活动，让情绪通过身体流动出去。</p></div><div class="advice-row"><span class="tagpill">近视优先</span><p>真正有帮助的是大量户外和体育活动。</p></div><div class="advice-row"><span class="tagpill">保留表达</span><p>看书、画画可以保留，但要增加身体宣泄通道。</p></div><div class="advice-row"><span class="tagpill">别盯眼镜</span><p>咬眼镜腿不是核心，越把它当问题越容易强化；视力问题优先靠户外和运动。</p></div></div></section>
-<section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">看见表象</span><p>孩子的小动作往往不是坏习惯，而是情绪出口。</p></div><div class="advice-row"><span class="tagpill">先通能量</span><p>心思细腻、表达被动的孩子尤其需要运动。</p></div><div class="advice-row"><span class="tagpill">父母降噪</span><p>家长越焦虑、越盯细节，孩子越容易卡住。</p></div><div class="advice-row"><span class="tagpill">家庭能量</span><p>孩子的细腻、压抑、堆积状态，可能来自家庭能量网，不一定是孩子自己的问题。</p></div></div></section>
-<section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>这个事儿本身确实也是一个毫不重要的事儿，你不管他就完了。</p><p>咬笔、咬眼镜腿代表某种情绪在发泄，在往外发。</p><p>你的内在某些情绪已经憋不住了，相当于杯子里面水满了，开始往外溢。</p><p>体育运动对他来说非常重要，要让情绪保持流通状态。</p><p>画画是一种满而溢的精神表达属性，内在有很多细腻的心思、情绪。</p><p>这个孩子积压了某些情绪，需要持续性地做宣泄。</p><p>先做好最基础的运动宣泄工作，让情绪保持流通状态。</p></div></section>
-</article>
-</div>
-<div class="view" data-case="case03" id="view-case03">
-<article class="case-page">
-<header class="case-head">
-<div class="case-index">03</div>
-<div class="case-title"><div class="case-kicker">补足不足</div><h2>初二男生家长</h2><p>孩子不是单点学习问题，而是卡在“被当作小宝”的潜意识位置。</p></div>
-</header>
-<section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>孩子初二，明年1月校内分流，前75%可直升高中。</li><li>作业增多后起床被动、周末不愿起、睡眠质量不好。</li><li>过去有攻击性、能表达不满；现在精力被学习消耗，向外探索减少。</li><li>妈妈微信名“小宝乖乖”成为判断切口：孩子的潜意识被按在更小的状态。</li><li>孩子表层是青春期，深层却像卡在幼儿园阶段，反抗也带着幼儿式的别扭。</li></ul></section>
-<section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>怎样通过学习策略减轻压力？</li><li>家长应该宽松还是推动？尺度在哪里？</li><li>孩子为什么节奏慢、抵抗、落地弱？</li></ul></section>
-<section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">先补自己</span><p>优先处理家长早年关爱不足，而不是直接推孩子。</p></div><div class="advice-row"><span class="tagpill">停止按小</span><p>把孩子从“小宝”位置释放出来，承认他正在长大。</p></div><div class="advice-row"><span class="tagpill">策略后置</span><p>学习策略可以做，但底层能量不通时不是根本。</p></div><div class="advice-row"><span class="tagpill">等待变化</span><p>孩子在等待家长变化，家长先变，孩子才容易恢复成长。</p></div><div class="advice-row"><span class="tagpill">先补不足</span><p>这个方向不是简单分离，而是补足早年关爱不足；补完后自然更容易放手。</p></div></div></section>
-<section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">换个中心</span><p>不要只问孩子为什么这样，要问我的人生发生了什么。</p></div><div class="advice-row"><span class="tagpill">边界要准</span><p>边界不清太糊，要分清是过界、缺位还是不足后的补偿。</p></div><div class="advice-row"><span class="tagpill">能量先通</span><p>底层能量通了，学习策略才会更快起效。</p></div></div></section>
-<section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>家庭是一张能量网，初中生的心智状态八成以上受家长影响。</p><p>我们研究的不是孩子为什么这样，而是你出于什么原因有了这样状态的孩子。</p><p>你的婴幼儿阶段关爱是不足的，所以你一定有一个补偿心理，而且是过度补偿。</p><p>你把孩子按在一个三岁的状态，他当然会很烦。</p><p>当一个人觉得自己没什么问题的时候，基本上主要问题就在这个人身上。</p><p>孩子在等待你的变化，你等他的变化是等不来的。</p><p>不足就给他补足，补完以后你自己舒服了，就会很轻松地放手。</p></div></section>
-</article>
-</div>
-<div class="view" data-case="case04" id="view-case04">
-<article class="case-page">
-<header class="case-head">
-<div class="case-index">04</div>
-<div class="case-title"><div class="case-kicker">代谢痛苦</div><h2>高中生</h2><p>不是单纯学业焦虑，而是情绪负荷过重，需要身体层面排水。</p></div>
-</header>
-<section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>上龙门后脑雾和身体虚弱有所改善，思维清晰一些。</li><li>成绩长期在400分左右徘徊，一调整又回到原档位。</li><li>看到学习会出现“前方痛苦无穷尽”的感觉。</li><li>痛苦感在高一下明显，但叶老师判断初中甚至小学高年级已可能有苗头。</li><li>学生练习更多停留在道理分析，阴性写作少，站桩时间也偏基础。</li></ul></section>
-<section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>为什么成绩卡在固定档位？</li><li>为什么学习会带来莫名痛苦和身体不适？</li><li>除了看道理、站桩，还应如何练？</li></ul></section>
-<section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">大幅运动</span><p>恢复打拳、跑步、球类等大幅度、出汗型运动。</p></div><div class="advice-row"><span class="tagpill">先排污水</span><p>高中阶段先用运动代谢情绪，让痛苦变浅。</p></div><div class="advice-row"><span class="tagpill">暂缓深挖</span><p>底层心理痛苦来源等高考后再处理。</p></div><div class="advice-row"><span class="tagpill">注意隐私</span><p>阴性写作有效，但高中环境隐私不足，要谨慎保存。</p></div></div></section>
-<section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">分清虚实</span><p>虚的人不能猛练；憋得厉害的人适合宣泄性运动。</p></div><div class="advice-row"><span class="tagpill">身体代谢</span><p>情绪负荷会有身体表现，出汗和代谢可以缓解。</p></div><div class="advice-row"><span class="tagpill">先保可用</span><p>学生阶段先让状态可用，不必立刻根治所有源头。</p></div><div class="advice-row"><span class="tagpill">排水模型</span><p>源头暂时处理不了时，先把排水管搞大，让痛苦不要淹没日常学习。</p></div></div></section>
-<section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>你这个状态背负的心理负荷太多，有很多未发泄的情绪。</p><p>光看道理，光看课里面讲的道理没什么用。</p><p>源头的污水暂时管不了，但你把排水管搞大点，来多少污水我就排出去。</p><p>让自己大量出汗，让肢体幅度更大一些。</p><p>你要说从高一开始，不可能，初中肯定已经有了，只是程度没那么严重。</p><p>情绪负荷会以某种激素的形式在身体里面有物质表现。</p></div></section>
-</article>
-</div>
-<div class="view" data-case="case05" id="view-case05">
-<article class="case-page">
-<header class="case-head">
-<div class="case-index">05</div>
-<div class="case-title"><div class="case-kicker">深度休息</div><h2>五年级学生家长</h2><p>孩子的正面对抗，反而说明他对妈妈还有期待。</p></div>
-</header>
-<section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>孩子做事不专心，站桩姿势不标准仍犟嘴，英语读音和数学讲思路都抵触。</li><li>在学校对老师闷不吭声、消极抵抗；在妈妈面前正面抵抗。</li><li>妈妈自己二十多天躺平、刷视频、看网文、熬夜，想努力但大脑阻止。</li><li>妈妈想去练句子、看直播课时，大脑会立刻制止，最后继续刷视频、看网文。</li><li>孩子在学校是消极抵抗，在妈妈面前是正面对抗，说明两种关系期待不同。</li></ul></section>
-<section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>孩子为什么不听纠正、不愿表达、不专心？</li><li>妈妈为什么突然躺平，无法练习和自律？</li><li>如何恢复母子两人的动力？</li></ul></section>
-<section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">别再自律</span><p>当前重点不是逼自己练习，而是允许真正深度休息。</p></div><div class="advice-row"><span class="tagpill">找源头事</span><p>顺着“为了父母认同而不敢休息”的方向做写作。</p></div><div class="advice-row"><span class="tagpill">先别管孩</span><p>妈妈先处理自己的心理负荷，孩子会跟着变化。</p></div><div class="advice-row"><span class="tagpill">两边都写</span><p>父亲、母亲两边心结都要处理，父亲方向可能更绵长。</p></div><div class="advice-row"><span class="tagpill">写童年事</span><p>围绕“被父母关爱不足、为求认同而逼自己”的事件大量写作。</p></div></div></section>
-<section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">休息分层</span><p>刷视频熬夜不等于真正休息；真正休息是心理上也停下来。</p></div><div class="advice-row"><span class="tagpill">抵抗有义</span><p>孩子正面对抗可能代表关系里还有期待。</p></div><div class="advice-row"><span class="tagpill">家是世界</span><p>家庭模式会放大到一生，修身齐家治国平天下是同构结构。</p></div><div class="advice-row"><span class="tagpill">浅休深休</span><p>身体躺平但心理还在挣扎，会形成浅休息：一边休息一边内耗。</p></div></div></section>
-<section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>你跟你孩子状态其实差不多。</p><p>没有动力基本上都是类似原因：要么自己逼自己太狠，要么别人逼你太狠。</p><p>你们现在最需要的不是自律，而是深度的休息。</p><p>能正面对抗，说明他还对你有期望；对老师消极抵抗，是因为对外人没期望。</p><p>如果一边休息一边内耗，那个休息就非常浅，没休息到位。</p><p>你处于向父母要认同没要到，孩子处于向你要关爱没要到。</p><p>家庭就是世界，修身、齐家、治国、平天下是高度同构的结构。</p></div></section>
-</article>
-</div>
-<div class="view" data-case="case06" id="view-case06">
-<article class="case-page">
-<header class="case-head">
-<div class="case-index">06</div>
-<div class="case-title"><div class="case-kicker">道德洁癖</div><h2>洁癖孩子家长</h2><p>洁癖背后常指向“肮脏、愧疚、道德批评”的心结方向。</p></div>
-</header>
-<section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>孩子本学期开始觉得座位、课桌、教室不卫生，上课站着听或待在教室外。</li><li>最近不愿让家人碰，动不动洗手。</li><li>家长回忆自己在孩子月子里曾高度在意陌生人未洗手抱孩子。</li><li>家长临场能想到月子里“陌生人未洗手抱孩子”的事件，但叶老师判断这只是有代表性，不一定是源头。</li><li>家长后来浮现“嫌弃自己懦弱”的心结，说明当下显现的层次可能先于洁癖源头。</li></ul></section>
-<section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>孩子为什么突然出现洁癖和强迫洗手？</li><li>这与家长自身心结是否有关？</li><li>家长应从哪个心结开始处理？</li></ul></section>
-<section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">不急定位</span><p>不必临场逼自己想出源头，先确定方向。</p></div><div class="advice-row"><span class="tagpill">先写懦弱</span><p>当前冒出来的是“嫌弃自己懦弱”，可优先写。</p></div><div class="advice-row"><span class="tagpill">层层剥开</span><p>处理前层心结后，洁癖相关心结可能自动显现。</p></div><div class="advice-row"><span class="tagpill">持续练习</span><p>继续做阴性写作和相关练习。</p></div><div class="advice-row"><span class="tagpill">写显现层</span><p>先处理已经浮出来的“懦弱/自我排斥”，不强求一下子找到洁癖源头。</p></div></div></section>
-<section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">异常换形</span><p>孩子问题会换形式出现，洁癖只是当前表现。</p></div><div class="advice-row"><span class="tagpill">源头更早</span><p>月子卫生事件有代表性，但不一定是源头。</p></div><div class="advice-row"><span class="tagpill">先处理显现</span><p>潜意识先浮出什么，就先处理什么。</p></div></div></section>
-<section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>洁癖加强迫症，这是非常经典的组合。</p><p>这种强迫症洁癖，总体上跟道德有关，跟肮脏、愧疚有关。</p><p>每一个人身上都有好多个心结，不是一个问题。</p><p>剥洋葱一样，第一层第二层剥完，第三层第四层会自动显现。</p><p>跟这个事实际上道不道德、脏不脏关系不大，跟当时参与方怎么批评、怎么看有关。</p><p>你这种懦弱这个事，对你来说可能更重要，你可能优先去解决那个。</p><p>等你把第一层、第二层剥完了，第三层、第四层会自动显现出来。</p></div></section>
-</article>
-</div>
-<div class="view" data-case="case07" id="view-case07">
-<article class="case-page">
-<header class="case-head">
-<div class="case-index">07</div>
-<div class="case-title"><div class="case-kicker">联系上下文</div><h2>初三学生家长</h2><p>这是一个轻量技术问题：孩子不是不会语法，而是钻进单句。</p></div>
-</header>
-<section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>初三学生英语基础薄弱，中英会议练习后作文和阅读提升明显。</li><li>当前主要丢分在短文填空和单项选择。</li><li>无提示词的介词、连词、从句容易懵。</li><li>作文和阅读理解提升，说明整段英语意识已经被中英会议带起来，但短文填空还残留同一弱点。</li></ul></section>
-<section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>短文填空总丢分怎么补？</li><li>中英会议难度大，会不会影响中考备考？</li></ul></section>
-<section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">只练一招</span><p>中考前一个月专练“联系上下文”。</p></div><div class="advice-row"><span class="tagpill">降点难度</span><p>不用做生词很多的篇章，难度可稍微降。</p></div><div class="advice-row"><span class="tagpill">抓混合题</span><p>重点训练既考语法又考上下文的题。</p></div><div class="advice-row"><span class="tagpill">预期增分</span><p>若练熟，英语可能还能涨五六分。</p></div><div class="advice-row"><span class="tagpill">考前减难</span><p>中考前不追求更难篇章，尤其避免生词很多的材料，专练上下文意识。</p></div></div></section>
-<section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">技术精准</span><p>有时不是心智大问题，而是一个小技术漏洞。</p></div><div class="advice-row"><span class="tagpill">整段意识</span><p>语言学习不能只盯句子，要训练段落整体感。</p></div><div class="advice-row"><span class="tagpill">考前减法</span><p>临近考试不要铺开大体系，抓最可能增分的点。</p></div></div></section>
-<section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>他有一个小的技术性缺漏：只看单句，不看上下文。</p><p>短文填空有些题在考单句语法，有些题隐含着在考上下文。</p><p>凡是联系上下文，联系上下文，就这一个心法搞定了。</p><p>他同样一个弱点还有一点尾巴没解决。</p><p>他一旦进入这种场景，意识就淡了，就钻到单句里面去了。</p><p>一个月之内就把这一点练熟，英语可能还能涨五六分、六七分。</p></div></section>
-</article>
-</div>
-<div class="view" data-case="case08" id="view-case08">
-<article class="case-page">
-<header class="case-head">
-<div class="case-index">08</div>
-<div class="case-title"><div class="case-kicker">争而胜之</div><h2>初二学生</h2><p>不是所有人都要退竞争；有些阶段要顺势打一场漂亮仗。</p></div>
-</header>
-<section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>初二学生所在学校强调竞争，每周考试、排名。</li><li>看到多数人会做而自己没做好的题，会觉得自己不如别人。</li><li>呼吸法和卧姿冥想已经压不住竞争焦虑。</li><li>学生班级前十、年级前50，目标年级前20，已经处在“争而能赢”的位置。</li><li>焦虑主要在低级题、简单题错了时更强，语文弱势学科更容易触发。</li></ul></section>
-<section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>如何弱化或转化竞争焦虑？</li><li>是否应该继续强压想竞争的念头？</li><li>强竞争环境里如何减少内耗？</li></ul></section>
-<section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">允许焦虑</span><p>竞争焦虑来就来，不必硬压。</p></div><div class="advice-row"><span class="tagpill">顺势而争</span><p>处在能赢的位置，就用科学策略争而胜之。</p></div><div class="advice-row"><span class="tagpill">补语文弱</span><p>继续做语文脉冲、思维能力和弱势学科训练。</p></div><div class="advice-row"><span class="tagpill">加强力量</span><p>继续踢足球，焦虑高时做运动、呼吸法、四匹马步桩。</p></div><div class="advice-row"><span class="tagpill">策略争胜</span><p>把竞争焦虑转成对语文、弱科、思维方法的具体策略投入。</p></div></div></section>
-<section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">千人千方</span><p>不同阶段建议不同，不是所有人都适合退竞争。</p></div><div class="advice-row"><span class="tagpill">位置决定法</span><p>成绩差且必败者要跳出；接近大胜者可先体验竞争。</p></div><div class="advice-row"><span class="tagpill">先红尘后无为</span><p>有些人要先在红尘里历练，之后再谈不争。</p></div><div class="advice-row"><span class="tagpill">阶段适配</span><p>有些人先在红尘里争一波，充分体验争而胜之，再谈更高层次的不争。</p></div></div></section>
-<section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>竞争这个东西，不是你的错，外部环境确实是这个状态。</p><p>你不要想着去压它，它来就来，我们允许它来。</p><p>你本身处于相对优势的竞争位置，是争而胜之的那一波人。</p><p>减少内耗，顺势而为。</p><p>我知道争这个东西没什么大用，但是能争赢也还行。</p><p>你现在这个身位是争而能赢的身位，就顺势而为。</p><p>不同的人生阶段是要去经历不同东西的。</p></div></section>
-</article>
-</div>
-<div class="view" data-case="case09" id="view-case09">
-<article class="case-page">
-<header class="case-head">
-<div class="case-index">09</div>
-<div class="case-title"><div class="case-kicker">考前求稳</div><h2>高三学生</h2><p>距离高考太近，先稳住，不做大的心理工程。</p></div>
-</header>
-<section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>高三学生十几天后高考，曾做过个案，问题与父亲管得严、长期压制有关。</li><li>练习发泄后有所缓解，但新生导引时仍有火气和损耗。</li><li>晚自习精力不足，考试时高强度用脑不够，睡眠精神待机。</li><li>学生源头事件与父亲顾面子、强压自己有关；玩具被强迫给别人玩是其中一个典型记忆。</li><li>当下距离高考太近，叶老师判断不适合做心理结构的大改动。</li></ul></section>
-<section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>练习后仍有火气和损耗，如何处理？</li><li>高考前能否用“强忍、发狠”的方式？</li><li>暑假应先玩还是继续处理源头？</li></ul></section>
-<section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">视频零散</span><p>课间做视频桩，每次1分钟，比零碎混元桩更适合。</p></div><div class="advice-row"><span class="tagpill">不改睡眠</span><p>考前不要大改睡眠模式，原来能睡就先保持。</p></div><div class="advice-row"><span class="tagpill">高考后治</span><p>父亲压制带来的火，高考后再系统处理。</p></div><div class="advice-row"><span class="tagpill">临门轻压</span><p>高考前短暂压一下可以，但不能持续发狠。</p></div><div class="advice-row"><span class="tagpill">大学放大</span><p>大学用扩大世界来释放压抑火气。</p></div><div class="advice-row"><span class="tagpill">储备精力</span><p>最后十多天先松一点，临考前一天再短暂进入专注压一下的状态。</p></div></div></section>
-<section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">考前求稳</span><p>重大考试前不做心理结构大手术。</p></div><div class="advice-row"><span class="tagpill">发泄分层</span><p>普通发泄只能缓解，根治要找源头事件。</p></div><div class="advice-row"><span class="tagpill">世界放大</span><p>把人生空间变大，压力会相对变小。</p></div></div></section>
-<section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>距离高考太近了，就不要做大的改动。</p><p>你所谓的发泄完，其实就是没发泄完；发泄是在做一定程度的缓解。</p><p>真正彻底根治，是找到让你心态上火着急的源头事件、源头情绪。</p><p>压是很耗费精力、体力、意志力的。</p><p>视频桩每次一分钟，适合你这种时间不够、零零散散的人。</p><p>你这个火的问题，被小时候打压的问题，留到高考以后再说。</p><p>把小锅炉房变成大操场，压力的程度会自动降低。</p></div></section>
-</article>
-</div>
-<div class="view" data-case="case10" id="view-case10">
-<article class="case-page">
-<header class="case-head">
-<div class="case-index">10</div>
-<div class="case-title"><div class="case-kicker">先给关爱</div><h2>初二孩子家长</h2><p>学习不是第一优先级，情感补偿才是当下关键。</p></div>
-</header>
-<section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>孩子学习一直不在状态，手机管理上老想偷看，学习没有动力。</li><li>从小父亲、爷爷奶奶一侧关爱严重缺失，母亲对未来焦虑。</li><li>孩子喜欢唱歌、爱美，成绩在700多人中约200名。</li><li>孩子从满月后基本处于父亲、爷爷奶奶一侧严重缺席的状态，母亲虽在身边，但更多是工具性照料。</li><li>孩子唱歌、爱美、关注外貌，被判断为青春期向外寻求关注的表现。</li><li>成绩在700多人中约200名，叶老师反而认为孩子内在力量很强、根底很好。</li></ul></section>
-<section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>孩子不想学习、不主动怎么办？</li><li>家长明明关心，为什么一说话就成批评？</li><li>龙门课报了但孩子不学，是否浪费？</li></ul></section>
-<section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">先接纳他</span><p>第一步是理解并接纳孩子现在状态。</p></div><div class="advice-row"><span class="tagpill">补情感账</span><p>从情感和心理上补偿，而不是只花钱。</p></div><div class="advice-row"><span class="tagpill">学会表扬</span><p>先真正理解孩子不容易，表扬会自然出来。</p></div><div class="advice-row"><span class="tagpill">家长修复</span><p>家长处理童年匮乏和低价值感，孩子会跟着好。</p></div><div class="advice-row"><span class="tagpill">先停要求</span><p>减少对学习和未来出路的焦虑性要求，先把当下能补的情感账补上。</p></div><div class="advice-row"><span class="tagpill">自己上课</span><p>如果孩子暂时不学课程，可以转成家长自己学习疗愈。</p></div></div></section>
-<section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">规律第一</span><p>所有孩子都认为情感比学习重要，这是人类共同规律。</p></div><div class="advice-row"><span class="tagpill">叛逆是火</span><p>叛逆不一定糟，说明生命力还在。</p></div><div class="advice-row"><span class="tagpill">孩子引路</span><p>孩子的问题会逼家长回头修自己的心结。</p></div><div class="advice-row"><span class="tagpill">花心思</span><p>对缺爱的孩子，真正的补偿不是花钱，而是理解、交流、情绪承接。</p></div></div></section>
-<section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>一个孩子从小非常缺乏关爱，你要求他学习动机很强，这事本身不成立。</p><p>你要在他身上花心思，不是花钱的问题。</p><p>他一直在等你。</p><p>语言不重要，心思最重要。</p><p>他都已经这样了，居然还能考前200名，这多好的孩子。</p><p>先把当下过好，没用的事少想。</p><p>他潜意识里觉得学习远远没有情感重要，这是人类共同规律。</p><p>孩子是家长修行成长的缘起，或者说引路人。</p></div></section>
-</article>
-</div>
-<div class="view" data-case="case11" id="view-case11">
-<article class="case-page">
-<header class="case-head">
-<div class="case-index">11</div>
-<div class="case-title"><div class="case-kicker">放下焦虑</div><h2>单亲妈妈分享</h2><p>家长松绑，孩子的内在压力反而下降。</p></div>
-</header>
-<section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>单亲妈妈分享自家经历，与上一位妈妈处境相似。</li><li>从去年8月开始学习，最初也很焦虑，孩子不想上学。</li><li>后来成为家委、维护学校关系，为孩子请假创造弹性空间。</li><li>分享者从去年8月开始学习，最初也因孩子不上学而焦虑，后来自己变化明显。</li><li>她成为家委、积极维护学校关系，是为了孩子需要请假时有弹性空间。</li></ul></section>
-<section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>家长自己学习、变化，对孩子有什么影响？</li><li>孩子说不想上学、不想考试时，家长如何处理？</li></ul></section>
-<section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">允许不上</span><p>孩子说不想上学时，先允许，而不是立刻拉扯。</p></div><div class="advice-row"><span class="tagpill">铺好环境</span><p>维护学校沟通，为孩子弹性空间创造条件。</p></div><div class="advice-row"><span class="tagpill">不给精神债</span><p>不把“不考试就是亏欠”压在孩子身上。</p></div><div class="advice-row"><span class="tagpill">互相鼓励</span><p>同类处境的妈妈彼此作伴，减少孤军奋战感。</p></div><div class="advice-row"><span class="tagpill">允许弹性</span><p>孩子说不想上学、不想考试时，先允许选择，降低精神亏欠感。</p></div></div></section>
-<section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">松则能动</span><p>允许和放松不是放弃，反而会恢复孩子动力。</p></div><div class="advice-row"><span class="tagpill">焦虑坏事</span><p>越焦虑越来坏事，焦虑会把问题推得更紧。</p></div><div class="advice-row"><span class="tagpill">家长先变</span><p>孩子学得少也没关系，家长变化本身就能影响孩子。</p></div><div class="advice-row"><span class="tagpill">焦虑松绑</span><p>家长越能给自己和孩子松绑，孩子越容易恢复主动。</p></div></div></section>
-<section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>你越焦虑孩子越有问题；你越不焦虑、越放得松，孩子的压力反而小了。</p><p>把焦虑放下来以后，发现反而好了，这就是世界运作的规律。</p><p>他反而会去上学，反而更认真，反而成绩更好。</p><p>我允许大家不上学，我允许大家不认真，孩子的压力反而小了。</p><p>你越焦虑，这个事就越出问题；你把焦虑放下来，事会自动变好。</p></div></section>
-</article>
-</div>
-<div class="view" data-case="case12" id="view-case12">
-<article class="case-page">
-<header class="case-head">
-<div class="case-index">12</div>
-<div class="case-title"><div class="case-kicker">随兴趣提分</div><h2>初三学生</h2><p>从“逼自己主动”改成“顺兴趣、顺手感提分”。</p></div>
-</header>
-<section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>初三学生快中考，自觉对考试没有压力，能坦然面对。</li><li>想成绩更好，但学习不太主动；周末没有妈妈安排就不主动复习。</li><li>妈妈组织了七个小朋友在家自习，替代学校晚修氛围。</li><li>学生不太主动学习，但对考试已不焦虑，状态比较松。</li><li>妈妈征求孩子意见后组织家庭晚修学习小组，共七个孩子一起学习。</li></ul></section>
-<section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>想成绩好但不主动学习，是不是问题？</li><li>不喜欢学校晚修，家庭学习小组是否可行？</li><li>临近中考，如何给孩子们祝福？</li></ul></section>
-<section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">随兴趣学</span><p>优先学兴趣更大的科目，把喜欢的部分提上来。</p></div><div class="advice-row"><span class="tagpill">顺眼就用</span><p>学习策略不用按顺序，喜欢哪个就用哪个。</p></div><div class="advice-row"><span class="tagpill">轻松提分</span><p>以轻松自然状态面对中考复习。</p></div><div class="advice-row"><span class="tagpill">学习小组</span><p>可组织宽松的同伴自习场域。</p></div><div class="advice-row"><span class="tagpill">策略随缘</span><p>学习策略很多，不必按顺序；喜欢哪个、顺手哪个，就先用哪个。</p></div></div></section>
-<section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">低耗有效</span><p>对低压力孩子，顺兴趣比强行加压有效。</p></div><div class="advice-row"><span class="tagpill">环境可造</span><p>家长不必逼学习，但可以创造更好的学习场域。</p></div><div class="advice-row"><span class="tagpill">祝福方向</span><p>轻松愉快地学习、提高成绩、成长，比必须赢更有生命力。</p></div><div class="advice-row"><span class="tagpill">场域支持</span><p>家长不一定要强推学习，可以创造宽松但有效的同伴学习场域。</p></div></div></section>
-<section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>你不用给自己压力。</p><p>哪一个学科兴趣度更大一点，你就多学点这个。</p><p>随缘提分，随兴趣爱好提分就行。</p><p>你越放松、随缘随性这么去选，反而成绩能够提上来。</p><p>策略那么多，你看哪个顺眼就选哪个。</p><p>你喜欢哪个就搞哪个，这个原则对各个方面通用。</p><p>你们轻松愉快地学习，轻松愉快地提高成绩，未来一生轻松愉快地成长。</p></div></section>
-</article>
-</div>
-<div class="view" data-case="case13" id="view-case13">
-<article class="case-page">
-<header class="case-head">
-<div class="case-index">13</div>
-<div class="case-title"><div class="case-kicker">锚点发动</div><h2>初一学生</h2><p>站桩不是万能清除器；烦心事先用动态运动代谢。</p></div>
-</header>
-<section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>初一学生自己提问，站桩时会想别的事，觉得效果不好。</li><li>希望站桩忘掉学校烦恼、静下来学习。</li><li>晚上站混元桩15-20分钟，已经形成习惯。</li><li>学生想用站桩忘掉学校烦心事、静下来学习，叶老师判断这是工具用错场景。</li><li>他已经把晚上站桩15-20分钟变成习惯，因此站桩可作为个人锚点继续深化。</li></ul></section>
-<section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>站桩时静不下心怎么办？</li><li>站桩后适合立刻做什么？</li><li>学校烦心事如何处理？</li></ul></section>
-<section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">先动后站</span><p>烦心事先做大幅运动、出汗，再站桩。</p></div><div class="advice-row"><span class="tagpill">慢慢加长</span><p>从15-20分钟逐步加到25、30分钟，周末可到40分钟。</p></div><div class="advice-row"><span class="tagpill">不接任务</span><p>站桩后不需要立刻干嘛，可以继续放松。</p></div><div class="advice-row"><span class="tagpill">当作锚点</span><p>把站桩作为个人生命力发动锚点，重点练。</p></div><div class="advice-row"><span class="tagpill">两段处理</span><p>先用大幅度运动处理烦心事，再用站桩做更细的状态调整。</p></div></div></section>
-<section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">工具分工</span><p>站桩、冥想、运动各有适用场景，不要万能化。</p></div><div class="advice-row"><span class="tagpill">找到锚点</span><p>每个人发动生命力的锚点不同。</p></div><div class="advice-row"><span class="tagpill">千人千方</span><p>成长不是统一方案，而是找到自己的启动入口。</p></div></div></section>
-<section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>站桩主要不是这么用的。</p><p>学校遇到烦心问题，用体育运动来缓和，动态运动可能更好。</p><p>站桩不同程度功效不一样，临界点差不多在30分钟附近。</p><p>对你来说，站桩是发动生命力的锚点。</p><p>如果是外部有一个事搞得你很烦，站桩不去治这种情况。</p><p>先做大动作的肢体运动，流汗、加速代谢，再练站桩。</p><p>每个人发动自己生命力的锚点不一样。</p></div></section>
-</article>
-</div>
-</section>
-<aside class="rightbar"><div class="status-row"><div class="current-case" id="currentCase">当前：直播总览</div><div class="save-status" id="saveStatus">已自动保存</div></div><button class="review-toggle" type="button" onclick="toggleReviewMode()">进入复习模式</button><div class="note-card"><h3>我的批注</h3><p>选中中间正文后，可添加批注或标红划线。批注按案例单独保存。</p><div class="ann-list" id="annotations"></div><button class="small-btn" onclick="clearAnnotations()">清空当前案例批注</button></div><div id="caseReview" class="editable" contenteditable="true" style="display:none" aria-hidden="true"></div></aside>
-</div>
-<script>
-const STORE='seeunotes_klein_review_v2_enriched';
+
+.hero-meta,.meta-row,.top-meta{
+    margin-top: 18px !important;
+    top:auto !important;
+}
+
+
+/* ===== 批注安全修复：避免跨行/跨列表高亮破坏结构 ===== */
+.annotation-yellow,
+.redline{
+  display:inline !important;
+  white-space:normal !important;
+  word-break:normal !important;
+  overflow-wrap:normal !important;
+}
+
+
+/* 复习模式：问题/答案单击切换，文字可编辑 */
+.qa-item.qa-flip{border:1px solid rgba(0,47,167,.12);background:#fff;border-radius:18px;padding:0;overflow:hidden;cursor:pointer;transition:.18s ease}
+.qa-item.qa-flip:hover{box-shadow:0 12px 30px rgba(0,47,167,.08);transform:translateY(-1px)}
+.qa-question,.qa-answer{padding:18px 20px 14px 58px;min-height:58px;outline:none;position:relative;color:#172033;font-size:18px;font-weight:850;line-height:1.65}
+.qa-question:before,.qa-answer:before{position:absolute;left:20px;top:18px;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:var(--klein);color:#fff;font-size:13px;font-weight:900}
+.qa-question:before{content:"Q"}
+.qa-answer{color:#4a5568;font-size:16px;font-weight:650;background:#f8faff;border-top:1px solid rgba(0,47,167,.10)}
+.qa-answer:before{content:"A";background:#6b7a90}
+.qa-hint{padding:0 20px 14px 58px;color:#8b95a5;font-size:12px;font-weight:700}
+.qa-item.qa-flip[data-side="a"] .qa-question{display:none}
+.qa-item.qa-flip[data-side="a"] .qa-answer{display:block!important;border-top:0}
+.qa-item.qa-flip[data-side="q"] .qa-answer{display:none!important}
+.qa-question:focus,.qa-answer:focus{box-shadow:inset 0 0 0 3px rgba(0,47,167,.10);background:#fff}
+
+
+/* 修复：直播总览复习题点击后可切换匹配参考答案 */
+#reviewPanelContent .qa-flip{cursor:pointer}
+#reviewPanelContent .qa-flip .qa-question,
+#reviewPanelContent .qa-flip .qa-answer{cursor:text}
+#reviewPanelContent .qa-flip[data-side="q"] .qa-question{display:block!important}
+#reviewPanelContent .qa-flip[data-side="q"] .qa-answer{display:none!important}
+#reviewPanelContent .qa-flip[data-side="a"] .qa-question{display:none!important}
+#reviewPanelContent .qa-flip[data-side="a"] .qa-answer{display:block!important}
+#reviewPanelContent .qa-flip .qa-hint{user-select:none;cursor:pointer}
+
+
+/* 批注卡片与清空按钮间距优化 */
+#annotations,
+.annotations,
+.annotation-list{
+  margin-bottom: 18px !important;
+}
+#annotations .ann,
+.annotations .ann,
+.annotation-list .ann,
+.ann{
+  margin-bottom: 18px !important;
+}
+.clear-btn,
+.small-btn,
+button[onclick*="clear"],
+button[id*="clear"]{
+  margin-top: 18px !important;
+}
+.note-card .small-btn,
+.rightbar .small-btn{
+  margin-top: 18px !important;
+}
+
+
+/* 右侧批注：说明文字、批注卡片、清空按钮的间距统一 */
+.note-card,
+.annotation-card,
+.rightbar .card{
+  overflow: visible !important;
+}
+#annotations{
+  margin-top: 18px !important;
+  margin-bottom: 18px !important;
+}
+#annotations .ann{
+  margin: 0 0 18px 0 !important;
+}
+#annotations .ann:last-child{
+  margin-bottom: 18px !important;
+}
+.rightbar .small-btn,
+.note-card .small-btn{
+  margin-top: 0 !important;
+}
+.ann q{
+  display:block;
+  margin-bottom:14px !important;
+}
+.ann div[contenteditable="true"]{
+  min-height: 42px !important;
+}
+
+/* 复习模式：单击问题/答案切换；单击仍可选中文字进行批注或画线 */
+#reviewPanelContent .qa-flip{
+  cursor: text !important;
+}
+#reviewPanelContent .qa-question,
+#reviewPanelContent .qa-answer{
+  cursor: text !important;
+  user-select: text !important;
+}
+
+
+/* 清空批注按钮居中放置在白色批注卡片内部 */
+.annotation-card,
+.note-card,
+#annotationPanel,
+.right-panel-card{
+    position: relative;
+}
+.clear-btn,
+button[id*="clear"],
+button[onclick*="clear"]{
+    display:block !important;
+    margin:24px auto 8px auto !important;
+}
+
+
+/* 复习模式：单击只用于选中文字/编辑，单击才切换参考答案 */
+#reviewPanelContent .qa-flip,
+#reviewPanelContent .qa-question,
+#reviewPanelContent .qa-answer{
+  cursor:text !important;
+  user-select:text !important;
+}
+
+
+/* 复习模式：问题/答案本身可编辑；单击编辑，单击切换 */
+#reviewPanelContent .qa-flip{
+  cursor: default !important;
+}
+#reviewPanelContent .qa-question,
+#reviewPanelContent .qa-answer{
+  cursor: text !important;
+  user-select: text !important;
+  -webkit-user-select: text !important;
+  outline: none !important;
+}
+#reviewPanelContent .qa-question:focus,
+#reviewPanelContent .qa-answer:focus{
+  box-shadow: inset 0 0 0 2px rgba(0,47,167,.16) !important;
+  background: rgba(255,255,255,.96) !important;
+}
+#reviewPanelContent .qa-hint{
+  pointer-events: none !important;
+}
+
+
+/* 复习模式：只点击提示方框切换问题/答案；正文区域用于编辑/选区批注/画线 */
+#reviewPanelContent .qa-question,
+#reviewPanelContent .qa-answer{
+  cursor:text !important;
+  user-select:text !important;
+  -webkit-user-select:text !important;
+}
+#reviewPanelContent .qa-hint{
+  pointer-events:auto !important;
+  cursor:pointer !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:6px !important;
+  padding:7px 12px !important;
+  margin:0 0 12px 58px !important;
+  border-radius:999px !important;
+  background:rgba(0,47,167,.07) !important;
+  color:#738095 !important;
+  font-size:12px !important;
+  font-weight:800 !important;
+  user-select:none !important;
+  -webkit-user-select:none !important;
+  transition:.18s ease !important;
+}
+#reviewPanelContent .qa-hint:hover{
+  background:rgba(0,47,167,.13) !important;
+  color:#0030b8 !important;
+}
+#reviewPanelContent .qa-flip[data-side="q"] .qa-hint::before{content:"双击查看参考答案";}
+#reviewPanelContent .qa-flip[data-side="a"] .qa-hint::before{content:"双击返回问题";}
+#reviewPanelContent .qa-hint{font-size:0 !important;}
+#reviewPanelContent .qa-hint::before{font-size:12px !important;}
+
+
+/* 复习答案编辑体验：点击后像文本框一样连续编辑，失焦后保存 */
+#reviewPanelContent .qa-question,
+#reviewPanelContent .qa-answer{
+  cursor:text !important;
+  user-select:text !important;
+  -webkit-user-select:text !important;
+  outline:none !important;
+}
+#reviewPanelContent .qa-question.is-editing,
+#reviewPanelContent .qa-answer.is-editing{
+  background:rgba(255,255,255,.98) !important;
+  box-shadow:inset 0 0 0 2px rgba(0,47,167,.14) !important;
+}
+
+
+/* 复习模式：文字编辑与切换按钮视觉分离 */
+#reviewPanelContent .qa-question,
+#reviewPanelContent .qa-answer{
+  cursor:text!important;
+  user-select:text!important;
+  -webkit-user-select:text!important;
+}
+#reviewPanelContent .qa-question:focus,
+#reviewPanelContent .qa-answer:focus{
+  outline:none!important;
+  box-shadow:inset 0 0 0 2px rgba(0,47,167,.16)!important;
+  background:#fff!important;
+}
+#reviewPanelContent .qa-hint{
+  cursor:pointer!important;
+  user-select:none!important;
+  -webkit-user-select:none!important;
+}
+
+</style><style id="vertical-tag-patch">
+.tag-container,.badge-container,.keyword-tags,.case-tags{
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:flex-start !important;
+    flex-wrap:nowrap !important;
+}
+.tag-container .tag,
+.badge-container .badge,
+.keyword-tags .tag,
+.case-tags .tag{
+    margin-bottom:12px !important;
+}
+</style></head><body><div class="toolbar" id="toolbar"><button onclick="markRed()">标红划线</button><button onclick="addAnnotation()">批注</button></div><div class="layout"><aside class="sidebar"><div class="brand"><h2>目录</h2><p>SeeUNotes可视化笔记工具</p></div><nav class="nav" id="nav"><button class="nav-card nav-feature active" data-target="overview"><strong>直播总览</strong><span>可视化数据及阅读方式</span></button><button class="nav-card nav-feature" data-target="methods"><strong>底层方法论</strong><span>六条核心规律</span></button><button class="nav-card" data-target="case01"><strong>01 医学八年制大四</strong><span>AI时代的职业规划焦虑</span></button><button class="nav-card" data-target="case02"><strong>02 小学四年级学生</strong><span>咬笔、咬眼镜腿与无意识焦虑</span></button><button class="nav-card" data-target="case03"><strong>03 初二男生家长</strong><span>升学压力、起床困难与成长慢</span></button><button class="nav-card" data-target="case04"><strong>04 高中生</strong><span>脑雾、痛苦感与成绩卡住</span></button><button class="nav-card" data-target="case05"><strong>05 五年级学生家长</strong><span>孩子抵抗纠正与妈妈躺平</span></button><button class="nav-card" data-target="case06"><strong>06 洁癖孩子家长</strong><span>强迫洗手、不愿坐座位与自我排斥</span></button><button class="nav-card" data-target="case07"><strong>07 初三学生家长</strong><span>英语短文填空与上下文意识</span></button><button class="nav-card" data-target="case08"><strong>08 初二学生</strong><span>竞争焦虑与争而胜之</span></button><button class="nav-card" data-target="case09"><strong>09 高三学生</strong><span>父亲压制、火气与高考前策略</span></button><button class="nav-card" data-target="case10"><strong>10 初二孩子家长</strong><span>偷看手机、学习没动力与情感缺口</span></button><button class="nav-card" data-target="case11"><strong>11 单亲妈妈分享</strong><span>允许请假后，孩子反而更愿意上学</span></button><button class="nav-card" data-target="case12"><strong>12 初三学生</strong><span>考试不焦虑，但学习不主动</span></button><button class="nav-card" data-target="case13"><strong>13 初一学生</strong><span>站桩走神、烦心事与生命力锚点</span></button></nav></aside><section class="main-shell"><div class="progress-wrap" id="readingProgress"><span></span></div><div class="review-panel" id="reviewPanel"><button class="review-exit" type="button" onclick="toggleReviewMode(false)">退出复习模式</button><h2>提取式复习</h2><p>先自己回忆，再展开提示，最后回到案例原文验证。</p><div id="reviewPanelContent"></div></div><div class="view active" data-case="overview" id="view-overview"><section class="hero"><div class="orb"></div><div class="hero-meta"><span>答疑日期：20260526</span><a href="https://weixin.qq.com/sph/AStq1bEL8G" rel="noopener noreferrer" target="_blank">回放链接</a></div><h1>叶老师视频号直播连麦</h1><p class="overview-lines"><span><i>01</i>本页结合 AI 网页制作与结构化笔记策略，将直播答疑整理为可复习、可批注的案例学习库。</span><span><i>02</i>左侧为固定目录，中间为单案例聚焦阅读区，右侧为“我的批注”与“案例复习”。</span><span><i>03</i>复习时先看右侧案例复习区提取核心判断，再回到中间案例验证原话与推理链。</span></p><div class="metrics"><div class="metric"><b>13</b><span>个连麦案例</span></div><div class="metric"><b>3</b><span>种固定色块</span></div><div class="metric"><b>6</b><span>条底层方法论</span></div><div class="metric"><b>1</b><span>套提取复习路径</span></div></div></section></div><div class="view" data-case="methods" id="view-methods"><section class="chapter"><h2>底层方法论</h2><div class="method-list"><div class="method-item"><b>状态优先</b><p>遇到职业、学习和家庭问题时，先看生命力、精力、心态，再看技术方法。</p></div><div class="method-item"><b>家是源头</b><p>孩子的异常状态常是家庭系统、父母心结和三代能量逻辑的表层显现。</p></div><div class="method-item"><b>先通后学</b><p>底层能量通畅后，学习策略才会快；底层堵住时，方法会失效。</p></div><div class="method-item"><b>休息分层</b><p>刷视频躺平不等于真正休息，真正休息是心理上允许自己停下来。</p></div><div class="method-item"><b>运动代谢</b><p>很多情绪负荷需要通过出汗、大幅度动作和体育活动代谢。</p></div><div class="method-item"><b>千人千方</b><p>有人要退竞争，有人要争而胜之；关键是找到自己的生命力锚点。</p></div></div></section></div><div class="view" data-case="case01" id="view-case01"><article class="case-page"><header class="case-head"><div class="case-index">01</div><div class="case-title"><div class="case-kicker">休养生息</div><h2>医学八年制大四</h2><p>从“规划一条确定道路”，切换到“屯田囤粮，等待变局”。</p></div></header><section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>临床医学八年制大四，对未来迷茫、焦虑、恐慌；不想当西医，中医是兴趣方向之一。</li><li>水课、复习考试、作业仍占用大量时间；AI、写作、中医、思维训练等方向同时拉扯。</li><li>不敢安排爬山等娱乐，担心“没用”；也感到探索欲、好奇心不足。</li><li>叶老师把这个问题扩大到“所有专业都进入职业不可预判时代”，不是医学生个案。</li><li>提问者的“规划意识”被判断为医学专业路径带来的思维定式：希望提前知道一条固定轨道。</li></ul></section><section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>未来发展方向和时间如何安排？</li><li>思维策略到底应该在哪个领域练？</li><li>没有探索欲、好奇心时，是否还能安排娱乐时间？</li><li>在全行业被AI重塑时，真正可建立的相对优势是什么？</li></ul></section><section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">休养生息</span><p>把睡眠、锻炼、心智练习放在第一优先级，先恢复精力、体力和生命力。</p></div><div class="advice-row"><span class="tagpill">持续观察</span><p>每天接触新信息，尤其观察AI、AI医疗、产业变动。</p></div><div class="advice-row"><span class="tagpill">训练趋势</span><p>训练趋势思维，看新闻、时事和产业分析，不急着找固定答案。</p></div><div class="advice-row"><span class="tagpill">练AI技能</span><p>练医学智能体，本质是在训练可迁移到其他行业的AI能力。</p></div><div class="advice-row"><span class="tagpill">允许娱乐</span><p>爬山、放松、心情好不是浪费，而是修复生命力。</p></div><div class="advice-row"><span class="tagpill">修身备战</span><p>不要急着找“另一条路”，而是把自己修成精力、体力、心态都能承接突变的人。</p></div><div class="advice-row"><span class="tagpill">每天看新</span><p>把AI医疗、智能体、产业趋势作为日常观察对象，用变化训练趋势感。</p></div></div></section><section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">别迷信规划</span><p>未来职业不是规划出来的，真正优势是随时准备好变动。</p></div><div class="advice-row"><span class="tagpill">少逼自己</span><p>探索欲衰弱往往来自长期高压和生命力损耗。</p></div><div class="advice-row"><span class="tagpill">主动放松</span><p>把出去玩、心情好、恢复状态当成比专业课更重要的规划。</p></div><div class="advice-row"><span class="tagpill">生命力优先</span><p>缺乏探索欲不是小问题，它往往比少做几道题、少考几分更重要，也更难补。</p></div></div></section><section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>未来的职业它不是规划出来的。</p><p>你的相对优势应该是精力、体力、心态无比顽强且旺盛。</p><p>你们现在能做的主要就是休养生息，积极屯田囤粮、练兵，随时准备好未来要开大战。</p><p>少逼迫自己，尤其到大学这个年龄，核心是顺着自己，慢慢恢复生命力。</p><p>你们要改的不是哪个技能，你们要先把这个思维定式改过来。</p><p>没有另外一个职业可以给你规划。</p><p>现在没有路给你规划，真正要准备的是“无规划状态下迎接异常机会”的能力。</p><p>把出去玩、放松、心情好，作为比专业课更重要的规划。</p><p>缺乏好奇心和探索欲，本质是生命力的损耗。</p></div></section></article></div><div class="view" data-case="case02" id="view-case02"><article class="case-page"><header class="case-head"><div class="case-index">02</div><div class="case-title"><div class="case-kicker">情绪外溢</div><h2>小学四年级学生</h2><p>看似小动作，背后是孩子内在情绪“满而溢”。</p></div></header><section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>四年级孩子最近开始咬笔、咬眼镜腿，自己也感觉难控制。</li><li>妈妈担心防控眼镜佩戴时间不足，近视度数增长。</li><li>孩子喜欢看书、画画，早期运动能力弱，后来运动课后信心提升。</li><li>叶老师从吃手、咬奶嘴、断奶阶段回溯，判断这是无意识缓解焦虑的出口。</li><li>孩子不是主动玩，而是内在情绪“满而溢”之后从小动作里漏出来。</li></ul></section><section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>孩子咬东西是否代表压力大？要不要干预？</li><li>近视、防控眼镜和户外运动如何处理？</li></ul></section><section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">别当大事</span><p>不要把咬东西上升成严重问题，越盯越容易强化。</p></div><div class="advice-row"><span class="tagpill">运动宣泄</span><p>持续做体育活动，让情绪通过身体流动出去。</p></div><div class="advice-row"><span class="tagpill">近视优先</span><p>真正有帮助的是大量户外和体育活动。</p></div><div class="advice-row"><span class="tagpill">保留表达</span><p>看书、画画可以保留，但要增加身体宣泄通道。</p></div><div class="advice-row"><span class="tagpill">别盯眼镜</span><p>咬眼镜腿不是核心，越把它当问题越容易强化；视力问题优先靠户外和运动。</p></div></div></section><section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">看见表象</span><p>孩子的小动作往往不是坏习惯，而是情绪出口。</p></div><div class="advice-row"><span class="tagpill">先通能量</span><p>心思细腻、表达被动的孩子尤其需要运动。</p></div><div class="advice-row"><span class="tagpill">父母降噪</span><p>家长越焦虑、越盯细节，孩子越容易卡住。</p></div><div class="advice-row"><span class="tagpill">家庭能量</span><p>孩子的细腻、压抑、堆积状态，可能来自家庭能量网，不一定是孩子自己的问题。</p></div></div></section><section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>这个事儿本身确实也是一个毫不重要的事儿，你不管他就完了。</p><p>咬笔、咬眼镜腿代表某种情绪在发泄，在往外发。</p><p>你的内在某些情绪已经憋不住了，相当于杯子里面水满了，开始往外溢。</p><p>体育运动对他来说非常重要，要让情绪保持流通状态。</p><p>画画是一种满而溢的精神表达属性，内在有很多细腻的心思、情绪。</p><p>这个孩子积压了某些情绪，需要持续性地做宣泄。</p><p>这不是一个“咬眼镜腿”的小毛病，而是一个家庭能量网里情绪流通不畅的表层信号。</p><p>先做好最基础的运动宣泄工作，让情绪保持流通状态。</p></div></section></article></div><div class="view" data-case="case03" id="view-case03"><article class="case-page"><header class="case-head"><div class="case-index">03</div><div class="case-title"><div class="case-kicker">补足不足</div><h2>初二男生家长</h2><p>孩子不是单点学习问题，而是卡在“被当作小宝”的潜意识位置。</p></div></header><section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>孩子初二，明年1月校内分流，前75%可直升高中。</li><li>作业增多后起床被动、周末不愿起、睡眠质量不好。</li><li>过去有攻击性、能表达不满；现在精力被学习消耗，向外探索减少。</li><li>妈妈微信名“小宝乖乖”成为判断切口：孩子的潜意识被按在更小的状态。</li><li>孩子表层是青春期，深层却像卡在幼儿园阶段，反抗也带着幼儿式的别扭。</li></ul></section><section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>怎样通过学习策略减轻压力？</li><li>家长应该宽松还是推动？尺度在哪里？</li><li>孩子为什么节奏慢、抵抗、落地弱？</li></ul></section><section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">先补自己</span><p>优先处理家长早年关爱不足，而不是直接推孩子。</p></div><div class="advice-row"><span class="tagpill">停止按小</span><p>把孩子从“小宝”位置释放出来，承认他正在长大。</p></div><div class="advice-row"><span class="tagpill">策略后置</span><p>学习策略可以做，但底层能量不通时不是根本。</p></div><div class="advice-row"><span class="tagpill">等待变化</span><p>孩子在等待家长变化，家长先变，孩子才容易恢复成长。</p></div><div class="advice-row"><span class="tagpill">先补不足</span><p>这个方向不是简单分离，而是补足早年关爱不足；补完后自然更容易放手。</p></div></div></section><section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">换个中心</span><p>不要只问孩子为什么这样，要问我的人生发生了什么。</p></div><div class="advice-row"><span class="tagpill">边界要准</span><p>边界不清太糊，要分清是过界、缺位还是不足后的补偿。</p></div><div class="advice-row"><span class="tagpill">能量先通</span><p>底层能量通了，学习策略才会更快起效。</p></div></div></section><section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>家庭是一张能量网，初中生的心智状态八成以上受家长影响。</p><p>我们研究的不是孩子为什么这样，而是你出于什么原因有了这样状态的孩子。</p><p>你的婴幼儿阶段关爱是不足的，所以你一定有一个补偿心理，而且是过度补偿。</p><p>你把孩子按在一个三岁的状态，他当然会很烦。</p><p>当一个人觉得自己没什么问题的时候，基本上主要问题就在这个人身上。</p><p>孩子在等待你的变化，你等他的变化是等不来的。</p><p>边界感不清晰这个说法太糊，要分清到底是过界、缺位，还是不足后的补偿。</p><p>不足就给他补足，补完以后你自己舒服了，就会很轻松地放手。</p></div></section></article></div><div class="view" data-case="case04" id="view-case04"><article class="case-page"><header class="case-head"><div class="case-index">04</div><div class="case-title"><div class="case-kicker">代谢痛苦</div><h2>高中生</h2><p>不是单纯学业焦虑，而是情绪负荷过重，需要身体层面排水。</p></div></header><section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>上龙门后脑雾和身体虚弱有所改善，思维清晰一些。</li><li>成绩长期在400分左右徘徊，一调整又回到原档位。</li><li>看到学习会出现“前方痛苦无穷尽”的感觉。</li><li>痛苦感在高一下明显，但叶老师判断初中甚至小学高年级已可能有苗头。</li><li>学生练习更多停留在道理分析，阴性写作少，站桩时间也偏基础。</li></ul></section><section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>为什么成绩卡在固定档位？</li><li>为什么学习会带来莫名痛苦和身体不适？</li><li>除了看道理、站桩，还应如何练？</li></ul></section><section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">大幅运动</span><p>恢复打拳、跑步、球类等大幅度、出汗型运动。</p></div><div class="advice-row"><span class="tagpill">先排污水</span><p>高中阶段先用运动代谢情绪，让痛苦变浅。</p></div><div class="advice-row"><span class="tagpill">暂缓深挖</span><p>底层心理痛苦来源等高考后再处理。</p></div><div class="advice-row"><span class="tagpill">注意隐私</span><p>阴性写作有效，但高中环境隐私不足，要谨慎保存。</p></div></div></section><section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">分清虚实</span><p>虚的人不能猛练；憋得厉害的人适合宣泄性运动。</p></div><div class="advice-row"><span class="tagpill">身体代谢</span><p>情绪负荷会有身体表现，出汗和代谢可以缓解。</p></div><div class="advice-row"><span class="tagpill">先保可用</span><p>学生阶段先让状态可用，不必立刻根治所有源头。</p></div><div class="advice-row"><span class="tagpill">排水模型</span><p>源头暂时处理不了时，先把排水管搞大，让痛苦不要淹没日常学习。</p></div></div></section><section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>你这个状态背负的心理负荷太多，有很多未发泄的情绪。</p><p>光看道理，光看课里面讲的道理没什么用。</p><p>源头的污水暂时管不了，但你把排水管搞大点，来多少污水我就排出去。</p><p>让自己大量出汗，让肢体幅度更大一些。</p><p>你要说从高一开始，不可能，初中肯定已经有了，只是程度没那么严重。</p><p>不要只在道理层面分析，身体层面的出汗、代谢、宣泄同样是学习状态的一部分。</p><p>情绪负荷会以某种激素的形式在身体里面有物质表现。</p></div></section></article></div><div class="view" data-case="case05" id="view-case05"><article class="case-page"><header class="case-head"><div class="case-index">05</div><div class="case-title"><div class="case-kicker">深度休息</div><h2>五年级学生家长</h2><p>孩子的正面对抗，反而说明他对妈妈还有期待。</p></div></header><section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>孩子做事不专心，站桩姿势不标准仍犟嘴，英语读音和数学讲思路都抵触。</li><li>在学校对老师闷不吭声、消极抵抗；在妈妈面前正面抵抗。</li><li>妈妈自己二十多天躺平、刷视频、看网文、熬夜，想努力但大脑阻止。</li><li>妈妈想去练句子、看直播课时，大脑会立刻制止，最后继续刷视频、看网文。</li><li>孩子在学校是消极抵抗，在妈妈面前是正面对抗，说明两种关系期待不同。</li></ul></section><section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>孩子为什么不听纠正、不愿表达、不专心？</li><li>妈妈为什么突然躺平，无法练习和自律？</li><li>如何恢复母子两人的动力？</li></ul></section><section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">别再自律</span><p>当前重点不是逼自己练习，而是允许真正深度休息。</p></div><div class="advice-row"><span class="tagpill">找源头事</span><p>顺着“为了父母认同而不敢休息”的方向做写作。</p></div><div class="advice-row"><span class="tagpill">先别管孩</span><p>妈妈先处理自己的心理负荷，孩子会跟着变化。</p></div><div class="advice-row"><span class="tagpill">两边都写</span><p>父亲、母亲两边心结都要处理，父亲方向可能更绵长。</p></div><div class="advice-row"><span class="tagpill">写童年事</span><p>围绕“被父母关爱不足、为求认同而逼自己”的事件大量写作。</p></div></div></section><section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">休息分层</span><p>刷视频熬夜不等于真正休息；真正休息是心理上也停下来。</p></div><div class="advice-row"><span class="tagpill">抵抗有义</span><p>孩子正面对抗可能代表关系里还有期待。</p></div><div class="advice-row"><span class="tagpill">家是世界</span><p>家庭模式会放大到一生，修身齐家治国平天下是同构结构。</p></div><div class="advice-row"><span class="tagpill">浅休深休</span><p>身体躺平但心理还在挣扎，会形成浅休息：一边休息一边内耗。</p></div></div></section><section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>你跟你孩子状态其实差不多。</p><p>没有动力基本上都是类似原因：要么自己逼自己太狠，要么别人逼你太狠。</p><p>你们现在最需要的不是自律，而是深度的休息。</p><p>能正面对抗，说明他还对你有期望；对老师消极抵抗，是因为对外人没期望。</p><p>如果一边休息一边内耗，那个休息就非常浅，没休息到位。</p><p>你处于向父母要认同没要到，孩子处于向你要关爱没要到。</p><p>不是你们不需要自律，而是当前最需要的不是自律，是深度休息。</p><p>家庭就是世界，修身、齐家、治国、平天下是高度同构的结构。</p></div></section></article></div><div class="view" data-case="case06" id="view-case06"><article class="case-page"><header class="case-head"><div class="case-index">06</div><div class="case-title"><div class="case-kicker">道德洁癖</div><h2>洁癖孩子家长</h2><p>洁癖背后常指向“肮脏、愧疚、道德批评”的心结方向。</p></div></header><section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>孩子本学期开始觉得座位、课桌、教室不卫生，上课站着听或待在教室外。</li><li>最近不愿让家人碰，动不动洗手。</li><li>家长回忆自己在孩子月子里曾高度在意陌生人未洗手抱孩子。</li><li>家长临场能想到月子里“陌生人未洗手抱孩子”的事件，但叶老师判断这只是有代表性，不一定是源头。</li><li>家长后来浮现“嫌弃自己懦弱”的心结，说明当下显现的层次可能先于洁癖源头。</li></ul></section><section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>孩子为什么突然出现洁癖和强迫洗手？</li><li>这与家长自身心结是否有关？</li><li>家长应从哪个心结开始处理？</li></ul></section><section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">不急定位</span><p>不必临场逼自己想出源头，先确定方向。</p></div><div class="advice-row"><span class="tagpill">先写懦弱</span><p>当前冒出来的是“嫌弃自己懦弱”，可优先写。</p></div><div class="advice-row"><span class="tagpill">层层剥开</span><p>处理前层心结后，洁癖相关心结可能自动显现。</p></div><div class="advice-row"><span class="tagpill">持续练习</span><p>继续做阴性写作和相关练习。</p></div><div class="advice-row"><span class="tagpill">写显现层</span><p>先处理已经浮出来的“懦弱/自我排斥”，不强求一下子找到洁癖源头。</p></div></div></section><section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">异常换形</span><p>孩子问题会换形式出现，洁癖只是当前表现。</p></div><div class="advice-row"><span class="tagpill">源头更早</span><p>月子卫生事件有代表性，但不一定是源头。</p></div><div class="advice-row"><span class="tagpill">先处理显现</span><p>潜意识先浮出什么，就先处理什么。</p></div></div></section><section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>洁癖加强迫症，这是非常经典的组合。</p><p>这种强迫症洁癖，总体上跟道德有关，跟肮脏、愧疚有关。</p><p>每一个人身上都有好多个心结，不是一个问题。</p><p>剥洋葱一样，第一层第二层剥完，第三层第四层会自动显现。</p><p>跟这个事实际上道不道德、脏不脏关系不大，跟当时参与方怎么批评、怎么看有关。</p><p>你这种懦弱这个事，对你来说可能更重要，你可能优先去解决那个。</p><p>不是所有心结都要按问题出现顺序处理，潜意识先浮出什么，就先从那里写。</p><p>等你把第一层、第二层剥完了，第三层、第四层会自动显现出来。</p></div></section></article></div><div class="view" data-case="case07" id="view-case07"><article class="case-page"><header class="case-head"><div class="case-index">07</div><div class="case-title"><div class="case-kicker">联系上下文</div><h2>初三学生家长</h2><p>这是一个轻量技术问题：孩子不是不会语法，而是钻进单句。</p></div></header><section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>初三学生英语基础薄弱，中英会议练习后作文和阅读提升明显。</li><li>当前主要丢分在短文填空和单项选择。</li><li>无提示词的介词、连词、从句容易懵。</li><li>作文和阅读理解提升，说明整段英语意识已经被中英会议带起来，但短文填空还残留同一弱点。</li></ul></section><section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>短文填空总丢分怎么补？</li><li>中英会议难度大，会不会影响中考备考？</li></ul></section><section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">只练一招</span><p>中考前一个月专练“联系上下文”。</p></div><div class="advice-row"><span class="tagpill">降点难度</span><p>不用做生词很多的篇章，难度可稍微降。</p></div><div class="advice-row"><span class="tagpill">抓混合题</span><p>重点训练既考语法又考上下文的题。</p></div><div class="advice-row"><span class="tagpill">预期增分</span><p>若练熟，英语可能还能涨五六分。</p></div><div class="advice-row"><span class="tagpill">考前减难</span><p>中考前不追求更难篇章，尤其避免生词很多的材料，专练上下文意识。</p></div></div></section><section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">技术精准</span><p>有时不是心智大问题，而是一个小技术漏洞。</p></div><div class="advice-row"><span class="tagpill">整段意识</span><p>语言学习不能只盯句子，要训练段落整体感。</p></div><div class="advice-row"><span class="tagpill">考前减法</span><p>临近考试不要铺开大体系，抓最可能增分的点。</p></div></div></section><section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>他有一个小的技术性缺漏：只看单句，不看上下文。</p><p>短文填空有些题在考单句语法，有些题隐含着在考上下文。</p><p>凡是联系上下文，联系上下文，就这一个心法搞定了。</p><p>他同样一个弱点还有一点尾巴没解决。</p><p>他一旦进入这种场景，意识就淡了，就钻到单句里面去了。</p><p>不是英语整体不会，而是进入短文填空场景后，意识又钻回单句里了。</p><p>一个月之内就把这一点练熟，英语可能还能涨五六分、六七分。</p></div></section></article></div><div class="view" data-case="case08" id="view-case08"><article class="case-page"><header class="case-head"><div class="case-index">08</div><div class="case-title"><div class="case-kicker">争而胜之</div><h2>初二学生</h2><p>不是所有人都要退竞争；有些阶段要顺势打一场漂亮仗。</p></div></header><section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>初二学生所在学校强调竞争，每周考试、排名。</li><li>看到多数人会做而自己没做好的题，会觉得自己不如别人。</li><li>呼吸法和卧姿冥想已经压不住竞争焦虑。</li><li>学生班级前十、年级前50，目标年级前20，已经处在“争而能赢”的位置。</li><li>焦虑主要在低级题、简单题错了时更强，语文弱势学科更容易触发。</li></ul></section><section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>如何弱化或转化竞争焦虑？</li><li>是否应该继续强压想竞争的念头？</li><li>强竞争环境里如何减少内耗？</li></ul></section><section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">允许焦虑</span><p>竞争焦虑来就来，不必硬压。</p></div><div class="advice-row"><span class="tagpill">顺势而争</span><p>处在能赢的位置，就用科学策略争而胜之。</p></div><div class="advice-row"><span class="tagpill">补语文弱</span><p>继续做语文脉冲、思维能力和弱势学科训练。</p></div><div class="advice-row"><span class="tagpill">加强力量</span><p>继续踢足球，焦虑高时做运动、呼吸法、四匹马步桩。</p></div><div class="advice-row"><span class="tagpill">策略争胜</span><p>把竞争焦虑转成对语文、弱科、思维方法的具体策略投入。</p></div></div></section><section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">千人千方</span><p>不同阶段建议不同，不是所有人都适合退竞争。</p></div><div class="advice-row"><span class="tagpill">位置决定法</span><p>成绩差且必败者要跳出；接近大胜者可先体验竞争。</p></div><div class="advice-row"><span class="tagpill">先红尘后无为</span><p>有些人要先在红尘里历练，之后再谈不争。</p></div><div class="advice-row"><span class="tagpill">阶段适配</span><p>有些人先在红尘里争一波，充分体验争而胜之，再谈更高层次的不争。</p></div></div></section><section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>竞争这个东西，不是你的错，外部环境确实是这个状态。</p><p>你不要想着去压它，它来就来，我们允许它来。</p><p>你本身处于相对优势的竞争位置，是争而胜之的那一波人。</p><p>减少内耗，顺势而为。</p><p>我知道争这个东西没什么大用，但是能争赢也还行。</p><p>你现在这个身位是争而能赢的身位，就顺势而为。</p><p>一方面知道争这个东西没什么大用，但能争赢也还行；带着这种轻松、不批判的心态去争。</p><p>不同的人生阶段是要去经历不同东西的。</p></div></section></article></div><div class="view" data-case="case09" id="view-case09"><article class="case-page"><header class="case-head"><div class="case-index">09</div><div class="case-title"><div class="case-kicker">考前求稳</div><h2>高三学生</h2><p>距离高考太近，先稳住，不做大的心理工程。</p></div></header><section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>高三学生十几天后高考，曾做过个案，问题与父亲管得严、长期压制有关。</li><li>练习发泄后有所缓解，但新生导引时仍有火气和损耗。</li><li>晚自习精力不足，考试时高强度用脑不够，睡眠精神待机。</li><li>学生源头事件与父亲顾面子、强压自己有关；玩具被强迫给别人玩是其中一个典型记忆。</li><li>当下距离高考太近，叶老师判断不适合做心理结构的大改动。</li></ul></section><section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>练习后仍有火气和损耗，如何处理？</li><li>高考前能否用“强忍、发狠”的方式？</li><li>暑假应先玩还是继续处理源头？</li></ul></section><section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">视频零散</span><p>课间做视频桩，每次1分钟，比零碎混元桩更适合。</p></div><div class="advice-row"><span class="tagpill">不改睡眠</span><p>考前不要大改睡眠模式，原来能睡就先保持。</p></div><div class="advice-row"><span class="tagpill">高考后治</span><p>父亲压制带来的火，高考后再系统处理。</p></div><div class="advice-row"><span class="tagpill">临门轻压</span><p>高考前短暂压一下可以，但不能持续发狠。</p></div><div class="advice-row"><span class="tagpill">大学放大</span><p>大学用扩大世界来释放压抑火气。</p></div><div class="advice-row"><span class="tagpill">储备精力</span><p>最后十多天先松一点，临考前一天再短暂进入专注压一下的状态。</p></div></div></section><section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">考前求稳</span><p>重大考试前不做心理结构大手术。</p></div><div class="advice-row"><span class="tagpill">发泄分层</span><p>普通发泄只能缓解，根治要找源头事件。</p></div><div class="advice-row"><span class="tagpill">世界放大</span><p>把人生空间变大，压力会相对变小。</p></div></div></section><section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>距离高考太近了，就不要做大的改动。</p><p>你所谓的发泄完，其实就是没发泄完；发泄是在做一定程度的缓解。</p><p>真正彻底根治，是找到让你心态上火着急的源头事件、源头情绪。</p><p>压是很耗费精力、体力、意志力的。</p><p>视频桩每次一分钟，适合你这种时间不够、零零散散的人。</p><p>你这个火的问题，被小时候打压的问题，留到高考以后再说。</p><p>视频桩适合零散时间，一分钟一次，几节课间拼起来也比普通混元桩十几分钟更有力。</p><p>把小锅炉房变成大操场，压力的程度会自动降低。</p></div></section></article></div><div class="view" data-case="case10" id="view-case10"><article class="case-page"><header class="case-head"><div class="case-index">10</div><div class="case-title"><div class="case-kicker">先给关爱</div><h2>初二孩子家长</h2><p>学习不是第一优先级，情感补偿才是当下关键。</p></div></header><section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>孩子学习一直不在状态，手机管理上老想偷看，学习没有动力。</li><li>从小父亲、爷爷奶奶一侧关爱严重缺失，母亲对未来焦虑。</li><li>孩子喜欢唱歌、爱美，成绩在700多人中约200名。</li><li>孩子从满月后基本处于父亲、爷爷奶奶一侧严重缺席的状态，母亲虽在身边，但更多是工具性照料。</li><li>孩子唱歌、爱美、关注外貌，被判断为青春期向外寻求关注的表现。</li><li>成绩在700多人中约200名，叶老师反而认为孩子内在力量很强、根底很好。</li></ul></section><section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>孩子不想学习、不主动怎么办？</li><li>家长明明关心，为什么一说话就成批评？</li><li>龙门课报了但孩子不学，是否浪费？</li></ul></section><section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">先接纳他</span><p>第一步是理解并接纳孩子现在状态。</p></div><div class="advice-row"><span class="tagpill">补情感账</span><p>从情感和心理上补偿，而不是只花钱。</p></div><div class="advice-row"><span class="tagpill">学会表扬</span><p>先真正理解孩子不容易，表扬会自然出来。</p></div><div class="advice-row"><span class="tagpill">家长修复</span><p>家长处理童年匮乏和低价值感，孩子会跟着好。</p></div><div class="advice-row"><span class="tagpill">先停要求</span><p>减少对学习和未来出路的焦虑性要求，先把当下能补的情感账补上。</p></div><div class="advice-row"><span class="tagpill">自己上课</span><p>如果孩子暂时不学课程，可以转成家长自己学习疗愈。</p></div></div></section><section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">规律第一</span><p>所有孩子都认为情感比学习重要，这是人类共同规律。</p></div><div class="advice-row"><span class="tagpill">叛逆是火</span><p>叛逆不一定糟，说明生命力还在。</p></div><div class="advice-row"><span class="tagpill">孩子引路</span><p>孩子的问题会逼家长回头修自己的心结。</p></div><div class="advice-row"><span class="tagpill">花心思</span><p>对缺爱的孩子，真正的补偿不是花钱，而是理解、交流、情绪承接。</p></div></div></section><section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>一个孩子从小非常缺乏关爱，你要求他学习动机很强，这事本身不成立。</p><p>你要在他身上花心思，不是花钱的问题。</p><p>他一直在等你。</p><p>语言不重要，心思最重要。</p><p>他都已经这样了，居然还能考前200名，这多好的孩子。</p><p>先把当下过好，没用的事少想。</p><p>他潜意识里觉得学习远远没有情感重要，这是人类共同规律。</p><p>她一直在等你，等的不是你花钱，而是你的态度、理解和心思变化。</p><p>一个缺爱孩子潜意识里觉得学习远远没有情感重要，这是人类共同规律，不是她一个人的任性。</p><p>孩子是家长修行成长的缘起，或者说引路人。</p></div></section></article></div><div class="view" data-case="case11" id="view-case11"><article class="case-page"><header class="case-head"><div class="case-index">11</div><div class="case-title"><div class="case-kicker">放下焦虑</div><h2>单亲妈妈分享</h2><p>家长松绑，孩子的内在压力反而下降。</p></div></header><section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>单亲妈妈分享自家经历，与上一位妈妈处境相似。</li><li>从去年8月开始学习，最初也很焦虑，孩子不想上学。</li><li>后来成为家委、维护学校关系，为孩子请假创造弹性空间。</li><li>分享者从去年8月开始学习，最初也因孩子不上学而焦虑，后来自己变化明显。</li><li>她成为家委、积极维护学校关系，是为了孩子需要请假时有弹性空间。</li></ul></section><section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>家长自己学习、变化，对孩子有什么影响？</li><li>孩子说不想上学、不想考试时，家长如何处理？</li></ul></section><section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">允许不上</span><p>孩子说不想上学时，先允许，而不是立刻拉扯。</p></div><div class="advice-row"><span class="tagpill">铺好环境</span><p>维护学校沟通，为孩子弹性空间创造条件。</p></div><div class="advice-row"><span class="tagpill">不给精神债</span><p>不把“不考试就是亏欠”压在孩子身上。</p></div><div class="advice-row"><span class="tagpill">互相鼓励</span><p>同类处境的妈妈彼此作伴，减少孤军奋战感。</p></div><div class="advice-row"><span class="tagpill">允许弹性</span><p>孩子说不想上学、不想考试时，先允许选择，降低精神亏欠感。</p></div></div></section><section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">松则能动</span><p>允许和放松不是放弃，反而会恢复孩子动力。</p></div><div class="advice-row"><span class="tagpill">焦虑坏事</span><p>越焦虑越来坏事，焦虑会把问题推得更紧。</p></div><div class="advice-row"><span class="tagpill">家长先变</span><p>孩子学得少也没关系，家长变化本身就能影响孩子。</p></div><div class="advice-row"><span class="tagpill">焦虑松绑</span><p>家长越能给自己和孩子松绑，孩子越容易恢复主动。</p></div></div></section><section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>你越焦虑孩子越有问题；你越不焦虑、越放得松，孩子的压力反而小了。</p><p>把焦虑放下来以后，发现反而好了，这就是世界运作的规律。</p><p>他反而会去上学，反而更认真，反而成绩更好。</p><p>我允许大家不上学，我允许大家不认真，孩子的压力反而小了。</p><p>允许不是放弃，而是把孩子从“必须证明自己”的压力里松开。</p><p>你越焦虑，这个事就越出问题；你把焦虑放下来，事会自动变好。</p></div></section></article></div><div class="view" data-case="case12" id="view-case12"><article class="case-page"><header class="case-head"><div class="case-index">12</div><div class="case-title"><div class="case-kicker">随兴趣提分</div><h2>初三学生</h2><p>从“逼自己主动”改成“顺兴趣、顺手感提分”。</p></div></header><section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>初三学生快中考，自觉对考试没有压力，能坦然面对。</li><li>想成绩更好，但学习不太主动；周末没有妈妈安排就不主动复习。</li><li>妈妈组织了七个小朋友在家自习，替代学校晚修氛围。</li><li>学生不太主动学习，但对考试已不焦虑，状态比较松。</li><li>妈妈征求孩子意见后组织家庭晚修学习小组，共七个孩子一起学习。</li></ul></section><section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>想成绩好但不主动学习，是不是问题？</li><li>不喜欢学校晚修，家庭学习小组是否可行？</li><li>临近中考，如何给孩子们祝福？</li></ul></section><section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">随兴趣学</span><p>优先学兴趣更大的科目，把喜欢的部分提上来。</p></div><div class="advice-row"><span class="tagpill">顺眼就用</span><p>学习策略不用按顺序，喜欢哪个就用哪个。</p></div><div class="advice-row"><span class="tagpill">轻松提分</span><p>以轻松自然状态面对中考复习。</p></div><div class="advice-row"><span class="tagpill">学习小组</span><p>可组织宽松的同伴自习场域。</p></div><div class="advice-row"><span class="tagpill">策略随缘</span><p>学习策略很多，不必按顺序；喜欢哪个、顺手哪个，就先用哪个。</p></div></div></section><section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">低耗有效</span><p>对低压力孩子，顺兴趣比强行加压有效。</p></div><div class="advice-row"><span class="tagpill">环境可造</span><p>家长不必逼学习，但可以创造更好的学习场域。</p></div><div class="advice-row"><span class="tagpill">祝福方向</span><p>轻松愉快地学习、提高成绩、成长，比必须赢更有生命力。</p></div><div class="advice-row"><span class="tagpill">场域支持</span><p>家长不一定要强推学习，可以创造宽松但有效的同伴学习场域。</p></div></div></section><section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>你不用给自己压力。</p><p>哪一个学科兴趣度更大一点，你就多学点这个。</p><p>随缘提分，随兴趣爱好提分就行。</p><p>你越放松、随缘随性这么去选，反而成绩能够提上来。</p><p>策略那么多，你看哪个顺眼就选哪个。</p><p>你喜欢哪个就搞哪个，这个原则对各个方面通用。</p><p>你越放松、随缘随性地选，反而成绩能够提上来。</p><p>你们轻松愉快地学习，轻松愉快地提高成绩，未来一生轻松愉快地成长。</p></div></section></article></div><div class="view" data-case="case13" id="view-case13"><article class="case-page"><header class="case-head"><div class="case-index">13</div><div class="case-title"><div class="case-kicker">锚点发动</div><h2>初一学生</h2><p>站桩不是万能清除器；烦心事先用动态运动代谢。</p></div></header><section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul><li>初一学生自己提问，站桩时会想别的事，觉得效果不好。</li><li>希望站桩忘掉学校烦恼、静下来学习。</li><li>晚上站混元桩15-20分钟，已经形成习惯。</li><li>学生想用站桩忘掉学校烦心事、静下来学习，叶老师判断这是工具用错场景。</li><li>他已经把晚上站桩15-20分钟变成习惯，因此站桩可作为个人锚点继续深化。</li></ul></section><section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul><li>站桩时静不下心怎么办？</li><li>站桩后适合立刻做什么？</li><li>学校烦心事如何处理？</li></ul></section><section class="note-block teacher"><div class="role">叶老师</div><h3>案例建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">先动后站</span><p>烦心事先做大幅运动、出汗，再站桩。</p></div><div class="advice-row"><span class="tagpill">慢慢加长</span><p>从15-20分钟逐步加到25、30分钟，周末可到40分钟。</p></div><div class="advice-row"><span class="tagpill">不接任务</span><p>站桩后不需要立刻干嘛，可以继续放松。</p></div><div class="advice-row"><span class="tagpill">当作锚点</span><p>把站桩作为个人生命力发动锚点，重点练。</p></div><div class="advice-row"><span class="tagpill">两段处理</span><p>先用大幅度运动处理烦心事，再用站桩做更细的状态调整。</p></div></div></section><section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack"><div class="advice-row"><span class="tagpill">工具分工</span><p>站桩、冥想、运动各有适用场景，不要万能化。</p></div><div class="advice-row"><span class="tagpill">找到锚点</span><p>每个人发动生命力的锚点不同。</p></div><div class="advice-row"><span class="tagpill">千人千方</span><p>成长不是统一方案，而是找到自己的启动入口。</p></div></div></section><section class="note-block teacher quotes"><div class="role">叶老师</div><h3>叶师金句</h3><div class="quote-list"><p>站桩主要不是这么用的。</p><p>学校遇到烦心问题，用体育运动来缓和，动态运动可能更好。</p><p>站桩不同程度功效不一样，临界点差不多在30分钟附近。</p><p>对你来说，站桩是发动生命力的锚点。</p><p>如果是外部有一个事搞得你很烦，站桩不去治这种情况。</p><p>先做大动作的肢体运动，流汗、加速代谢，再练站桩。</p><p>站桩不是用来“忘掉烦心事”的，烦心事先用动态运动处理，站桩再做细的状态调整。</p><p>每个人发动自己生命力的锚点不一样。</p></div></section></article></div></section><aside class="rightbar"><div class="status-row"><div class="current-case" id="currentCase">当前：直播总览</div><div class="save-status" id="saveStatus">已自动保存</div></div><button class="review-toggle" type="button" onclick="toggleReviewMode()">进入复习模式</button><div class="note-card"><h3>我的批注</h3><p>选中中间正文后，可添加批注或标红划线。批注按案例单独保存。</p><div class="ann-list" id="annotations"></div><button class="small-btn" onclick="clearAnnotations()">清空当前案例批注</button></div><div id="caseReview" class="editable" contenteditable="true" style="display:none" aria-hidden="true"></div></aside></div><script>
+
+/* ===== 复习模式编辑与切换解耦：编辑时不触发旧的重绘保存逻辑 ===== */
+window.__seeuReviewEditing = false;
+function __seeuReviewEditableTarget(e){
+  return e && e.target && e.target.closest && e.target.closest('#reviewPanelContent .qa-question,#reviewPanelContent .qa-answer');
+}
+document.addEventListener('input', function(e){
+  if(__seeuReviewEditableTarget(e)){
+    window.__seeuReviewEditing = true;
+    e.stopImmediatePropagation();
+  }
+}, true);
+document.addEventListener('beforeinput', function(e){
+  if(__seeuReviewEditableTarget(e)){
+    window.__seeuReviewEditing = true;
+    e.stopImmediatePropagation();
+  }
+}, true);
+
+const STORE='seeunotes_klein_review_v3_annotation_safe';
 const labels={'overview': '直播总览', 'methods': '底层方法论', 'case01': '案例 01 医学八年制大四', 'case02': '案例 02 小学四年级学生', 'case03': '案例 03 初二男生家长', 'case04': '案例 04 高中生', 'case05': '案例 05 五年级学生家长', 'case06': '案例 06 洁癖孩子家长', 'case07': '案例 07 初三学生家长', 'case08': '案例 08 初二学生', 'case09': '案例 09 高三学生', 'case10': '案例 10 初二孩子家长', 'case11': '案例 11 单亲妈妈分享', 'case12': '案例 12 初三学生', 'case13': '案例 13 初一学生'};
-const reviewDefaults={'case01': '<ol><li>叶老师如何重新定义“职业规划”的核心问题？</li><li>为什么“休养生息”比立刻找一条确定道路更重要？</li><li>这个案例能迁移到哪些专业/行业的不确定性焦虑？</li></ol>', 'case02': '<ol><li>咬笔咬眼镜腿背后对应的是哪类情绪机制？</li><li>为什么叶老师建议“不当回事”反而有效？</li><li>这个案例给家长处理小动作、小毛病的启发是什么？</li></ol>', 'case03': '<ol><li>“小宝乖乖”这个细节为什么成为判断切口？</li><li>家长的补偿心理如何影响孩子成长？</li><li>为什么学习策略在这里不是第一解决方案？</li></ol>', 'case04': '<ol><li>叶老师为什么把这个问题解释为“排水管”问题？</li><li>什么类型的学生适合宣泄性运动？</li><li>这个案例如何区分“学习压力”和“情绪负荷”？</li></ol>', 'case05': '<ol><li>为什么妈妈的躺平和孩子的抵抗属于同一条能量逻辑？</li><li>“深度休息”和“刷视频躺平”的区别是什么？</li><li>孩子正面对抗为什么不一定是坏事？</li></ol>', 'case06': '<ol><li>洁癖强迫在叶老师这里对应哪类心结方向？</li><li>为什么不急着精准定位源头？</li><li>“剥洋葱”方法如何用于自我修复？</li></ol>', 'case07': '<ol><li>这个案例的核心技术漏洞是什么？</li><li>为什么作文提升和短文填空问题其实同源？</li><li>考前一个月应该如何做减法？</li></ol>', 'case08': '<ol><li>为什么叶老师没有建议这个学生退竞争？</li><li>“位置决定方法”在这个案例里如何体现？</li><li>什么情况下竞争反而能发动生命力？</li></ol>', 'case09': '<ol><li>为什么高考前不适合大改状态？</li><li>“发泄”和“根治”的区别是什么？</li><li>大学为什么被视作释放火气的新起点？</li></ol>', 'case10': '<ol><li>为什么这个案例里学习不是最核心的问题？</li><li>“花钱”和“花心思”的区别是什么？</li><li>孩子为什么被视为家长成长的引路人？</li></ol>', 'case11': '<ol><li>为什么允许不上学反而可能让孩子更愿意上学？</li><li>这个分享案例如何补充前一个单亲妈妈案例？</li><li>家长的“松”与“放弃”有什么区别？</li></ol>', 'case12': '<ol><li>这个案例为什么适合“顺兴趣”而不是“加压”？</li><li>学习小组为什么是一个有效场域？</li><li>这个案例怎样体现低耗学习？</li></ol>', 'case13': '<ol><li>站桩和动态运动分别适合什么场景？</li><li>为什么30分钟附近是一个重要临界点？</li><li>什么是个人生命力的锚点？</li></ol>', 'overview': '<ol><li>这场直播最核心的学习策略是什么？</li><li>哪些案例最能解释“生命力优先”？</li><li>复习时应先提取哪些底层规律，再回看具体案例？</li></ol>', 'methods': '<ol><li>六条方法论中，哪一条最能解释多数案例？</li><li>“先通后学”与“状态优先”有什么区别？</li><li>每条方法论能各自迁移到什么学习场景？</li></ol>'};
+const reviewDefaults={"overview": "<div class=\"qa-list\"><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">这场直播最核心的学习策略是什么？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：核心不是单点技巧，而是把直播答疑整理成“案例 → 底层规律 → 可迁移策略”的学习库。复习时先主动回忆，再回到案例原文验证，用提取法而不是重读法学习。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">哪些案例最能解释“生命力优先”？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：案例01医学生、案例04高中生、案例05母子躺平、案例10初二孩子家长都很典型。它们共同说明：当生命力、精力、情绪负荷被消耗时，单纯增加学习方法、规划或自律反而可能失效。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">复习时应先提取哪些底层规律，再回看具体案例？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：先提取“状态优先、家是源头、先通后学、休息分层、运动代谢、千人千方”这几条规律，再回到每个案例看叶老师如何根据对象、阶段和能量状态给出不同建议。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div></div>", "methods": "<div class=\"qa-list\"><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">六条方法论中，哪一条最能解释多数案例？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：“状态优先”和“家是源头”解释力最强。很多问题表面是学习、习惯或成绩，底层却是精力不足、情绪负荷、家庭能量网或家长自身心结。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">“先通后学”与“状态优先”有什么区别？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：“状态优先”是判断顺序：先看人有没有精力、生命力和心态承载学习；“先通后学”是操作顺序：底层能量通了以后，学习策略、思维方法才会更快起效。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">每条方法论能各自迁移到什么学习场景？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：职业焦虑可用“状态优先”；亲子问题可用“家是源头”；学习卡住可用“先通后学”；躺平内耗可用“休息分层”；脑雾痛苦可用“运动代谢”；竞争、站桩、兴趣学习等差异化案例可用“千人千方”。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div></div>", "case01": "<div class=\"qa-list\"><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">叶老师如何重新定义“职业规划”的核心问题？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：他把问题从“提前规划另一条确定道路”改成“在不可预判时代训练可承接突变的状态”。未来职业不是规划出来的，医学和多数行业都可能被AI重塑，真正要准备的是精力、体力、心态和趋势感。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">为什么“休养生息”比立刻找一条确定道路更重要？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：因为当行业变局还没落地时，过早寻找固定答案并不可靠。叶老师用“屯田囤粮、练兵、随时准备开大战”来比喻：先恢复生命力、睡眠、锻炼、心智状态，才有能力抓住未来机会。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">这个案例能迁移到哪些专业/行业的不确定性焦虑？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：几乎所有专业都可迁移，尤其是被AI冲击的医疗、金融、教育、写作、咨询、数据分析等领域。共同原则是：不要迷信一条固定规划，而是持续接触新信息、训练趋势思维和AI能力。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div></div>", "case02": "<div class=\"qa-list\"><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">咬笔咬眼镜腿背后对应的是哪类情绪机制？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：叶老师判断这是无意识缓解焦虑，是情绪“满而溢”的外在表现。孩子不是故意捣乱，而是内在某些情绪积压太多，需要从咬东西这类小动作中被动泄出。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">为什么叶老师建议“不当回事”反而有效？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：因为咬笔、咬眼镜腿本身不是核心问题，越盯越容易强化。真正要处理的是情绪流通和运动宣泄；家长不把它当大事，孩子的小动作反而容易自然减弱。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">这个案例给家长处理小动作、小毛病的启发是什么？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：不要急着纠正表象，要先问：这个小动作是不是孩子的情绪出口？如果孩子心思细腻、压抑、运动少，重点应放在体育活动、户外和情绪流通，而不是盯着小动作。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div></div>", "case03": "<div class=\"qa-list\"><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">“小宝乖乖”这个细节为什么成为判断切口？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：这个名字暴露出妈妈潜意识里仍把初二孩子放在“小宝”的位置。叶老师据此判断孩子被按在幼儿态，表层是青春期，底层却像卡在两三岁、三四岁的被照顾状态。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">家长的补偿心理如何影响孩子成长？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：妈妈早年关爱不足，因此容易对孩子进行过度补偿。补偿本意是关爱，但会把孩子卡在更小的状态，孩子一边承受，一边用幼稚反抗表达“我已经长大了”。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">为什么学习策略在这里不是第一解决方案？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：学习策略有用，但不是根本。叶老师认为孩子在等待妈妈变化，底层能量通畅后，思维方法和学习策略才会更快生效；否则只在表层推学习，压力仍会反复。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div></div>", "case04": "<div class=\"qa-list\"><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">叶老师为什么把这个问题解释为“排水管”问题？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：学生的源头痛苦短期难以彻底处理，叶老师用“泳池一边放污水、一边排水”作比：先把排水管搞大，用出汗、大幅度运动代谢情绪，让污水不要淹没学习状态。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">什么类型的学生适合宣泄性运动？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：适合情绪堆积严重、憋得厉害、有脑雾、身体痛苦感、火气或压抑感的学生。叶老师特别区分：虚弱的人不能猛练，憋得厉害的人才更适合出汗型、大幅度运动。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">这个案例如何区分“学习压力”和“情绪负荷”？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：如果只是学习压力，方法和时间安排会比较直接；但这个学生看到学习就觉得前方痛苦无穷尽，还伴随身体难受、脑雾和成绩卡档，说明背后有长期情绪负荷，不只是题目不会。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div></div>", "case05": "<div class=\"qa-list\"><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">为什么妈妈的躺平和孩子的抵抗属于同一条能量逻辑？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：两人都处在“被逼太狠后失去动力”的状态。妈妈想练习却被大脑制止、刷视频躺平；孩子被纠正时抵抗，本质上都是生命力不足、内在不想再被推着走。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">“深度休息”和“刷视频躺平”的区别是什么？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：刷视频熬夜只是身体躺平，心理仍在挣扎和自责，所以休息很浅。深度休息是心理上允许自己停下来，不再一边休息一边内耗。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">孩子正面对抗为什么不一定是坏事？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：叶老师认为正面对抗说明孩子对妈妈还有期待；如果完全失望，就会像对老师一样消极抵抗。正面对抗代表关系里还有连接和求助，只是表达方式不成熟。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div></div>", "case06": "<div class=\"qa-list\"><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">洁癖强迫在叶老师这里对应哪类心结方向？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：总体指向道德、肮脏、愧疚、羞耻、被批评等方向。重点不在事情客观上脏不脏，而在当时参与者如何批评、定义和看待这件事。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">为什么不急着精准定位源头？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：因为每个人有多个心结，临场不一定能一下找到洁癖源头。叶老师建议先处理已经浮现的“嫌弃自己懦弱/自我排斥”这一层，处理后下一层心结会自然显现。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">“剥洋葱”方法如何用于自我修复？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：先处理最明显、最有情绪反应的一层，不强行找终极答案。第一层第二层松开后，第三层第四层会自动冒出来，修复过程是层层显现、层层处理。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div></div>", "case07": "<div class=\"qa-list\"><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">这个案例的核心技术漏洞是什么？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：核心漏洞是只看单句，不看上下文。短文填空有些题考单句语法，有些题隐含考上下文关系；孩子一进入填空场景，就容易钻进单句里。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">为什么作文提升和短文填空问题其实同源？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：中英会议训练的是整段表达，所以作文提升明显；短文填空还残留“整段意识不足”的尾巴。二者同源于对整段逻辑、上下文关系的感知弱。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">考前一个月应该如何做减法？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：不要铺开大体系，也不做太难、生词太多的篇章。只抓一个心法：联系上下文。把这一点练熟，短期内可能还能涨五六分。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div></div>", "case08": "<div class=\"qa-list\"><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">为什么叶老师没有建议这个学生退竞争？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：因为他已经在班级前十、年级前50，属于争而能赢的位置。对这种学生，硬压竞争焦虑反而内耗，不如顺势而为，用科学策略争而胜之。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">“位置决定方法”在这个案例里如何体现？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：如果成绩差且一争就败，应跳出竞争；但如果距离大胜很近，竞争反而可以发动状态。叶老师根据学生所处身位决定建议，而不是套用统一答案。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">什么情况下竞争反而能发动生命力？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：当学生有实力、有兴趣、有提升空间，并能把焦虑转化为具体策略投入时，竞争能带来成就感和力量感。这个学生数学强、目标清晰，所以适合先体验争而胜之。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div></div>", "case09": "<div class=\"qa-list\"><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">为什么高考前不适合大改状态？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：因为距离高考太近，大改睡眠、心态或源头情绪可能带来额外波动。叶老师建议考前求稳，只做轻量调整，比如课间视频桩和临考前短暂集中。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">“发泄”和“根治”的区别是什么？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：发泄是在衍生情绪上做缓解，会让状态好一阵；根治要找到小时候被打压、愤怒、火气的源头事件和源头情绪。高考前先缓解，高考后再系统处理。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">大学为什么被视作释放火气的新起点？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：大学提供新的空间和更大的世界。叶老师用“小锅炉房变成大操场”比喻：当世界变大，原来的压力相对变小，压抑的火气可以转化为探索和自由释放。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div></div>", "case10": "<div class=\"qa-list\"><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">为什么这个案例里学习不是最核心的问题？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：孩子从小父亲和爷爷奶奶一侧关爱严重缺失，学习动机弱是情感缺口的结果。对她来说，学习远没有情感重要，这是人类共同规律，不是孩子故意不学。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">“花钱”和“花心思”的区别是什么？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：花钱是工具性支持，花心思是理解孩子的情绪、内心、需求和不容易。叶老师强调孩子等的是家长的心思和态度变化，而不是报更多课或买更多资源。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">孩子为什么被视为家长成长的引路人？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：孩子的问题会逼家长回头修自己的童年匮乏、低价值感和表达关爱的困难。家长修复自己后，孩子状态往往会跟着变好，所以孩子是家长修行成长的缘起。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div></div>", "case11": "<div class=\"qa-list\"><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">为什么允许不上学反而可能让孩子更愿意上学？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：当家长允许孩子不上学、不考试，孩子的精神亏欠和对抗压力下降，反而更容易自己去上学、去考试。焦虑放下后，事情会自动变松。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">这个分享案例如何补充前一个单亲妈妈案例？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：前一个案例强调先补情感账，这个案例给出了实际样本：妈妈自己学习、松绑、维护学校关系、给孩子弹性空间后，孩子反而更稳定。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">家长的“松”与“放弃”有什么区别？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：“松”不是不管，而是放下焦虑控制，同时积极创造环境和支持；“放弃”是不再承接孩子。这个妈妈既允许请假，又做家委、维护沟通，所以是松而不弃。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div></div>", "case12": "<div class=\"qa-list\"><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">这个案例为什么适合“顺兴趣”而不是“加压”？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：学生已经对考试不焦虑，状态较松，强行加压可能破坏低耗状态。叶老师建议按兴趣提分，哪科顺眼、哪种策略喜欢，就先用哪个。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">学习小组为什么是一个有效场域？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：它既有同伴氛围，又不像学校晚修那样压迫；既宽松又有效。家长征求孩子意见后组织小组，本质是在创造低压力但能学习的场域。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">这个案例怎样体现低耗学习？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：低耗学习不是完全不学，而是顺兴趣、顺手感、顺环境来学习。越放松、越随缘选择，反而越容易保持状态并提分。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div></div>", "case13": "<div class=\"qa-list\"><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">站桩和动态运动分别适合什么场景？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：动态运动适合处理学校里的烦心事、外部事件引发的情绪和粗糙杂质；站桩适合在没有具体外部事件时调散乱、燥、精力不聚的状态。先动后站更适合这个学生。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">为什么30分钟附近是一个重要临界点？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：叶老师说站15到20分钟只是轻微修复，到30分钟附近会越过一个临界点，对身体通透、心境变化和状态提升的增幅明显变快，周末甚至可慢慢加到40分钟。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div><div class=\"qa-item qa-flip\" data-side=\"q\"><div class=\"qa-question\" contenteditable=\"true\">什么是个人生命力的锚点？</div><div class=\"qa-answer\" contenteditable=\"true\" style=\"display:none\">参考答案：锚点是最能发动一个人生命力的入口。有人靠站桩，有人靠AI，有人靠去竞争，有人靠去竞争心。这个学生已经喜欢站桩并形成习惯，所以站桩就是他的重点锚点。</div><div class=\"qa-hint\">点击问题查看/收起参考答案 · 文字可编辑</div></div></div>"};
 let current='overview'; let savedRange=null;
 function getStore(){try{return JSON.parse(localStorage.getItem(STORE)||'{}')}catch(e){return {}}}
 function setStore(d){localStorage.setItem(STORE,JSON.stringify(d));}
@@ -433,7 +504,7 @@ loadNotes = function(k){ loadMiddleContent(k); __oldLoadNotes(k); };
 enableMiddleEditing(document);
 
 document.getElementById('nav').addEventListener('click',e=>{const b=e.target.closest('.nav-card');if(b)showView(b.dataset.target);});
-document.addEventListener('input',e=>{if(e.target.isContentEditable)saveNotes();});loadNotes(current);
+document.addEventListener('input',e=>{if(e.target.closest&&e.target.closest('#reviewPanelContent'))return;if(e.target.isContentEditable)saveNotes();});loadNotes(current);
 document.addEventListener('mouseup',e=>{const sel=window.getSelection();const tb=document.getElementById('toolbar');const active=document.querySelector('.view.active');if(sel&&sel.toString().trim().length>0&&active&&active.contains(sel.anchorNode)){savedRange=sel.getRangeAt(0).cloneRange();const rect=savedRange.getBoundingClientRect();tb.style.left=(rect.left+window.scrollX)+'px';tb.style.top=(rect.top+window.scrollY-46)+'px';tb.style.display='flex';}else if(!e.target.closest('#toolbar')){tb.style.display='none';}});
 function restoreSelection(){if(!savedRange)return false;const sel=window.getSelection();sel.removeAllRanges();sel.addRange(savedRange);return true;}
 function markRed(){if(!restoreSelection())return;const sel=window.getSelection();if(sel.rangeCount===0)return;const range=sel.getRangeAt(0);const span=document.createElement('mark');span.className='redline';try{range.surroundContents(span);}catch(e){span.appendChild(range.extractContents());range.insertNode(span);}sel.removeAllRanges();document.getElementById('toolbar').style.display='none';saveNotes();}
@@ -534,6 +605,731 @@ showView=function(k){document.body.classList.remove('review-mode'); __polishShow
 document.querySelectorAll('.view').forEach(v=>v.addEventListener('scroll', updateProgress));
 document.addEventListener('toggle', e=>{ if(e.target.classList && e.target.classList.contains('qa-item')) saveNotes(); }, true);
 document.addEventListener('keydown', e=>{ if(e.key==='Escape') document.body.classList.remove('review-mode'); });
+
+(function(){
+  const d=getStore();
+  Object.keys(reviewDefaults).forEach(k=>{
+    if(!d[k]) return;
+    const r=d[k].review||'';
+    if(r.includes('先自己回忆，再回到中间案例') || r.includes('<ol>')){
+      delete d[k].review;
+    }
+  });
+  setStore(d);
+})();
+
 normalizeReviewQA(); updateReviewPanel(); updateProgress();
 
-</script></body></html>
+
+/* ===== 批注乱码彻底修复：只在单个文字节点内上色，跨行只生成右侧批注 ===== */
+function closestTextUnit(node){
+  if(!node) return null;
+  let el = node.nodeType === 1 ? node : node.parentElement;
+  return el ? el.closest('li,p,.quote-list p,.advice-row p,.tagpill,h2,h3,.overview-lines span') : null;
+}
+function isSafeSingleTextRange(range){
+  return range
+    && range.startContainer === range.endContainer
+    && range.startContainer.nodeType === Node.TEXT_NODE
+    && range.toString().trim().length > 0;
+}
+function wrapSafeRange(className, title){
+  if(!restoreSelection()) return false;
+  const sel = window.getSelection();
+  if(!sel || sel.rangeCount === 0) return false;
+  const range = sel.getRangeAt(0);
+  if(!isSafeSingleTextRange(range)) return false;
+  const unit = closestTextUnit(range.startContainer);
+  if(!unit) return false;
+  const mark = document.createElement('mark');
+  mark.className = className;
+  if(title) mark.title = title;
+  try{
+    range.surroundContents(mark);
+  }catch(e){
+    return false;
+  }
+  sel.removeAllRanges();
+  return true;
+}
+function addAnnotation(){
+  if(!restoreSelection()) return;
+  const sel = window.getSelection();
+  const text = sel.toString().trim();
+  if(!text) return;
+
+  wrapSafeRange('annotation-yellow', '点击可去掉高亮');
+
+  const box = document.createElement('div');
+  box.className = 'ann';
+  box.innerHTML = '<q>' + text.replace(/[<>]/g,'') + '</q><div contenteditable="true">我的批注：</div>';
+  document.getElementById('annotations').prepend(box);
+
+  if(sel) sel.removeAllRanges();
+  document.getElementById('toolbar').style.display='none';
+  saveNotes();
+}
+function markRed(){
+  if(!restoreSelection()) return;
+  const sel = window.getSelection();
+  const text = sel.toString().trim();
+  if(!text) return;
+
+  const ok = wrapSafeRange('redline', '点击可去掉画线');
+  if(!ok){
+    alert('请只选中同一条句子内的文字再标红，避免跨行破坏排版。');
+  }
+  if(sel) sel.removeAllRanges();
+  document.getElementById('toolbar').style.display='none';
+  saveNotes();
+}
+
+/* 中间内容可编辑但不再把整块案例设为 contenteditable，减少列表被浏览器拆乱 */
+function enableMiddleEditingSafe(root=document){
+  root.querySelectorAll('.hero,.chapter,.case-page,.note-block,ul,.advice-stack,.quote-list').forEach(el=>{
+    el.removeAttribute('contenteditable');
+  });
+  root.querySelectorAll('.hero h1,.overview-lines span,.method-item p,.case-title h2,.case-title p,.note-block li,.advice-row p,.tagpill,.quote-list p').forEach(el=>{
+    el.setAttribute('contenteditable','true');
+    el.setAttribute('spellcheck','false');
+  });
+}
+enableMiddleEditingSafe(document);
+
+const __safeOldLoadNotes = loadNotes;
+loadNotes = function(k){
+  __safeOldLoadNotes(k);
+  enableMiddleEditingSafe(document);
+};
+
+
+/* ===== 列表编辑体验：单次 Enter 换行，连续两次 Enter 新增要点 ===== */
+(function(){
+  let lastEnter = { el: null, time: 0 };
+
+  function focusEnd(el){
+    el.focus();
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    range.collapse(false);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+
+  function insertLineBreak(){
+    const sel = window.getSelection();
+    if(!sel || sel.rangeCount === 0) return;
+    const range = sel.getRangeAt(0);
+    range.deleteContents();
+    const br = document.createElement('br');
+    range.insertNode(br);
+    range.setStartAfter(br);
+    range.setEndAfter(br);
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+
+  function removeTrailingBr(li){
+    while(li.lastChild && li.lastChild.nodeType === 3 && li.lastChild.textContent === ''){
+      li.removeChild(li.lastChild);
+    }
+    if(li.lastChild && li.lastChild.nodeName === 'BR'){
+      li.removeChild(li.lastChild);
+    }
+  }
+
+  document.addEventListener('keydown', function(e){
+    if(e.key !== 'Enter' || e.shiftKey || e.altKey || e.ctrlKey || e.metaKey) return;
+
+    const li = e.target && e.target.closest ? e.target.closest('.note-block li[contenteditable="true"], .note-block li') : null;
+    if(!li || !li.isContentEditable) return;
+
+    e.preventDefault();
+
+    const now = Date.now();
+    const isDoubleEnter = lastEnter.el === li && now - lastEnter.time < 650;
+
+    if(isDoubleEnter){
+      removeTrailingBr(li);
+      const newLi = document.createElement('li');
+      newLi.setAttribute('contenteditable','true');
+      newLi.setAttribute('spellcheck','false');
+      newLi.innerHTML = '';
+      li.insertAdjacentElement('afterend', newLi);
+      lastEnter = { el: null, time: 0 };
+      focusEnd(newLi);
+      if(typeof saveNotes === 'function') saveNotes();
+      return;
+    }
+
+    insertLineBreak();
+    lastEnter = { el: li, time: now };
+    if(typeof saveNotes === 'function') saveNotes();
+  }, true);
+})();
+
+
+/* ===== 新增：空行可删除 + 复习题点击显示答案 ===== */
+document.addEventListener('keydown',function(e){
+  const li = e.target && e.target.closest ? e.target.closest('li[contenteditable="true"]') : null;
+  if(!li) return;
+
+  if(e.key==='Backspace'){
+    const txt = li.innerText.replace(/\s/g,'');
+    if(txt===''){
+      e.preventDefault();
+      const prev = li.previousElementSibling;
+      li.remove();
+      if(prev){ prev.focus(); }
+      if(typeof saveNotes==='function') saveNotes();
+    }
+  }
+},true);
+
+document.addEventListener('click',function(e){
+  const q = e.target.closest('.review-question,.qa-question,.question-card,.review-card');
+  if(!q) return;
+
+  let answer =
+      q.nextElementSibling &&
+      (q.nextElementSibling.classList.contains('review-answer')
+      || q.nextElementSibling.classList.contains('qa-answer'))
+      ? q.nextElementSibling : null;
+
+  if(answer){
+      answer.style.display =
+      answer.style.display==='none' ? 'block' : 'none';
+  }
+});
+
+
+/* 复习模式精准问答：单击问题切换到匹配参考答案；再单击答案回到问题；问题与答案均可编辑 */
+function normalizeReviewQA(){
+  const box=document.getElementById('caseReview'); 
+  if(!box) return;
+  if(box.querySelector('.qa-flip')) return;
+  const lis=[...box.querySelectorAll('li')]; 
+  if(!lis.length) return;
+  const wrap=document.createElement('div'); wrap.className='qa-list';
+  lis.forEach((li)=>{
+    const text=li.textContent.trim();
+    const d=document.createElement('div'); d.className='qa-item qa-flip'; d.dataset.side='q';
+    d.innerHTML=`<div class="qa-question" contenteditable="true">${text}</div><div class="qa-answer" contenteditable="true" style="display:none">参考答案：请结合中间案例的「案例建议 / 通用建议 / 叶师金句」核对。</div><div class="qa-hint">点击问题查看/收起参考答案 · 文字可编辑</div>`;
+    wrap.appendChild(d);
+  });
+  box.innerHTML=''; box.appendChild(wrap);
+}
+function updateReviewPanel(){
+  normalizeReviewQA();
+  const panel=document.getElementById('reviewPanelContent');
+  const box=document.getElementById('caseReview');
+  if(panel && box) panel.innerHTML=box.innerHTML;
+}
+function syncReviewPanelToStore(){
+  const panel=document.getElementById('reviewPanelContent');
+  const box=document.getElementById('caseReview');
+  if(panel && box && document.body.classList.contains('review-mode')){
+    box.innerHTML=panel.innerHTML;
+    if(typeof saveNotes==='function') saveNotes();
+  }
+}
+document.addEventListener('click',function(e){
+  const item=e.target.closest && e.target.closest('.qa-flip');
+  if(!item) return;
+  if(e.target.closest('[contenteditable="true"]') && e.detail !== 1) return;
+  if(e.target.closest('[contenteditable="true"]') && document.activeElement === e.target) return;
+  item.dataset.side = item.dataset.side === 'a' ? 'q' : 'a';
+  syncReviewPanelToStore();
+},true);
+document.addEventListener('input',function(e){
+  if(e.target.closest && e.target.closest('#reviewPanelContent .qa-flip')){
+    syncReviewPanelToStore();
+  }
+},true);
+document.addEventListener('blur',function(e){
+  if(e.target.closest && e.target.closest('#reviewPanelContent .qa-flip')){
+    syncReviewPanelToStore();
+  }
+},true);
+
+
+/* ===== 修复直播总览：复习模式问题可切换对应参考答案，并保留可编辑 ===== */
+(function(){
+  function activeCaseKey(){
+    const active=document.querySelector('.view.active');
+    return active ? active.dataset.case : 'overview';
+  }
+
+  function ensureRichReviewForCase(k){
+    const box=document.getElementById('caseReview');
+    if(!box || !window.reviewDefaults && typeof reviewDefaults==='undefined') return;
+    const defs = typeof reviewDefaults!=='undefined' ? reviewDefaults : window.reviewDefaults;
+    if(!defs || !defs[k]) return;
+
+    const html = box.innerHTML || '';
+    const isOld = !html.includes('qa-flip') || html.includes('<ol>') || html.includes('先自己回忆，再回到中间案例');
+    if(isOld){
+      box.innerHTML = defs[k];
+    }
+  }
+
+  const oldUpdateReviewPanel = typeof updateReviewPanel === 'function' ? updateReviewPanel : null;
+  updateReviewPanel = function(){
+    const k=activeCaseKey();
+    ensureRichReviewForCase(k);
+    const panel=document.getElementById('reviewPanelContent');
+    const box=document.getElementById('caseReview');
+    if(panel && box) panel.innerHTML=box.innerHTML;
+  };
+
+  document.addEventListener('click',function(e){
+    const item=e.target.closest && e.target.closest('#reviewPanelContent .qa-flip');
+    if(!item) return;
+
+    /* 单击问题/卡片：问题 <-> 对应参考答案 */
+    if(e.detail === 1){
+      item.dataset.side = item.dataset.side === 'a' ? 'q' : 'a';
+
+      const box=document.getElementById('caseReview');
+      const panel=document.getElementById('reviewPanelContent');
+      if(box && panel){
+        box.innerHTML=panel.innerHTML;
+        if(typeof saveNotes==='function') saveNotes();
+      }
+    }
+  },true);
+
+  document.addEventListener('input',function(e){
+    if(e.target.closest && e.target.closest('#reviewPanelContent .qa-flip')){
+      const box=document.getElementById('caseReview');
+      const panel=document.getElementById('reviewPanelContent');
+      if(box && panel){
+        box.innerHTML=panel.innerHTML;
+        if(typeof saveNotes==='function') saveNotes();
+      }
+    }
+  },true);
+
+  setTimeout(updateReviewPanel,80);
+})();
+
+
+/* 复习模式交互修正：单击切换答案；单击保留文字选择/批注/画线 */
+(function(){
+  function syncReviewPanelToHiddenBox(){
+    const panel=document.getElementById('reviewPanelContent');
+    const box=document.getElementById('caseReview');
+    if(panel && box && document.body.classList.contains('review-mode')){
+      box.innerHTML = panel.innerHTML;
+      if(typeof saveNotes === 'function') saveNotes();
+    }
+  }
+
+  document.addEventListener('click', function(e){
+    const item = e.target.closest && e.target.closest('#reviewPanelContent .qa-flip');
+    if(!item) return;
+    /* 阻止旧逻辑的单击切换；允许选中文字后使用浮动工具栏 */
+    e.stopImmediatePropagation();
+  }, true);
+
+  document.addEventListener('dblclick', function(e){
+    const item = e.target.closest && e.target.closest('#reviewPanelContent .qa-flip');
+    if(!item) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    item.dataset.side = item.dataset.side === 'a' ? 'q' : 'a';
+    syncReviewPanelToHiddenBox();
+  }, true);
+
+  document.addEventListener('input', function(e){
+    if(e.target.closest && e.target.closest('#reviewPanelContent .qa-flip')){
+      syncReviewPanelToHiddenBox();
+    }
+  }, true);
+})();
+
+
+/* 复习模式交互修正：单击保留编辑/选区批注/画线；单击切换问题与参考答案 */
+(function(){
+  function syncReviewQA(){
+    const panel=document.getElementById('reviewPanelContent');
+    const box=document.getElementById('caseReview');
+    if(panel && box && document.body.classList.contains('review-mode')){
+      box.innerHTML = panel.innerHTML;
+      if(typeof saveNotes === 'function') saveNotes();
+    }
+  }
+
+  document.addEventListener('click', function(e){
+    const item = e.target.closest && e.target.closest('#reviewPanelContent .qa-flip');
+    if(!item) return;
+    /* 阻止旧版本的单击切换答案逻辑 */
+    e.stopImmediatePropagation();
+  }, true);
+
+  document.addEventListener('dblclick', function(e){
+    const item = e.target.closest && e.target.closest('#reviewPanelContent .qa-flip');
+    if(!item) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    item.dataset.side = item.dataset.side === 'a' ? 'q' : 'a';
+    syncReviewQA();
+  }, true);
+
+  document.addEventListener('input', function(e){
+    if(e.target.closest && e.target.closest('#reviewPanelContent .qa-flip')){
+      syncReviewQA();
+    }
+  }, true);
+})();
+
+
+/* ===== 复习模式最终交互：单击编辑；单击切换问题/答案 ===== */
+(function(){
+  function syncReviewQA(){
+    const panel=document.getElementById('reviewPanelContent');
+    const box=document.getElementById('caseReview');
+    if(panel && box && document.body.classList.contains('review-mode')){
+      box.innerHTML = panel.innerHTML;
+      if(typeof saveNotes === 'function') saveNotes();
+    }
+  }
+
+  function makeReviewEditable(root){
+    if(!root) return;
+    root.querySelectorAll('.qa-question,.qa-answer').forEach(el=>{
+      el.setAttribute('contenteditable','true');
+      el.setAttribute('spellcheck','false');
+      el.style.userSelect='text';
+      el.style.webkitUserSelect='text';
+    });
+  }
+
+  const oldUpdateReviewPanel = typeof updateReviewPanel === 'function' ? updateReviewPanel : null;
+  updateReviewPanel = function(){
+    if(oldUpdateReviewPanel) oldUpdateReviewPanel();
+    makeReviewEditable(document.getElementById('reviewPanelContent'));
+  };
+
+  /* 用 window 捕获层拦截旧的“单击切换答案”逻辑 */
+  window.addEventListener('click', function(e){
+    const item = e.target.closest && e.target.closest('#reviewPanelContent .qa-flip');
+    if(!item) return;
+
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+
+    const editable = e.target.closest('.qa-question,.qa-answer');
+    if(editable){
+      editable.setAttribute('contenteditable','true');
+      editable.focus();
+    }
+    /* 不 preventDefault：保留光标定位、选中文字、批注/画线 */
+  }, true);
+
+  window.addEventListener('dblclick', function(e){
+    const item = e.target.closest && e.target.closest('#reviewPanelContent .qa-flip');
+    if(!item) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+
+    item.dataset.side = item.dataset.side === 'a' ? 'q' : 'a';
+    makeReviewEditable(item);
+    syncReviewQA();
+  }, true);
+
+  window.addEventListener('input', function(e){
+    if(e.target.closest && e.target.closest('#reviewPanelContent .qa-flip')){
+      syncReviewQA();
+    }
+  }, true);
+
+  window.addEventListener('blur', function(e){
+    if(e.target.closest && e.target.closest('#reviewPanelContent .qa-flip')){
+      syncReviewQA();
+    }
+  }, true);
+
+  setTimeout(()=>makeReviewEditable(document.getElementById('reviewPanelContent')), 100);
+})();
+
+
+/* 复习模式最终交互：正文单击编辑/选区；仅点击提示胶囊切换问题/答案 */
+(function(){
+  function syncReviewQA(){
+    const panel=document.getElementById('reviewPanelContent');
+    const box=document.getElementById('caseReview');
+    if(panel && box && document.body.classList.contains('review-mode')){
+      box.innerHTML = panel.innerHTML;
+      if(typeof saveNotes === 'function') saveNotes();
+    }
+  }
+
+  function makeEditable(root){
+    if(!root) return;
+    root.querySelectorAll('.qa-question,.qa-answer').forEach(el=>{
+      el.setAttribute('contenteditable','true');
+      el.setAttribute('spellcheck','false');
+      el.style.userSelect='text';
+      el.style.webkitUserSelect='text';
+    });
+  }
+
+  function patchHints(root){
+    if(!root) return;
+    root.querySelectorAll('.qa-flip').forEach(item=>{
+      let hint=item.querySelector('.qa-hint');
+      if(!hint){
+        hint=document.createElement('div');
+        hint.className='qa-hint';
+        item.appendChild(hint);
+      }
+      hint.setAttribute('title','');
+      hint.textContent='';
+    });
+  }
+
+  const prevUpdate = typeof updateReviewPanel === 'function' ? updateReviewPanel : null;
+  updateReviewPanel = function(){
+    if(prevUpdate) prevUpdate();
+    const panel=document.getElementById('reviewPanelContent');
+    makeEditable(panel);
+    patchHints(panel);
+  };
+
+  window.addEventListener('click', function(e){
+    const item = e.target.closest && e.target.closest('#reviewPanelContent .qa-flip');
+    if(!item) return;
+
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+
+    const hint = e.target.closest('.qa-hint');
+    if(hint){
+      e.preventDefault();
+      item.dataset.side = item.dataset.side === 'a' ? 'q' : 'a';
+      patchHints(document.getElementById('reviewPanelContent'));
+      syncReviewQA();
+      return;
+    }
+
+    const editable = e.target.closest('.qa-question,.qa-answer');
+    if(editable){
+      editable.setAttribute('contenteditable','true');
+      editable.focus();
+    }
+  }, true);
+
+  window.addEventListener('dblclick', function(e){
+    const item = e.target.closest && e.target.closest('#reviewPanelContent .qa-flip');
+    if(!item) return;
+    if(!e.target.closest('.qa-hint')){
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+    }
+  }, true);
+
+  window.addEventListener('input', function(e){
+    if(e.target.closest && e.target.closest('#reviewPanelContent .qa-flip')){
+      syncReviewQA();
+    }
+  }, true);
+
+  setTimeout(()=>{
+    const panel=document.getElementById('reviewPanelContent');
+    makeEditable(panel);
+    patchHints(panel);
+  },120);
+})();
+
+
+/* 修复复习模式文字编辑：输入过程中不重绘 DOM，避免只能改一两个字 */
+(function(){
+  function saveReviewAfterEdit(){
+    const panel=document.getElementById('reviewPanelContent');
+    const box=document.getElementById('caseReview');
+    if(panel && box && document.body.classList.contains('review-mode')){
+      box.innerHTML = panel.innerHTML;
+      if(typeof saveNotes === 'function') saveNotes();
+    }
+  }
+
+  window.addEventListener('click', function(e){
+    const editable = e.target.closest && e.target.closest('#reviewPanelContent .qa-question,#reviewPanelContent .qa-answer');
+    if(editable){
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+      editable.setAttribute('contenteditable','true');
+      editable.setAttribute('spellcheck','false');
+      editable.classList.add('is-editing');
+      editable.focus();
+      return;
+    }
+
+    document.querySelectorAll('#reviewPanelContent .qa-question.is-editing,#reviewPanelContent .qa-answer.is-editing').forEach(el=>{
+      el.classList.remove('is-editing');
+    });
+  }, true);
+
+  window.addEventListener('input', function(e){
+    const editable = e.target.closest && e.target.closest('#reviewPanelContent .qa-question,#reviewPanelContent .qa-answer');
+    if(!editable) return;
+    /* 不在 input 时同步 box.innerHTML，避免光标被打断 */
+  }, true);
+
+  window.addEventListener('blur', function(e){
+    const editable = e.target.closest && e.target.closest('#reviewPanelContent .qa-question,#reviewPanelContent .qa-answer');
+    if(!editable) return;
+    editable.classList.remove('is-editing');
+    saveReviewAfterEdit();
+  }, true);
+
+  window.addEventListener('keydown', function(e){
+    const editable = e.target.closest && e.target.closest('#reviewPanelContent .qa-question,#reviewPanelContent .qa-answer');
+    if(!editable) return;
+    e.stopPropagation();
+    if((e.ctrlKey || e.metaKey) && e.key.toLowerCase()==='s'){
+      e.preventDefault();
+      saveReviewAfterEdit();
+    }
+  }, true);
+})();
+
+
+/* ===== 复习模式稳定编辑：单击文字=连续编辑；双击提示按钮=切换问题/答案；失焦后保存 ===== */
+(function(){
+  function panel(){ return document.getElementById('reviewPanelContent'); }
+  function box(){ return document.getElementById('caseReview'); }
+
+  function setCaretFromPoint(el, x, y){
+    try{
+      let range;
+      if(document.caretRangeFromPoint){
+        range = document.caretRangeFromPoint(x,y);
+      }else if(document.caretPositionFromPoint){
+        const pos=document.caretPositionFromPoint(x,y);
+        range=document.createRange();
+        range.setStart(pos.offsetNode,pos.offset);
+      }
+      if(range && el.contains(range.startContainer)){
+        range.collapse(true);
+        const sel=window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+      }
+    }catch(err){}
+  }
+
+  function makeEditable(root){
+    if(!root) return;
+    root.querySelectorAll('.qa-question,.qa-answer').forEach(el=>{
+      el.setAttribute('contenteditable','plaintext-only');
+      el.setAttribute('spellcheck','false');
+      el.style.userSelect='text';
+      el.style.webkitUserSelect='text';
+      el.style.cursor='text';
+    });
+    root.querySelectorAll('.qa-hint').forEach(h=>{
+      h.style.cursor='pointer';
+      h.title='双击切换问题/参考答案';
+      if(h.textContent.trim()==='') h.textContent = '双击切换';
+    });
+  }
+
+  function commitReviewEdit(){
+    const p=panel(), b=box();
+    if(p && b && document.body.classList.contains('review-mode')){
+      b.innerHTML = p.innerHTML;
+      window.__seeuReviewEditing = false;
+      if(typeof saveNotes === 'function') saveNotes();
+      makeEditable(p);
+    }
+  }
+
+  const oldUpdate = typeof updateReviewPanel === 'function' ? updateReviewPanel : null;
+  updateReviewPanel = function(){
+    if(window.__seeuReviewEditing) return;
+    if(oldUpdate) oldUpdate();
+    makeEditable(panel());
+  };
+
+  window.addEventListener('mousedown', function(e){
+    const editable = __seeuReviewEditableTarget(e);
+    if(!editable) return;
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+  }, true);
+
+  window.addEventListener('click', function(e){
+    const editable = __seeuReviewEditableTarget(e);
+    if(editable){
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+      window.__seeuReviewEditing = true;
+      editable.setAttribute('contenteditable','plaintext-only');
+      editable.focus();
+      setTimeout(()=>setCaretFromPoint(editable,e.clientX,e.clientY),0);
+      return;
+    }
+
+    const hint = e.target.closest && e.target.closest('#reviewPanelContent .qa-hint');
+    if(hint){
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+      e.preventDefault();
+      return;
+    }
+  }, true);
+
+  window.addEventListener('dblclick', function(e){
+    const hint = e.target.closest && e.target.closest('#reviewPanelContent .qa-hint');
+    if(!hint) return;
+    const item = hint.closest('.qa-flip');
+    if(!item) return;
+    e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+    item.dataset.side = item.dataset.side === 'a' ? 'q' : 'a';
+    commitReviewEdit();
+  }, true);
+
+  window.addEventListener('blur', function(e){
+    if(__seeuReviewEditableTarget(e)){
+      setTimeout(commitReviewEdit, 30);
+    }
+  }, true);
+
+  window.addEventListener('keydown', function(e){
+    if(__seeuReviewEditableTarget(e)){
+      e.stopPropagation();
+      if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='s'){
+        e.preventDefault();
+        commitReviewEdit();
+      }
+    }
+  }, true);
+
+  setTimeout(()=>makeEditable(panel()),150);
+})();
+
+</script>
+<script>
+/* 修复：复习模式下问题/答案可连续输入，不会输入1个字后失焦 */
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.querySelectorAll('.qa-question,.qa-answer').forEach(el=>{
+    el.setAttribute('contenteditable','plaintext-only');
+    el.addEventListener('mousedown',e=>{
+      e.stopPropagation();
+    });
+    el.addEventListener('click',e=>{
+      e.stopPropagation();
+      el.focus();
+    });
+  });
+});
+</script>
+
+</body></html>
