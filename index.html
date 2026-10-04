@@ -4872,12 +4872,40 @@ function init(){
   addUploadView();
   addUploadNav();
 
+  // 删除第一版 MVP 的旧目录
   document.querySelectorAll('#nav .nav-card').forEach(function(btn){
     const target=btn.dataset.target || '';
     if(target !== 'upload' && !target.startsWith('generated')){
-      btn.style.display='none';
+      btn.remove();
     }
   });
+
+  // 删除第一版 MVP 的旧正文
+  document.querySelectorAll('.view').forEach(function(view){
+    if(view.id !== 'view-upload' && !view.id.startsWith('view-generated')){
+      view.remove();
+    }
+  });
+
+  // 默认只显示上传页
+  document.querySelectorAll('.view').forEach(function(view){
+    view.classList.remove('active');
+  });
+
+  const uploadView=document.getElementById('view-upload');
+  if(uploadView) uploadView.classList.add('active');
+
+  document.querySelectorAll('#nav .nav-card').forEach(function(btn){
+    btn.classList.remove('active');
+  });
+
+  const uploadNav=document.querySelector('#nav .nav-card[data-target="upload"]');
+  if(uploadNav) uploadNav.classList.add('active');
+
+  current='upload';
+
+  const currentLabel=document.getElementById('currentCase');
+  if(currentLabel) currentLabel.textContent='当前：上传生成';
 
   patchNavClick();
   renderAllGenerated();
