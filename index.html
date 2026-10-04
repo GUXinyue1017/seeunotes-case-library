@@ -4861,14 +4861,22 @@ body[data-theme="night"] .upload-panel textarea{
         document.getElementById('uploadStatus').textContent='';
   }
   window.seeuUpload={generate:generateFromInput,selectFile:installFileReader,clear:clearUpload,extract:parseMaterial};
-  function init(){
-    addUploadView();
-    addUploadNav();
-    patchNavClick();
-    renderAllGenerated();
-    updateOverviewForGenerated();
-    renderHistory();
-  }
+function init(){
+  addUploadView();
+  addUploadNav();
+
+  document.querySelectorAll('#nav .nav-card').forEach(function(btn){
+    const target=btn.dataset.target || '';
+    if(target !== 'upload' && !target.startsWith('generated')){
+      btn.style.display='none';
+    }
+  });
+
+  patchNavClick();
+  renderAllGenerated();
+  updateOverviewForGenerated();
+  renderHistory();
+}
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init);
   else init();
 })();
