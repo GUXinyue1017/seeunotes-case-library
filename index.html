@@ -4580,18 +4580,69 @@ body[data-theme="night"] .upload-panel textarea{
     return '<div class="qa-item qa-flip" data-side="q"><div class="qa-question" contenteditable="true">'+esc(qa.question)+'</div><div class="qa-answer" contenteditable="true" style="display:none">参考答案：'+esc(qa.answer)+'</div><div class="qa-hint">双击查看参考答案</div></div>';
   }
   function noteHTML(note,index){
-    function li(items){ return items.map(x=>'<li>'+esc(x)+'</li>').join(''); }
-    function rows(items,tags){ return items.map((x,i)=>'<div class="advice-row"><span class="tagpill">'+esc(tags && tags[i] || tagOf(x,i))+'</span><p>'+esc(x)+'</p></div>').join(''); }
-    function quotes(items){ return items.map(x=>'<p>'+esc(x)+'</p>').join(''); }
-    const num=String(index).padStart(2,'0');
-    return '<article class="case-page"><header class="case-head"><div class="case-index">'+num+'</div><div class="case-title"><div class="case-kicker">'+esc(note.kicker || '案例整理')+'</div><h2>'+esc(note.title)+'</h2><p>'+esc(note.subtitle)+'</p></div></header>'+
-      (note.background.length?'<section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul>'+li(note.background)+'</ul></section>':'')+
-      (note.core.length?'<section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul>'+li(note.core)+'</ul></section>':'')+
-      (note.advice.length?'<section class="note-block teacher"><div class="role">解答</div><h3>案例建议</h3><div class="advice-stack">'+rows(note.advice,note.adviceTags)+'</div></section>':'')+
-      (note.universal.length?'<section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack">'+rows(note.universal,note.universalTags)+'</div></section>':'')+
-      (note.quotes.length?'<section class="note-block teacher quotes"><div class="role">原话摘录</div><h3>金句</h3><div class="quote-list">'+quotes(note.quotes)+'</div></section>':'')+
-      '</article>';
+  function li(items){
+    return (Array.isArray(items) ? items : []).map(x=>'<li>'+esc(x)+'</li>').join('');
   }
+
+  function rows(items,tags){
+    return (Array.isArray(items) ? items : []).map((x,i)=>
+      '<div class="advice-row"><span class="tagpill">'+
+      esc(tags && tags[i] || tagOf(x,i))+
+      '</span><p>'+esc(x)+'</p></div>'
+    ).join('');
+  }
+
+  function quotes(items){
+    return (Array.isArray(items) ? items : []).map(x=>'<p>'+esc(x)+'</p>').join('');
+  }
+
+  const num=String(index).padStart(2,'0');
+  const transcript=String(note.rawTranscript || note.raw || '').trim();
+
+  return '<article class="case-page">'+
+    '<header class="case-head">'+
+      '<div class="case-index">'+num+'</div>'+
+      '<div class="case-title">'+
+        '<div class="case-kicker">'+esc(note.kicker || '案例整理')+'</div>'+
+        '<h2>'+esc(note.title)+'</h2>'+
+        '<p>'+esc(note.subtitle)+'</p>'+
+      '</div>'+
+    '</header>'+
+
+    ((note.background || []).length
+      ? '<section class="note-block asker"><div class="role">提问者</div><h3>背景</h3><ul>'+li(note.background)+'</ul></section>'
+      : '')+
+
+    ((note.core || []).length
+      ? '<section class="note-block asker"><div class="role">提问者</div><h3>核心问题</h3><ul>'+li(note.core)+'</ul></section>'
+      : '')+
+
+    ((note.advice || []).length
+      ? '<section class="note-block teacher"><div class="role">解答</div><h3>案例建议</h3><div class="advice-stack">'+rows(note.advice,note.adviceTags)+'</div></section>'
+      : '')+
+
+    ((note.universal || []).length
+      ? '<section class="note-block universal"><div class="role">迁移原则</div><h3>通用建议</h3><div class="advice-stack">'+rows(note.universal,note.universalTags)+'</div></section>'
+      : '')+
+
+    ((note.quotes || []).length
+      ? '<section class="note-block teacher quotes"><div class="role">原话摘录</div><h3>金句</h3><div class="quote-list">'+quotes(note.quotes)+'</div></section>'
+      : '')+
+
+    (transcript
+      ? '<section class="note-block transcript-block" contenteditable="false">'+
+          '<details class="transcript-details">'+
+            '<summary class="transcript-summary">'+
+              '<span class="transcript-title">原文逐字稿</span>'+
+              '<span class="transcript-toggle">展开 / 收起</span>'+
+            '</summary>'+
+            '<pre class="transcript-body">'+esc(transcript)+'</pre>'+
+          '</details>'+
+        '</section>'
+      : '')+
+
+  '</article>';
+}
   function methodsHTML(note){
     return '<section class="chapter"><h2>底层方法论</h2><div class="method-list">'+note.methods.map((m,i)=>
       '<div class="method-item"><b>'+esc(note.methodTags && note.methodTags[i] || tagOf(m,i))+'</b><p>'+esc(m)+'</p></div>'
