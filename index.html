@@ -4780,10 +4780,17 @@ body[data-theme="night"] .upload-panel textarea{
     if(typeof window.showView==='function') window.showView(item.key+'-overview');
   }
   function renderAllGenerated(){
-    readGenerated().forEach(item=>{
-      try{createOrUpdateGeneratedView(item);}catch(e){console.error('Unable to restore note',e);}
-    });
+  const list=readGenerated();
+  const latest=list[list.length-1];
+
+  if(!latest) return;
+
+  try{
+    createOrUpdateGeneratedView(latest);
+  }catch(e){
+    console.error('Unable to restore note',e);
   }
+}
   function activateCollection(item){
     document.querySelectorAll('#nav .nav-card[data-target^="generated"]').forEach(b=>{
       b.hidden=!(b.dataset.target===item.key || b.dataset.target.startsWith(item.key+'-'));
