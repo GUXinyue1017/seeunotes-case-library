@@ -2509,7 +2509,38 @@ function updateReviewPanel(){
   if(panel && box) panel.innerHTML=box.innerHTML;
 }
 function toggleReviewMode(force){
-  const on = typeof force==='boolean' ? force : !document.body.classList.contains('review-mode');
+  const active=document.querySelector('.view.active');
+  const key=active ? active.dataset.case : current;
+
+  const on = typeof force==='boolean'
+    ? force
+    : !document.body.classList.contains('review-mode');
+
+  // 上传页不进入复习模式，避免调用旧 MVP 的复习题
+  if(on && (!key || key==='upload')){
+    document.body.classList.remove('review-mode');
+
+    const status=document.getElementById('uploadStatus');
+    if(status){
+      status.textContent='请先生成并打开一份笔记，再进入复习模式。';
+    }
+    return;
+  }
+
+  // 如果是 AI 生成的笔记，强制加载该页自己的复习题
+  if(on && String(key).startsWith('generated')){
+    current=key;
+
+    const d=getStore();
+    const saved=d[key] && d[key].review;
+    const fallback=reviewDefaults[key] || '';
+    const box=document.getElementById('caseReview');
+
+    if(box){
+      box.innerHTML=saved || fallback;
+    }
+  }
+
   document.body.classList.toggle('review-mode', on);
   updateReviewPanel();
 }
