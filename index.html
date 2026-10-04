@@ -2399,17 +2399,24 @@ function enableMiddleEditing(root=document){
   });
 }
 function saveMiddleContent(){
+  if(current==='upload') return;
+
   const d=getStore();
   const v=document.querySelector('.view.active');
   if(!v || !current) return;
+
   d[current]=d[current]||{};
   d[current].viewHTML=v.innerHTML;
   setStore(d);
 }
+
 function loadMiddleContent(k){
+  if(k==='upload') return;
+
   const d=getStore();
   const item=d[k]||{};
   const v=document.getElementById('view-'+k);
+
   if(v && item.viewHTML){
     v.innerHTML=item.viewHTML;
     enableMiddleEditing(v);
