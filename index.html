@@ -2383,6 +2383,10 @@ const labels={
   upload:'上传生成'
 };
 const reviewDefaults={};
+
+// 给后面的独立脚本共享同一份目录和复习数据
+window.seeuLabels = labels;
+window.seeuReviewDefaults = reviewDefaults;
 let current='overview'; let savedRange=null;
 function getStore(){try{return JSON.parse(localStorage.getItem(STORE)||'{}')}catch(e){return {}}}
 function setStore(d){localStorage.setItem(STORE,JSON.stringify(d));}
@@ -4834,7 +4838,8 @@ body[data-theme="night"] .upload-panel textarea{
       btn.innerHTML='<strong>'+esc(title)+'</strong><span>'+esc(subtitle || (suffix==='methods' ? item.note.methods.length+'条材料要点' : item.title))+'</span>';
       document.getElementById('nav').appendChild(btn);
     }
-    labels[key]=title;reviewDefaults[key]=review;
+      window.seeuLabels[key]=title;
+      window.seeuReviewDefaults[key]=review;
     const target=view.querySelector('.hero,.chapter,.case-page');
     if(target){target.contentEditable='true';target.spellcheck=false;}
   }
