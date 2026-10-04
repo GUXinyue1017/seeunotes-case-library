@@ -126,16 +126,18 @@ export function normalizeNote(result, raw, title) {
       );
     }
 
+    // 放宽数量限制，避免 Prompt 要求详细，
+    // 结果又被后端二次裁剪。
     const advice = named(
       c.advice,
       '案例建议',
-      8
+      20
     );
 
     const universal = named(
       c.universal,
       '通用建议',
-      5
+      12
     );
 
     if (!Array.isArray(c.review)) {
@@ -145,9 +147,10 @@ export function normalizeNote(result, raw, title) {
     }
 
     const review = c.review
-      .slice(0, 4)
+      .slice(0, 12)
       .map(q => {
         if (
+          !q ||
           typeof q.question !== 'string' ||
           typeof q.answer !== 'string'
         ) {
@@ -165,6 +168,12 @@ export function normalizeNote(result, raw, title) {
         q => q.question && q.answer
       );
 
+    // 保存当前案例对应的原文逐字稿。
+    const rawTranscript =
+      typeof c.rawTranscript === 'string'
+        ? c.rawTranscript.trim()
+        : '';
+
     return {
       id: index + 1,
 
@@ -176,20 +185,20 @@ export function normalizeNote(result, raw, title) {
 
       kicker:
         String(c.kicker || '')
-          .slice(0, 12),
+          .slice(0, 16),
 
       background:
         strings(
           c.background,
           '背景',
-          6
+          20
         ),
 
       core:
         strings(
           c.core,
           '核心问题',
-          4
+          12
         ),
 
       advice:
@@ -208,7 +217,7 @@ export function normalizeNote(result, raw, title) {
         strings(
           c.quotes,
           '金句',
-          5
+          20
         ).filter(q =>
           source.includes(
             q.replace(/\s/g, '')
@@ -220,7 +229,11 @@ export function normalizeNote(result, raw, title) {
 
       review,
 
-      raw: '',
+      // 新增：案例原文逐字稿
+      rawTranscript,
+
+      // 同时兼容旧前端可能读取 raw 的逻辑
+      raw: rawTranscript,
 
       expertNamed: true
     };
@@ -229,7 +242,7 @@ export function normalizeNote(result, raw, title) {
   const methods = named(
     result.methods,
     '底层方法论',
-    10
+    20
   );
 
   const collect = key => [
@@ -289,9 +302,10 @@ export function normalizeNote(result, raw, title) {
           : []
       ),
 
+    // 整份原始材料仍然保留
     raw,
 
-    extractionVersion: 2,
+    extractionVersion: 3,
 
     engine: 'ai'
   };
@@ -489,7 +503,7 @@ async function generate(body, signal) {
     'length'
   ) {
     throw new Error(
-      'AI 输出被截断，请分成较短的材料再生成。'
+      'AI 输出被截断，请稍后重试。'
     );
   }
 
@@ -538,6 +552,17 @@ async function generate(body, signal) {
           parsed?.cases
         )
           ? parsed.cases.length
+          : 0,
+
+      rawTranscriptCases:
+        Array.isArray(
+          parsed?.cases
+        )
+          ? parsed.cases.filter(
+              c =>
+                typeof c?.rawTranscript === 'string' &&
+                c.rawTranscript.trim()
+            ).length
           : 0
     }
   );
@@ -783,6 +808,17 @@ const server =
                 ? note
                     .cases
                     .length
+                : 0,
+
+            rawTranscriptCases:
+              Array.isArray(
+                note.cases
+              )
+                ? note.cases.filter(
+                    c =>
+                      typeof c.rawTranscript === 'string' &&
+                      c.rawTranscript.trim()
+                  ).length
                 : 0
           }
         );
