@@ -2503,30 +2503,54 @@ function normalizeReviewQA(){
   box.innerHTML=''; box.appendChild(wrap);
 }
 function updateReviewPanel(){
-  normalizeReviewQA();
+  const active=document.querySelector('.view.active');
+  const key=active ? active.dataset.case : current;
+
   const panel=document.getElementById('reviewPanelContent');
   const box=document.getElementById('caseReview');
-  if(panel && box) panel.innerHTML=box.innerHTML;
+
+  if(!panel || !box) return;
+
+  // 上传页绝不能显示旧 MVP 复习题
+  if(!key || key==='upload'){
+    box.innerHTML='';
+    panel.innerHTML='';
+    return;
+  }
+
+  // AI 动态生成的笔记，只读取它自己的复习题
+  if(String(key).startsWith('generated')){
+    const d=getStore();
+    const saved=d[key] && d[key].review;
+    const generated=reviewDefaults[key] || '';
+
+    box.innerHTML=saved || generated;
+    panel.innerHTML=box.innerHTML;
+    return;
+  }
+
+  // 第一版 MVP 不再提供复习内容
+  box.innerHTML='';
+  panel.innerHTML='';
 }
+
 function toggleReviewMode(force){
   const active=document.querySelector('.view.active');
   const key=active ? active.dataset.case : current;
 
-  const on = typeof force==='boolean'
+  const on=typeof force==='boolean'
     ? force
     : !document.body.classList.contains('review-mode');
 
-  // 上传页不进入复习模式，避免调用旧 MVP 的复习题
-  if(on && (!key || key==='upload')){
+  if(on && (!key || key==='upload' || !String(key).startsWith('generated'))){
     document.body.classList.remove('review-mode');
-
-    const status=document.getElementById('uploadStatus');
-    if(status){
-      status.textContent='请先生成并打开一份笔记，再进入复习模式。';
-    }
+    updateReviewPanel();
     return;
   }
 
+  document.body.classList.toggle('review-mode',on);
+  updateReviewPanel();
+}
   // 如果是 AI 生成的笔记，强制加载该页自己的复习题
   if(on && String(key).startsWith('generated')){
     current=key;
