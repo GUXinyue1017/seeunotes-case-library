@@ -2554,10 +2554,7 @@ function toggleReviewMode(force){
     return;
   }
 
-  document.body.classList.toggle('review-mode',on);
-  updateReviewPanel();
-}
-  // 如果是 AI 生成的笔记，强制加载该页自己的复习题
+  // AI 生成笔记：加载当前页面对应的复习题
   if(on && String(key).startsWith('generated')){
     current=key;
 
@@ -2571,9 +2568,10 @@ function toggleReviewMode(force){
     }
   }
 
-  document.body.classList.toggle('review-mode', on);
+  document.body.classList.toggle('review-mode',on);
   updateReviewPanel();
 }
+
 function updateProgress(){
   const v=document.querySelector('.view.active');
   const bar=document.querySelector('#readingProgress span');
