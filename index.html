@@ -4845,13 +4845,21 @@ function renderAllGenerated(){
       button.textContent='生成笔记';
     }
   }
-  function clearUpload(){
-        const title=document.getElementById('uploadTitle');
-        const file=document.getElementById('uploadFile');
-        if(title) title.value='';
-        if(file) file.value='';
-        document.getElementById('uploadStatus').textContent='';
+ function clearUpload(){
+  const title=document.getElementById('uploadTitle');
+  const file=document.getElementById('uploadFile');
+  const status=document.getElementById('uploadStatus');
+  const button=document.getElementById('generateNoteBtn');
+
+  if(title) title.value='';
+  if(file) file.value='';
+  if(status) status.textContent='';
+
+  if(button){
+    button.disabled=false;
+    button.textContent='生成笔记';
   }
+}
   window.seeuUpload={generate:generateFromInput,selectFile:installFileReader,clear:clearUpload,extract:parseMaterial};
 function init(){
   addUploadView();
