@@ -15,6 +15,9 @@ const port = Number(process.env.PORT || 4317);
 
 // 防止用户重复点击，同时发起多个 AI 请求
 const active = new Set();
+const jobs=new Map();
+function pruneJobs(){for(const [id,job] of jobs){if(job.finishedAt && Date.now()-job.finishedAt>3600000)jobs.delete(id);}}
+const cleanup=setInterval(pruneJobs,60000);cleanup.unref();
 
 async function config() {
   return {
@@ -102,6 +105,58 @@ function named(value, field, max) {
     .filter(v => v.text);
 }
 
+// Match normalized anchors but always slice the untouched source with mapped offsets.
+function indexedText(text,loose=false){
+  let normalized='';const starts=[],ends=[];
+  for(let offset=0;offset<text.length;){
+    const ch=String.fromCodePoint(text.codePointAt(offset));const end=offset+ch.length;
+    const value=loose?ch.normalize('NFKC'):ch;
+    for(const unit of value){
+      if(/\s/u.test(unit)||(loose&&/\p{P}/u.test(unit)))continue;
+      normalized+=unit;
+      for(let j=0;j<unit.length;j++){starts.push(offset);ends.push(end);}
+    }
+    offset=end;
+  }
+  return {text:normalized,starts,ends};
+}
+function occurrences(haystack,needle,from=0,to=haystack.length){
+  const found=[];if(!needle)return found;
+  let at=haystack.indexOf(needle,from);
+  while(at>=0&&at+needle.length<=to){found.push(at);at=haystack.indexOf(needle,at+1);}
+  return found;
+}
+export function sliceCaseTranscripts(raw,cases){
+  const indexes=[indexedText(raw),indexedText(raw,true)];let cursor=0;
+  return cases.map((c,i)=>{
+    let reason='missing-anchors';
+    for(let mode=0;mode<2;mode++){
+      const index=indexes[mode];
+      const start=indexedText(String(c.rawStart||''),!!mode).text;
+      const end=indexedText(String(c.rawEnd||''),!!mode).text;
+      if(start.length<6||end.length<6)continue;
+      reason='anchor-not-found';
+      const from=index.starts.findIndex(offset=>offset>=cursor);
+      if(from<0)continue;
+      const starts=occurrences(index.text,start,from);
+      if(starts.length!==1){if(starts.length)reason='ambiguous-start';continue;}
+      const at=starts[0];
+      const next=indexedText(String(cases[i+1]?.rawStart||''),!!mode).text;
+      const boundary=next.length>=6?index.text.indexOf(next,at+start.length):-1;
+      const ends=occurrences(index.text,end,at,boundary<0?index.text.length:boundary).filter(pos=>pos+end.length>=at+start.length);
+      if(ends.length!==1){reason=ends.length?'ambiguous-end':'end-not-found';continue;}
+      const rawStart=index.starts[at],rawEnd=index.ends[ends[0]+end.length-1];
+      cursor=rawEnd;
+      return {rawTranscript:raw.slice(rawStart,rawEnd),rawMatchStatus:mode?'normalized':'exact',sourceStart:rawStart,sourceEnd:rawEnd};
+    }
+    // Compatibility for an older model response, only if it is literally present in source.
+    const legacy=typeof c.rawTranscript==='string'?c.rawTranscript.trim():'';
+    const at=legacy?raw.indexOf(legacy,cursor):-1;
+    if(at>=0&&raw.indexOf(legacy,at+1)<0){cursor=at+legacy.length;return {rawTranscript:raw.slice(at,cursor),rawMatchStatus:'legacy-exact',sourceStart:at,sourceEnd:cursor};}
+    return {rawTranscript:'',rawMatchStatus:reason};
+  });
+}
+
 export function normalizeNote(result, raw, title) {
   if (
     !result ||
@@ -114,6 +169,7 @@ export function normalizeNote(result, raw, title) {
   }
 
   const source = raw.replace(/\s/g, '');
+  const transcripts=sliceCaseTranscripts(raw,result.cases);
 
   const cases = result.cases.map((c, index) => {
     if (
@@ -168,11 +224,7 @@ export function normalizeNote(result, raw, title) {
         q => q.question && q.answer
       );
 
-    // 保存当前案例对应的原文逐字稿。
-    const rawTranscript =
-      typeof c.rawTranscript === 'string'
-        ? c.rawTranscript.trim()
-        : '';
+    const {rawTranscript,...sourceMatch}=transcripts[index];
 
     return {
       id: index + 1,
@@ -229,7 +281,9 @@ export function normalizeNote(result, raw, title) {
 
       review,
 
-      // 新增：案例原文逐字稿
+      rawStart:String(c.rawStart||''),
+      rawEnd:String(c.rawEnd||''),
+      ...sourceMatch,
       rawTranscript,
 
       // 同时兼容旧前端可能读取 raw 的逻辑
@@ -554,14 +608,14 @@ async function generate(body, signal) {
           ? parsed.cases.length
           : 0,
 
-      rawTranscriptCases:
+      anchorCases:
         Array.isArray(
           parsed?.cases
         )
           ? parsed.cases.filter(
               c =>
-                typeof c?.rawTranscript === 'string' &&
-                c.rawTranscript.trim()
+                typeof c?.rawStart === 'string' && c.rawStart.trim() &&
+                typeof c?.rawEnd === 'string' && c.rawEnd.trim()
             ).length
           : 0
     }
@@ -612,16 +666,8 @@ const server =
         req.method === 'GET' &&
         url.pathname === '/'
       ) {
-        send(
-          req,
-          res,
-          200,
-          {
-            ok: true,
-            service:
-              'SeeUNotes API'
-          }
-        );
+        res.writeHead(200,{'Content-Type':'text/html; charset=utf-8'});
+        res.end(await readFile(path.join(root,'index.html')));
 
         return;
       }
@@ -655,6 +701,41 @@ const server =
           }
         );
 
+        return;
+      }
+
+      // A random job token is also the idempotency key. No account identity is inferred.
+      if(req.method==='GET' && url.pathname.startsWith('/api/jobs/')){
+        pruneJobs();
+        const job=jobs.get(url.pathname.slice('/api/jobs/'.length));
+        if(!job){send(req,res,404,{error:'任务记录已过期或服务器已重启。已保存的笔记不受影响，请重新上传这份未完成的材料。'});return;}
+        send(req,res,200,{status:job.status,stage:job.stage,note:job.note,error:job.error});return;
+      }
+      if(req.method==='POST' && url.pathname==='/api/jobs'){
+        try{
+          let size=0;const chunks=[];
+          for await(const chunk of req){size+=chunk.length;if(size>1600000)throw new Error('文件太大，请分成几份上传。');chunks.push(chunk);}
+          const body=JSON.parse(Buffer.concat(chunks).toString('utf8'));
+          if(!/^[a-f0-9-]{36}$/i.test(body.requestId||''))throw new Error('任务标识无效。');
+          if(typeof body.text!=='string'||!body.text.trim()||body.text.length>200000)throw new Error('材料须为 1–200000 字。');
+          pruneJobs();
+          if(jobs.has(body.requestId)){send(req,res,202,{jobId:body.requestId});return;}
+          if(active.size){send(req,res,429,{error:'当前服务正在生成，请稍候。'});return;}
+          if(jobs.size>=30){send(req,res,503,{error:'暂存空间已满，请稍后重试。'});return;}
+          const controller=new AbortController();active.add(controller);
+          const job={status:'running',stage:'AI 正在分析案例与知识结构',createdAt:Date.now()};
+          jobs.set(body.requestId,job);
+          send(req,res,202,{jobId:body.requestId});
+          const timeout=setTimeout(()=>controller.abort(),600000);
+          (async()=>{
+            try{
+              job.note=await generate(body,controller.signal);
+              job.status='succeeded';job.stage='笔记已完成';
+              console.log('[JOB SUCCESS]',{cases:job.note.cases.length,rawTranscriptCases:job.note.cases.filter(c=>c.rawTranscript).length});
+            }catch(e){job.status='failed';job.error=e.name==='AbortError'?'生成超过 10 分钟，请缩短材料后重试。':e.message;}
+            finally{job.finishedAt=Date.now();clearTimeout(timeout);active.delete(controller);}
+          })();
+        }catch(e){send(req,res,400,{error:e.message});}
         return;
       }
 
@@ -874,7 +955,7 @@ const server =
   );
 
 // 云端必须监听 0.0.0.0
-server.listen(
+if(process.argv[1] && path.resolve(process.argv[1])===fileURLToPath(import.meta.url)) server.listen(
   port,
   '0.0.0.0',
   () => {
@@ -883,3 +964,5 @@ server.listen(
     );
   }
 );
+
+export { server };
