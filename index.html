@@ -4705,7 +4705,7 @@ body[data-theme="night"] .upload-panel textarea{
             '<pre class="transcript-body">'+esc(transcript)+'</pre>'+
           '</details>'+
         '</section>'
-      : '')+
+      : '<section class="note-block transcript-block" contenteditable="false"><details><summary>原文逐字稿</summary><p>未能可靠匹配本案例的原文边界，或此历史笔记未保存原文片段。完整上传材料仍保留在笔记数据中。</p></details></section>')+
 
   '</article>';
 }
@@ -4714,22 +4714,26 @@ body[data-theme="night"] .upload-panel textarea{
       '<div class="method-item"><b>'+esc(note.methodTags && note.methodTags[i] || tagOf(m,i))+'</b><p>'+esc(m)+'</p></div>'
     ).join('')+'</div></section>';
   }
-  function readGenerated(){
-    try{
-      const list=JSON.parse(localStorage.getItem(GEN_STORE)||'[]');
-      return Array.isArray(list) ? list.filter(item=>item && item.note && typeof item.note.raw==='string' && ['background','core','advice','universal','quotes','methods'].every(k=>Array.isArray(item.note[k]))).map(item=>{
-        if(item.note.engine==='ai' || item.note.extractionVersion===3) return item;
-        try{
-          const note=parseMaterial(item.note.raw,item.title+'.txt');
-          note.title=item.title;
-          return {...item,key:item.key+'-v3',note};
-        }catch(e){return item;}
-      }) : [];
-    }catch(e){return [];}
-  }
-  function writeGenerated(list){
-    localStorage.setItem(GEN_STORE,JSON.stringify(list.slice(-20)));
-  }
+  const LAST_VIEW='seeu_library_last_view_v1';
+  const libraryRepository={
+    list(){
+      try{
+        const data=JSON.parse(localStorage.getItem(GEN_STORE)||'[]');
+        const list=Array.isArray(data)?data:(data.notes||[]);
+        return list.filter(x=>x&&x.note&&(Array.isArray(x.note.cases)||Array.isArray(x.note.core))).map((x,i)=>{
+          const item={...x,schemaVersion:2,ownerId:x.ownerId||'local',category:x.category||'未分类',key:x.key||('generated-legacy-'+i)};
+          if(!Array.isArray(item.note.cases)){const legacy={...item.note};item.note.cases=[legacy];}
+          for(const field of ['background','core','advice','universal','quotes','methods'])if(!Array.isArray(item.note[field]))item.note[field]=[];
+          return item;
+        });
+      }catch{return [];}
+    },
+    save(list){localStorage.setItem(GEN_STORE,JSON.stringify(list));}
+  };
+  // Future cloud storage can implement this same repository boundary.
+  window.seeuLibrary=libraryRepository;
+  function readGenerated(){return libraryRepository.list();}
+  function writeGenerated(list){libraryRepository.save(list);}
   function addUploadView(){
     const shell=document.querySelector('.main-shell');
     if(!shell || document.getElementById('view-upload')) return;
@@ -4737,7 +4741,7 @@ body[data-theme="night"] .upload-panel textarea{
     view.className='view';
     view.id='view-upload';
     view.dataset.case='upload';
-    view.innerHTML='<section class="upload-lab"><h2>新建笔记</h2><div class="upload-grid"><div class="upload-panel"><label for="uploadFile">文字材料</label><input id="uploadFile" type="file" accept=".txt,.md,.markdown,text/plain,text/markdown"><div id="uploadStatus" class="upload-help" role="status" aria-live="polite"></div></div><div class="upload-panel"><label for="uploadTitle">笔记标题</label><input id="uploadTitle" type="text" placeholder="选填"><div class="upload-actions"><button class="upload-primary" id="generateNoteBtn" type="button">生成笔记</button><button class="upload-secondary" id="clearUploadBtn" type="button">清空</button></div></div></div><div class="upload-history" id="uploadHistory"></div></section>';
+    view.innerHTML='<section class="upload-lab"><h2>把一份材料，变成自己的笔记</h2><p>上传直播逐字稿、课程记录或答疑材料。生成后可按案例阅读、批注和复习。</p><div class="upload-grid"><div class="upload-panel"><label for="uploadFile" class="upload-dropzone"><strong>将文字文件拖到这里</strong><span>或点击下方选择文件 · TXT / Markdown</span></label><input id="uploadFile" type="file" accept=".txt,.md,.markdown,text/plain,text/markdown"><div id="uploadStatus" class="upload-help" role="status" aria-live="polite"></div></div><div class="upload-panel"><label for="uploadTitle">笔记标题</label><input id="uploadTitle" type="text" placeholder="选填"><label for="uploadCategory">文件夹 / 分类</label><input id="uploadCategory" type="text" list="libraryCategories" placeholder="未分类，例如：课程笔记"><datalist id="libraryCategories"></datalist><div class="upload-actions"><button class="upload-primary" id="generateNoteBtn" type="button">生成笔记</button><button class="upload-secondary" id="clearUploadBtn" type="button">清空</button></div></div></div><div class="upload-history" id="uploadHistory"></div></section>';
     shell.appendChild(view);
   }
   function addUploadNav(){
@@ -4747,7 +4751,7 @@ body[data-theme="night"] .upload-panel textarea{
     btn.className='nav-card nav-feature';
     btn.dataset.target='upload';
     btn.type='button';
-    btn.innerHTML='<strong>上传生成</strong><span>导入文字材料</span>';
+    btn.innerHTML='<strong>＋ 新建笔记</strong><span>上传逐字稿，整理成学习笔记</span>';
     nav.prepend(btn);
   }
   function patchNavClick(){
@@ -4759,31 +4763,45 @@ body[data-theme="night"] .upload-panel textarea{
       if(!b) return;
       const target=b.dataset.target;
       if(target==='upload' || target.indexOf('generated')===0){
-        e.preventDefault();
+        e.preventDefault();e.stopImmediatePropagation();
         if(typeof window.saveNotes==='function') try{window.saveNotes();}catch(err){}
         if(typeof window.showView==='function') window.showView(target);
       }
     },true);
   }
+  let openedItem=null;
   function renderHistory(){
-    const box=document.getElementById('uploadHistory');
-    if(!box) return;
-    const list=readGenerated();
-    box.innerHTML='';
-    if(!list.length){
-      const p=document.createElement('div');
-      p.className='upload-help';
-      p.textContent='';
-      box.appendChild(p);
-      return;
+    let box=document.getElementById('libraryArea');
+    if(!box){
+      box=document.createElement('section');box.id='libraryArea';
+      document.getElementById('nav').after(box);
+      // Library precedes the current note's navigation.
+      const newButton=document.querySelector('#nav [data-target="upload"]');
+      box.before(newButton);newButton.onclick=()=>window.showView('upload');
+      box.after(document.getElementById('nav'));
     }
-    list.slice().reverse().forEach(item=>{
-      const btn=document.createElement('button');
-      btn.type='button';
-      btn.textContent=item.title;
-      btn.addEventListener('click',()=>openGenerated(item));
-      box.appendChild(btn);
-    });
+    const list=readGenerated();
+    box.innerHTML='<h3>我的笔记库 <small>'+list.length+'</small></h3><p class="library-caption">保存在此浏览器</p>';
+    const categories=[...new Set(list.map(x=>x.category||'未分类'))];
+    document.getElementById('libraryCategories').innerHTML=categories.map(c=>'<option value="'+esc(c)+'"></option>').join('');
+    if(!list.length){box.insertAdjacentHTML('beforeend','<p class="library-empty">第一份笔记会出现在这里。<br>上传材料，即可开始。</p>');}
+    else{
+      const recent=document.createElement('div');recent.className='library-recent';recent.innerHTML='<h4>最近笔记</h4>';
+      list.slice(-5).reverse().forEach(item=>recent.appendChild(libraryButton(item)));box.appendChild(recent);
+      const folders=document.createElement('div');folders.innerHTML='<h4>文件夹 / 分类</h4>';
+      for(const category of categories){const details=document.createElement('details');details.className='library-folder';const summary=document.createElement('summary');summary.textContent=category+' · '+list.filter(x=>x.category===category).length;details.appendChild(summary);list.filter(x=>x.category===category).reverse().forEach(item=>details.appendChild(libraryButton(item)));folders.appendChild(details);}
+      box.appendChild(folders);
+    }
+    if(openedItem){
+      const editor=document.createElement('form');editor.className='library-move';editor.innerHTML='<label for="moveCategory">当前笔记归类</label><input id="moveCategory" list="libraryCategories" maxlength="60" value="'+esc(openedItem.category||'未分类')+'"><button type="submit">移动</button>';
+      editor.onsubmit=e=>{e.preventDefault();const category=editor.querySelector('input').value.trim()||'未分类';const notes=readGenerated();const item=notes.find(x=>x.key===openedItem.key);if(item){item.category=category;try{writeGenerated(notes);openedItem=item;renderHistory();}catch{alert('保存失败，请检查浏览器存储空间。');}}};box.appendChild(editor);
+    }
+    document.getElementById('uploadHistory').innerHTML='';
+  }
+  function libraryButton(item){
+    const btn=document.createElement('button');btn.type='button';btn.className='library-note';btn.dataset.noteKey=item.key;
+    btn.classList.toggle('selected',openedItem?.key===item.key);btn.textContent=item.title||item.note.title||'未命名笔记';btn.title=btn.textContent;
+    btn.onclick=()=>openGenerated(item);return btn;
   }
   function installFileReader(){
     const input=document.getElementById('uploadFile');
@@ -4830,7 +4848,8 @@ body[data-theme="night"] .upload-panel textarea{
     if(!view){
       view=document.createElement('div');
       view.className='view';view.id='view-'+key;view.dataset.case=key;
-      view.innerHTML=html;document.querySelector('.main-shell').appendChild(view);
+      view.innerHTML=html;view.addEventListener('scroll',updateProgress);document.querySelector('.main-shell').appendChild(view);
+      loadMiddleContent(key);
       const btn=document.createElement('button');
       btn.type='button';btn.className='nav-card';btn.dataset.target=key;
       btn.innerHTML='<strong>'+esc(title)+'</strong><span>'+esc(subtitle || (suffix==='methods' ? item.note.methods.length+'条材料要点' : item.title))+'</span>';
@@ -4842,15 +4861,20 @@ body[data-theme="night"] .upload-panel textarea{
     if(target){target.contentEditable='true';target.spellcheck=false;}
   }
   function openGenerated(item){
+    if(typeof saveNotes==='function')saveNotes();
+    openedItem=item;
     createOrUpdateGeneratedView(item);
     activateCollection(item);
+    renderHistory();
     if(typeof window.showView==='function') window.showView(item.key+'-overview');
 }
 function renderAllGenerated(){
-  // 刷新页面时，不自动把历史笔记重新放回左侧目录
+  const last=localStorage.getItem(LAST_VIEW);
+  if(last && last!=='upload'){const item=readGenerated().find(x=>last.startsWith(x.key+'-'));if(item){openGenerated(item);if(document.getElementById('view-'+last))window.showView(last);}}
 }
   
   function activateCollection(item){
+    document.querySelectorAll('.view[data-case^="generated"]').forEach(v=>v.classList.toggle('collection-current',v.dataset.case.startsWith(item.key+'-')));
     document.querySelectorAll('#nav .nav-card[data-target^="generated"]').forEach(b=>{
       b.hidden=!(b.dataset.target===item.key || b.dataset.target.startsWith(item.key+'-'));
     });
@@ -4866,53 +4890,103 @@ function renderAllGenerated(){
       metrics.innerHTML='<div class="metric"><b>'+count+'</b><span>份生成笔记</span></div><div class="metric"><b>6</b><span>个结构板块</span></div><div class="metric"><b>1</b><span>个上传入口</span></div><div class="metric"><b>0</b><span>云端上传</span></div>';
     }
   }
-  async function generateFromInput(){
-    const titleEl=document.getElementById('uploadTitle');
-    const status=document.getElementById('uploadStatus');
-    const button=document.getElementById('generateNoteBtn');
-    const file=document.getElementById('uploadFile')?.files?.[0];
-    if(!file){
-      status.textContent='请先选择文字文件。';
-      return;
+  const API=location.hostname==='localhost'||location.hostname==='127.0.0.1' ? '' : 'https://seeunotes-case-library.onrender.com';
+  const PENDING='seeu_pending_job_v1';
+  let generating=false, generationTimer=null;
+  function pendingJob(){try{return JSON.parse(localStorage.getItem(PENDING)||'null');}catch{return null;}}
+  function setBusy(on){
+    generating=on;
+    for(const id of ['generateNoteBtn','clearUploadBtn','uploadFile','uploadTitle','uploadCategory']){
+      const el=document.getElementById(id);if(el)el.disabled=on;
     }
-    if(button.disabled) return;
-    button.disabled=true;
-    button.textContent='正在生成…';
-    status.textContent='正在读取 '+file.name;
-    try{
-    const text=(await readMaterialFile(file)).replace(/^\uFEFF/,'').trim();
-    if(!text) throw new Error('文件没有文字内容，请重新选择。');
-    if(location.protocol!=='http:' && location.protocol!=='https:'){
-      status.replaceChildren(document.createTextNode('请从 AI 网站入口重新上传文件：'));
-      const link=document.createElement('a');
-      link.href='http://127.0.0.1:4317/';link.textContent='打开 SeeUNotes';
-      status.appendChild(link);
-      return;
-    }
-      status.textContent='正在提取案例、清理内容…';
-      const response=await fetch('https://seeunotes-case-library.onrender.com/api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text,fileName:file.name,title:titleEl.value.trim()})});
-      const result=await response.json();
-      if(!response.ok) throw new Error(result.error || 'AI 生成失败，请重试。');
-      const note=result.note;
-    if(titleEl && titleEl.value.trim()) note.title=titleEl.value.trim();
-    const item={key:'generated'+String(Date.now()),title:note.title,note:note,createdAt:new Date().toISOString()};
-    const list=readGenerated().filter(x=>x.key!==item.key);
-    list.push(item);
-    try{writeGenerated(list);}catch(e){document.getElementById('uploadStatus').textContent='浏览器保存空间不足，本次笔记仍可阅读。';}
-    createOrUpdateGeneratedView(item);
-    updateOverviewForGenerated(item);
-    renderHistory();
-    activateCollection(item);
-    if(typeof window.showView==='function') window.showView(item.key+'-overview');
-    status.textContent='笔记已生成';
-    }catch(e){
-      status.textContent=e.message || '生成失败，请重新选择文件后重试。';
-    }finally{
-      button.disabled=false;
-      button.textContent='生成笔记';
+    document.getElementById('generateNoteBtn').textContent=on?'正在生成…':'生成笔记';
+  }
+  function stage(text,startedAt){
+    clearInterval(generationTimer);
+    const render=()=>{const elapsed=Math.max(0,Math.floor((Date.now()-startedAt)/1000));document.getElementById('uploadStatus').textContent=text+' · 已用时 '+Math.floor(elapsed/60)+':'+String(elapsed%60).padStart(2,'0')+'。通常需要 2–5 分钟'+(elapsed>300?'；本次用时较长，仍在等待结果。':'。可以留在此页，刷新后会继续检查。');};
+    render();generationTimer=setInterval(render,1000);
+  }
+  const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+  async function requestJSON(path,options={}){
+    const response=await fetch(API+path,{...options,signal:AbortSignal.timeout(20000)});
+    const data=await response.json();
+    if(!response.ok){const error=new Error(data.error||'请求失败');error.status=response.status;throw error;}
+    return data;
+  }
+  async function awaitJob(job){
+    let failures=0;
+    for(;;){
+      try{
+        const result=await requestJSON('/api/jobs/'+encodeURIComponent(job.id));failures=0;
+        if(result.status==='succeeded')return result.note;
+        if(result.status==='failed')throw Object.assign(new Error(result.error),{terminal:true});
+        stage(result.stage||'AI 正在分析材料',job.startedAt);
+      }catch(e){
+        if(e.status===404||e.terminal){e.terminal=true;throw e;}
+        stage('连接暂时中断，正在重新检查原任务',job.startedAt);
+        if(++failures>=12)throw new Error('暂时无法连接服务器。任务信息已保留；刷新页面可继续查询，不会再次调用 AI。');
+      }
+      await pause(2500);
     }
   }
+  function acceptNote(note,job){
+    if(!note||!Array.isArray(note.cases)||!note.cases.length)throw new Error('服务器未返回可用笔记。');
+    const item={schemaVersion:2,ownerId:'local',key:'generated-'+job.id,title:note.title,note,category:job.category||'未分类',createdAt:new Date(job.startedAt).toISOString()};
+    const list=readGenerated().filter(x=>x.key!==item.key);list.push(item);
+    writeGenerated(list); // Never claim success before durable browser storage succeeds.
+    localStorage.removeItem(PENDING);
+    renderHistory();openGenerated(item);
+    document.getElementById('uploadStatus').textContent='笔记已生成并保存到本机笔记库。';
+  }
+  async function resumeJob(job){
+    if(generating)return;
+    setBusy(true);stage('正在恢复生成任务',job.startedAt);
+    try{acceptNote(await awaitJob(job),job);}
+    catch(e){if(e.terminal)localStorage.removeItem(PENDING);document.getElementById('uploadStatus').textContent=e.message;}
+    finally{clearInterval(generationTimer);setBusy(false);if(pendingJob())document.getElementById('generateNoteBtn').textContent='继续检查生成结果';}
+  }
+  async function generateFromInput(){
+    if(generating)return;
+    // Web Locks serializes admission across tabs; the persisted job is rechecked inside it.
+    const run=async()=>{
+      if(generating)return;
+      const pending=pendingJob();if(pending){await resumeJob(pending);return;}
+      const status=document.getElementById('uploadStatus');
+      const file=document.getElementById('uploadFile')?.files?.[0];
+      if(!file){status.textContent='请先选择文字文件。';return;}
+      setBusy(true);
+      let job=null;
+      try{
+        if(!/^https?:$/.test(location.protocol))throw new Error('请在网站地址或本地预览服务中打开页面后生成笔记。');
+        if(!/\.(txt|md|markdown)$/i.test(file.name))throw new Error('请选择 TXT 或 Markdown 文字文件。');
+        stage('正在读取材料',Date.now());
+        const text=(await readMaterialFile(file)).replace(/^\uFEFF/,'').trim();
+        if(!text||text.length>200000)throw new Error('请选择有文字内容且不超过 20 万字的材料。');
+        stage('正在连接生成服务',Date.now());
+        let state=await requestJSON('/api/status');
+        if(state.configured===false)throw new Error('生成服务尚未配置完成，请检查后端 API 环境变量。');
+        const queuedAt=Date.now();
+        while(state.busy){stage('服务器正在处理其他材料，等待空闲',queuedAt);await pause(3000);state=await requestJSON('/api/status');}
+        job={id:crypto.randomUUID(),startedAt:Date.now(),category:document.getElementById('uploadCategory').value.trim()||'未分类'};
+        localStorage.setItem(PENDING,JSON.stringify(job));
+        stage('材料已读取，正在提交生成任务',job.startedAt);
+        const body=JSON.stringify({requestId:job.id,text,fileName:file.name,title:document.getElementById('uploadTitle').value.trim()});
+        // Retrying this token cannot start a second AI call on the same server.
+        let sent=false;
+        for(let attempt=0;attempt<3&&!sent;attempt++){
+          try{await requestJSON('/api/jobs',{method:'POST',headers:{'Content-Type':'application/json'},body});sent=true;}
+          catch(e){if(e.status===429){localStorage.removeItem(PENDING);stage('服务器正在处理另一份材料，等待空闲',job.startedAt);while((await requestJSON('/api/status')).busy)await pause(3000);throw new Error('服务已空闲，可以重新点击生成笔记。');}if(e.status&&e.status<500){localStorage.removeItem(PENDING);throw e;}if(attempt===2)throw new Error('提交连接中断，任务标识已保存。请点击“继续检查生成结果”。');await pause(1500);}
+        }
+        stage('AI 正在分析案例与知识结构',job.startedAt);
+        acceptNote(await awaitJob(job),job);
+      }catch(e){if(e.terminal)localStorage.removeItem(PENDING);status.textContent=e.name==='QuotaExceededError'?'本机存储空间不足，生成结果暂留服务器一小时。请释放空间后点击继续检查。':e.message;}
+      finally{clearInterval(generationTimer);setBusy(false);if(pendingJob())document.getElementById('generateNoteBtn').textContent='继续检查生成结果';}
+    };
+    if(navigator.locks)await navigator.locks.request('seeu-generation',{ifAvailable:true},async lock=>{if(lock)await run();else document.getElementById('uploadStatus').textContent='另一个标签页正在生成，请等待完成或刷新恢复。';});
+    else await run();
+  }
  function clearUpload(){
+  if(generating || pendingJob()) return;
   const title=document.getElementById('uploadTitle');
   const file=document.getElementById('uploadFile');
   const status=document.getElementById('uploadStatus');
@@ -4927,6 +5001,63 @@ function renderAllGenerated(){
     button.textContent='生成笔记';
   }
 }
+  const originalShowView=window.showView;
+  function readingState(k){
+    const reading=k!=='upload' && k.startsWith('generated');
+    document.body.classList.toggle('seeu-uploading',!reading);
+    document.body.classList.toggle('seeu-reading',reading);
+    document.querySelector('#nav').hidden=!reading;
+    document.querySelector('[data-target="upload"]').classList.toggle('active',!reading);
+    if(!reading){document.body.classList.remove('review-mode');openedItem=null;renderHistory();}
+    localStorage.setItem(LAST_VIEW,k);
+  }
+  window.showView=function(k){
+    originalShowView(k);readingState(k);
+    if(document.body.classList.contains('focus-mode') && k!=='upload'){
+      requestAnimationFrame(()=>document.getElementById('view-'+k)?.scrollIntoView({block:'start',behavior:'instant'}));
+    }
+  };
+  const shell=document.querySelector('.main-shell');
+  function selectVisibleView(view){
+    if(!view || view.dataset.case===current)return;
+    saveNotes();current=view.dataset.case;
+    document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v===view));
+    document.querySelectorAll('#nav .nav-card').forEach(b=>b.classList.toggle('active',b.dataset.target===current));
+    // Only change the side panel; replacing the article here would disrupt selection/editing.
+    __oldLoadNotes(current);normalizeReviewQA();updateReviewPanel();
+    localStorage.setItem(LAST_VIEW,current);
+  }
+  function continuous(){return document.body.classList.contains('focus-mode')&&document.body.classList.contains('seeu-reading');}
+  let scrollQueued=false;
+  shell.addEventListener('scroll',()=>{
+    if(!continuous()||scrollQueued||document.body.classList.contains('review-mode'))return;
+    scrollQueued=true;requestAnimationFrame(()=>{
+      scrollQueued=false;
+      const threshold=shell.getBoundingClientRect().top+Math.min(160,shell.clientHeight*.2);
+      const views=[...shell.querySelectorAll('.view.collection-current')];
+      const view=views.find(v=>v.getBoundingClientRect().bottom>threshold)||views.at(-1);
+      selectVisibleView(view);
+      const bar=document.querySelector('#readingProgress span');
+      if(bar)bar.style.width=(100*shell.scrollTop/Math.max(1,shell.scrollHeight-shell.clientHeight))+'%';
+    });
+  },{passive:true});
+  // An edit/selection may begin in the next visible case before the scroll threshold changes.
+  for(const event of ['pointerdown','focusin'])shell.addEventListener(event,e=>{if(continuous())selectVisibleView(e.target.closest('.view.collection-current'));},true);
+  let wasFocus=document.body.classList.contains('focus-mode');
+  new MutationObserver(()=>{
+    const focus=document.body.classList.contains('focus-mode');if(focus===wasFocus)return;wasFocus=focus;
+    if(current==='upload')return;
+    const view=document.getElementById('view-'+current);
+    if(focus){
+      const offset=view?.scrollTop||0;
+      requestAnimationFrame(()=>{view?.scrollIntoView({block:'start',behavior:'instant'});shell.scrollTop+=offset;});
+    }else{
+      const offset=view ? Math.max(0,shell.getBoundingClientRect().top-view.getBoundingClientRect().top) : 0;
+      shell.scrollTop=0;requestAnimationFrame(()=>{if(view)view.scrollTop=offset;});
+    }
+  }).observe(document.body,{attributes:true,attributeFilter:['class']});
+  window.addEventListener('storage',e=>{if(e.key===GEN_STORE)renderHistory();});
+
   window.seeuUpload={generate:generateFromInput,selectFile:installFileReader,clear:clearUpload,extract:parseMaterial};
 function init(){
   addUploadView();
@@ -4967,10 +5098,20 @@ function init(){
   const currentLabel=document.getElementById('currentCase');
   if(currentLabel) currentLabel.textContent='当前：上传生成';
 
+  document.body.classList.add('seeu-uploading');
+  document.querySelector('.brand h2').textContent='SeeUNotes';
+  document.querySelector('.brand h2').removeAttribute('data-zh');
+  document.querySelector('.brand h2').removeAttribute('data-en');
+  const drop=document.querySelector('.upload-dropzone');
+  drop.addEventListener('dragover',e=>{e.preventDefault();drop.classList.add('dragging');});
+  drop.addEventListener('dragleave',()=>drop.classList.remove('dragging'));
+  drop.addEventListener('drop',e=>{e.preventDefault();drop.classList.remove('dragging');if(document.getElementById('generateNoteBtn').disabled)return;const files=e.dataTransfer.files;if(files.length){document.getElementById('uploadFile').files=files;installFileReader();}});
+  document.getElementById('nav').hidden=true;
   patchNavClick();
   renderAllGenerated();
   updateOverviewForGenerated();
   renderHistory();
+  const pending=pendingJob();if(pending)resumeJob(pending);
 }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init);
   else init();
@@ -5016,4 +5157,74 @@ body[data-theme="night"] .upload-actions{
 }
 </style>
 
+
+
+<style id="seeu-library-v2">
+/* Library workspace: preserve the paper palette and use quieter navigation. */
+body .layout{grid-template-columns:246px minmax(0,1fr) 292px;gap:12px;padding:12px;}
+body.seeu-uploading .layout{grid-template-columns:246px minmax(0,1fr);}
+body .sidebar,body .main-shell,body .rightbar{height:calc(100vh - 24px);border:0!important;border-radius:14px!important;box-shadow:none!important;}
+body .sidebar{padding:20px 14px;}
+body .brand{padding:8px 10px 24px;border:0!important;background:none!important;box-shadow:none!important;}
+body .brand h2{font-size:23px!important;letter-spacing:-.04em!important;}
+body .nav-card{border:0!important;border-radius:8px!important;box-shadow:none!important;padding:11px 12px;}
+body .nav-card:hover{transform:none!important;box-shadow:none!important;}
+body .nav-card.active{border:0!important;box-shadow:none!important;background:rgba(138,90,50,.13)!important;}
+body .nav-feature[data-target="upload"]{background:#8a5a32!important;color:#fff!important;margin-bottom:18px;}
+body .nav-feature[data-target="upload"] span{color:#f3e5d8!important;font-size:11px;}
+#nav[hidden]{display:none!important;}
+#nav:before{content:'当前笔记目录';font-size:11px;letter-spacing:.08em;opacity:.65;margin:16px 10px 2px;}
+#libraryArea h3{font-size:14px;margin:8px 10px 0;}
+#libraryArea h3 small{opacity:.5;margin-left:6px;}
+#libraryArea h4{font-size:11px;font-weight:500;opacity:.6;margin:20px 10px 6px;}
+.library-caption,.library-empty{font-size:12px;opacity:.6;margin:4px 10px 18px;line-height:1.8;}
+.library-note{display:block;width:100%;text-align:left;background:none;border:0;color:inherit;font:inherit;font-size:13px;padding:9px 10px;border-radius:7px;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.library-note:hover,.library-note.selected{background:rgba(138,90,50,.12);}
+.library-folder summary{padding:8px 10px;font-size:12px;cursor:pointer;}
+.library-folder .library-note{padding-left:24px;}
+.library-move{display:flex;flex-wrap:wrap;gap:6px;padding:15px 8px;}
+.library-move label{width:100%;font-size:11px;opacity:.6;}
+.library-move input{min-width:0;width:120px;flex:1;border:1px solid #bda890;border-radius:6px;padding:6px;background:transparent;color:inherit;}
+.library-move button{border:0;border-radius:6px;background:#8a5a32;color:white;cursor:pointer;}
+#view-upload .upload-lab{padding:clamp(20px,5vw,64px) 12px;max-width:790px;}
+#view-upload .upload-lab h2{font-size:clamp(25px,3vw,36px);line-height:1.35;}
+#view-upload .upload-lab>p{margin:18px 0 32px;line-height:1.8;}
+#view-upload .upload-grid{grid-template-columns:1fr;gap:22px;}
+.upload-dropzone{display:flex!important;flex-direction:column;gap:10px;align-items:center;padding:34px 20px;border:1px dashed #bfa98f;border-radius:12px;cursor:pointer;background:rgba(138,90,50,.035);text-align:center;}
+.upload-dropzone strong{font-size:18px;}.upload-dropzone span{font-size:12px;opacity:.65;}
+.upload-dropzone.dragging{background:rgba(138,90,50,.15);}
+#view-upload input{margin-bottom:12px;}
+#uploadStatus{font-size:13px;line-height:1.8;min-height:26px;color:inherit;}
+.upload-panel{border:0!important;box-shadow:none!important;}
+body .note-block,body .chapter,body .advice-row{box-shadow:none!important;border-color:transparent!important;}
+body .note-block{border-left-width:2px!important;}
+body .case-head{border-bottom-color:rgba(138,90,50,.18)!important;}
+.transcript-body{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;font-size:14px;line-height:1.9;}
+.transcript-summary{cursor:pointer;display:flex;justify-content:space-between;gap:12px;padding:8px 0;}
+.transcript-toggle{font-size:12px;opacity:.55;}
+body.seeu-uploading .rightbar,body.seeu-uploading #readingProgress{display:none!important;}
+/* Only this note participates in the continuous document; never other library notes. */
+body.focus-mode.seeu-reading .main-shell{display:block!important;overflow-y:auto!important;scroll-behavior:auto!important;}
+body.focus-mode.seeu-reading .view{display:none!important;}
+body.focus-mode.seeu-reading .view.collection-current{display:block!important;height:auto!important;min-height:0!important;overflow:visible!important;flex:none!important;border-bottom:1px solid rgba(138,90,50,.16);}
+body.focus-mode.seeu-reading .view.collection-current .case-page{min-height:0!important;margin:0 auto;}
+body.focus-mode.seeu-uploading .view:not(.active){display:none!important;}
+body .nav-card[hidden]{display:none!important;}
+@media(max-width:1120px){body .layout,body.seeu-uploading .layout{display:block;height:auto;}body .sidebar,body .main-shell,body .rightbar{height:auto;min-height:0;}body:not(.focus-mode) .view{height:auto;}body.focus-mode .layout{height:100vh!important;}body.focus-mode .main-shell{height:100vh!important;}#libraryArea .library-recent{max-height:180px;overflow:auto;}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important;}}
+
+</style>
+
+<style>body.seeu-uploading #view-upload{filter:none!important;opacity:1!important;animation:none!important;}body .brand{background:transparent!important;}</style>
+
+<style>
+@media(max-width:1120px){
+ html:has(body:not(.focus-mode)),body:not(.focus-mode){height:auto!important;min-height:100vh;overflow:visible!important;}
+ body:not(.focus-mode) .layout{overflow:visible!important;}
+ body:not(.focus-mode) .sidebar{position:static!important;max-height:none!important;}
+ body:not(.focus-mode) #libraryArea{max-height:200px;overflow:auto;}
+ body .seeu-mode-controls{flex-direction:row!important;bottom:12px!important;}
+ body:not(.focus-mode) .main-shell{margin-bottom:80px;}
+}
+</style>
 </body></html>
