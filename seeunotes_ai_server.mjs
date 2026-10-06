@@ -106,10 +106,16 @@ function named(value, field, max) {
 }
 
 // Match normalized anchors but always slice the untouched source with mapped offsets.
-function indexedText(text,loose=false){
+function indexedText(text,loose=false,skipMetadata=false){
+  const skip=new Set();
+  if(skipMetadata){
+    const pattern=/^\s*(?:[^\r\n]{0,60}\s+)?\d{4}[-/]\d{1,2}[-/]\d{1,2}\s+\d{1,2}:\d{2}(?::\d{2})?\s*$/gm;
+    for(const match of text.matchAll(pattern))for(let i=match.index;i<match.index+match[0].length;i++)skip.add(i);
+  }
   let normalized='';const starts=[],ends=[];
   for(let offset=0;offset<text.length;){
     const ch=String.fromCodePoint(text.codePointAt(offset));const end=offset+ch.length;
+    if(skip.has(offset)){offset=end;continue;}
     const value=loose?ch.normalize('NFKC'):ch;
     for(const unit of value){
       if(/\s/u.test(unit)||(loose&&/\p{P}/u.test(unit)))continue;
@@ -127,10 +133,10 @@ function occurrences(haystack,needle,from=0,to=haystack.length){
   return found;
 }
 export function sliceCaseTranscripts(raw,cases){
-  const indexes=[indexedText(raw),indexedText(raw,true)];let cursor=0;
+  const indexes=[indexedText(raw),indexedText(raw,true),indexedText(raw,true,true)];let cursor=0;
   return cases.map((c,i)=>{
     let reason='missing-anchors';
-    for(let mode=0;mode<2;mode++){
+    for(let mode=0;mode<3;mode++){
       const index=indexes[mode];
       const start=indexedText(String(c.rawStart||''),!!mode).text;
       const end=indexedText(String(c.rawEnd||''),!!mode).text;
@@ -145,13 +151,14 @@ export function sliceCaseTranscripts(raw,cases){
       const boundary=next.length>=6?index.text.indexOf(next,at+start.length):-1;
       const ends=occurrences(index.text,end,at,boundary<0?index.text.length:boundary).filter(pos=>pos+end.length>=at+start.length);
       if(ends.length!==1){reason=ends.length?'ambiguous-end':'end-not-found';continue;}
-      const rawStart=index.starts[at],rawEnd=index.ends[ends[0]+end.length-1];
+      const rawStart=index.starts[at];let rawEnd=index.ends[ends[0]+end.length-1];
+      if(mode)while(rawEnd<raw.length&&/\p{P}/u.test(raw[rawEnd]))rawEnd++; 
       cursor=rawEnd;
-      return {rawTranscript:raw.slice(rawStart,rawEnd),rawMatchStatus:mode?'normalized':'exact',sourceStart:rawStart,sourceEnd:rawEnd};
+      return {rawTranscript:raw.slice(rawStart,rawEnd),rawMatchStatus:mode===2?'metadata-normalized':mode?'normalized':'exact',sourceStart:rawStart,sourceEnd:rawEnd};
     }
     // Compatibility for an older model response, only if it is literally present in source.
     const legacy=typeof c.rawTranscript==='string'?c.rawTranscript.trim():'';
-    const at=legacy?raw.indexOf(legacy,cursor):-1;
+    const at=legacy && !(cases.length>1&&legacy===raw.trim())?raw.indexOf(legacy,cursor):-1;
     if(at>=0&&raw.indexOf(legacy,at+1)<0){cursor=at+legacy.length;return {rawTranscript:raw.slice(at,cursor),rawMatchStatus:'legacy-exact',sourceStart:at,sourceEnd:cursor};}
     return {rawTranscript:'',rawMatchStatus:reason};
   });
