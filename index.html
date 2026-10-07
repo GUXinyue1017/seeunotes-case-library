@@ -2423,6 +2423,18 @@ function sliceCaseTranscripts(raw,cases){
     if(!box){box=document.createElement('section');box.id='libraryArea';const nav=document.getElementById('nav');nav.after(box);const newButton=nav.querySelector('[data-target="upload"]');box.before(newButton);newButton.onclick=()=>window.showView('upload');box.after(nav);}
     const all=readGenerated(),list=all.filter(x=>!x.deletedAt),trash=all.filter(x=>x.deletedAt),ui=libraryUI();
     box.innerHTML='<h3>笔记库 <small>'+list.length+'</small></h3><p class="library-caption">保存在此浏览器</p><label class="sr-only" for="libraryOrder">浏览方式</label><select id="libraryOrder"><option value="folders">按文件夹浏览</option><option value="recent">按最近使用浏览</option></select>';
+    const reset=document.createElement('button');
+    reset.type='button';reset.className='small-btn library-reset';reset.textContent='清空全部笔记';
+    reset.addEventListener('click',()=>{
+      if(generating||pendingJob()){alert('请先等待当前生成任务结束，再清空笔记。');return;}
+      if(!confirm('永久清空此浏览器中本页面的全部笔记、最近删除、批注和编辑记录？此操作无法撤销。'))return;
+      try{
+        ['seeu_upload_generated_notes_v1','seeunotes_klein_review_v3_annotation_safe','seeu_library_last_view_v1','seeu_library_ui_v2','seeu_pending_job_v1'].forEach(key=>localStorage.removeItem(key));
+        // Navigate without calling saveNotes, which would write the open note back.
+        location.reload();
+      }catch(error){alert('清空未完成，请检查浏览器是否允许访问本地存储。');}
+    });
+    box.appendChild(reset);
     const order=box.querySelector('#libraryOrder');order.value=ui.order||'folders';order.onchange=()=>{saveLibraryUI({order:order.value});renderHistory();};
     const categories=[...new Set(['直播笔记','课程笔记','答疑记录',...list.map(x=>x.category||'未分类')])];
     const select=document.getElementById('uploadCategory'),previous=select.value;
