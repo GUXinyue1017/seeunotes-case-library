@@ -164,14 +164,31 @@ export function sliceCaseTranscripts(raw,cases){
   });
 }
 
+function normalizeStructured(result, raw, title) {
+  if(!Array.isArray(result.sections)||!result.sections.length)throw new Error('AI 未返回可用章节，请重试。');
+  const transcripts=sliceCaseTranscripts(raw,result.sections);
+  const sections=result.sections.map((section,i)=>{
+    if(!section||typeof section.title!=='string'||!section.title.trim()||!Array.isArray(section.blocks))throw new Error('AI 返回的章节格式不正确，请重试。');
+    const blocks=section.blocks.map(block=>{
+      if(!block||!Array.isArray(block.paragraphs)||block.paragraphs.some(p=>typeof p!=='string'))throw new Error('AI 返回的章节正文格式不正确，请重试。');
+      return {heading:typeof block.heading==='string'?block.heading.trim():'',paragraphs:block.paragraphs.map(p=>p.trim()).filter(Boolean)};
+    }).filter(b=>b.paragraphs.length);
+    if(!blocks.length)throw new Error('AI 返回了空章节，请重试。');
+    const review=(Array.isArray(section.review)?section.review:[]).filter(q=>q&&typeof q.question==='string'&&typeof q.answer==='string'&&q.question.trim()&&q.answer.trim()).map(q=>({question:q.question.trim(),answer:q.answer.trim()}));
+    return {title:section.title.trim(),subtitle:'',blocks,review,rawStart:String(section.rawStart||''),rawEnd:String(section.rawEnd||''),...transcripts[i]};
+  });
+  return {kind:'structured',title:title||String(result.title||'结构化笔记'),summary:String(result.summary||''),sections,cases:[],raw,methods:[],advice:[],core:[],background:[],universal:[],quotes:[],extractionVersion:4,engine:'ai'};
+}
+
 export function normalizeNote(result, raw, title) {
+  if(result&&(result.kind==='structured'||(!result.cases?.length&&result.sections?.length)))return normalizeStructured(result,raw,title);
   if (
     !result ||
     !Array.isArray(result.cases) ||
     !result.cases.length
   ) {
     throw new Error(
-      'AI 没有返回可用案例，请重试。'
+      'AI 未返回可用笔记内容，请重试。'
     );
   }
 
@@ -738,7 +755,7 @@ const server =
             try{
               job.note=await generate(body,controller.signal);
               job.status='succeeded';job.stage='笔记已完成';
-              console.log('[JOB SUCCESS]',{cases:job.note.cases.length,rawTranscriptCases:job.note.cases.filter(c=>c.rawTranscript).length});
+              console.log('[JOB SUCCESS]',{kind:job.note.kind||'cases',cases:job.note.cases.length,sections:job.note.sections?.length||0,rawTranscriptCases:job.note.cases.filter(c=>c.rawTranscript).length,rawTranscriptSections:job.note.sections?.filter(c=>c.rawTranscript).length||0});
             }catch(e){job.status='failed';job.error=e.name==='AbortError'?'生成超过 10 分钟，请缩短材料后重试。':e.message;}
             finally{job.finishedAt=Date.now();clearTimeout(timeout);active.delete(controller);}
           })();
